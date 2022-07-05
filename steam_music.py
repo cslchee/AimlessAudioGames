@@ -57,7 +57,7 @@ def get_games_and_data(page: str) -> dict:
                 name = name.replace('  ', ' ')  # double spaces
                 name = name.strip().title()
                 #Using title() exposes roman numeral names, correct Dark Souls III into Dark Souls 3
-                name = name.replace('Iii','3').replace('Ii','2')
+                name = name.replace('Iii','3').replace('Ii','2') #TODO Different between Metal Gear V and Metal Gear 5?
                 print(name)
             except ValueError as e:
                 new_games[the_id] = "NA"
@@ -227,8 +227,8 @@ def filter_games(game_dict: dict, playtime_minimum=0, always_musical_games=False
             continue
         filter_list.append(game_name)
         # print(f"\t{game_name:25}  -  {playtime_hrs}")
-    # print(f"Ignored games:")
-    # for k, v in ignored.items(): print(f'\t{k}: {v}')
+    print(f"Ignored games:")
+    for k, v in ignored.items(): print(f'\t{k}: {v}')
 
     return tuple(sorted(set(filter_list)))
 
@@ -390,17 +390,20 @@ def play_yt_video_audio(music) -> None:
 
 
 def main():
+    # https://www.steamidfinder.com/
+    my_id = 76561198032632811   # Me
+    #my_id = 76561198145257760  # Michael
+    #my_id = 76561198207764489  # Liz
     API_KEY = "4130330FD6DE87CA2759338B96909684"
-    my_id = 76561198032632811  # https://www.steamidfinder.com/
     games_page = f"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={API_KEY}&steamid={my_id}&format=json"
 
     game_dict = get_games_and_data(games_page)
-    games_selected = filter_games(game_dict, playtime_minimum=2)  # Recommend >1
+    games_selected = filter_games(game_dict)  # Recommend >1
     # print(f"Filter Games:")
     # for g in games_selected: print(f"\t{g}")
     # print(f"Length of games_selected: {len(games_selected)}")
 
-    music = get_OSTs(games_selected, manually_provide_playlist=True, elaborate_search=False)
+    music = get_OSTs(games_selected, manually_provide_playlist=False, elaborate_search=False)
 
 
     # TODO Should image using "https://i.ytimg.com/vi/__ID__/maxresdefault.jpg"

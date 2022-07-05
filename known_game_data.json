@@ -20841,5 +20841,3148 @@
             "Character Customization",
             "Replay Value"
         ]
+    },
+    "500": {
+        "name": "Left 4 Dead",
+        "devs": [
+            "Valve"
+        ],
+        "pubs": [
+            "Valve"
+        ],
+        "tags": [
+            "Zombies",
+            "Co-op",
+            "Multiplayer",
+            "FPS",
+            "Action",
+            "Horror",
+            "Shooter",
+            "Online Co-Op",
+            "Team-Based",
+            "Survival",
+            "First-Person",
+            "Post-apocalyptic",
+            "Singleplayer",
+            "Atmospheric",
+            "Adventure",
+            "Moddable",
+            "Tactical",
+            "Replay Value",
+            "Competitive",
+            "Female Protagonist"
+        ]
+    },
+    "29800": {
+        "name": "Caster",
+        "devs": [
+            "Elecorn"
+        ],
+        "pubs": [
+            "Elecorn"
+        ],
+        "tags": [
+            "Action",
+            "Indie",
+            "Adventure",
+            "Third-Person Shooter",
+            "Casual",
+            "RPG",
+            "Strategy",
+            "Singleplayer",
+            "Third Person",
+            "Fast-Paced",
+            "Great Soundtrack",
+            "Female Protagonist",
+            "Shooter"
+        ]
+    },
+    "12810": {
+        "name": "Overlord 2",
+        "devs": [
+            "Triumph Studios"
+        ],
+        "pubs": [
+            "Codemasters",
+            "Electronic Arts"
+        ],
+        "tags": [
+            "RPG",
+            "Villain Protagonist",
+            "Fantasy",
+            "Singleplayer",
+            "Funny",
+            "Comedy",
+            "Third Person",
+            "Action",
+            "Magic",
+            "Adventure",
+            "Strategy",
+            "Dark Humor",
+            "Action RPG",
+            "Dark Fantasy",
+            "Open World",
+            "Action-Adventure",
+            "Puzzle",
+            "Multiplayer",
+            "Atmospheric",
+            "RTS"
+        ]
+    },
+    "20920": {
+        "name": "The Witcher 2 Assassins Of Kings Enhanced Edition",
+        "devs": [
+            "CD PROJEKT RED"
+        ],
+        "pubs": [
+            "CD PROJEKT RED",
+            "1C-SoftClub"
+        ],
+        "tags": [
+            "RPG",
+            "Fantasy",
+            "Mature",
+            "Story Rich",
+            "Choices Matter",
+            "Singleplayer",
+            "Third Person",
+            "Adventure",
+            "Nudity",
+            "Dark Fantasy",
+            "Multiple Endings",
+            "Action",
+            "Open World",
+            "Atmospheric",
+            "Based On A Novel",
+            "Well-Written",
+            "Difficult",
+            "Medieval",
+            "Magic",
+            "Dark"
+        ]
+    },
+    "17710": {
+        "name": "Nuclear Dawn",
+        "devs": [
+            "GameConnect",
+            "InterWave Studios"
+        ],
+        "pubs": [
+            "Iceberg Interactive"
+        ],
+        "tags": [
+            "Strategy",
+            "Action",
+            "FPS",
+            "RTS",
+            "Multiplayer",
+            "Post-apocalyptic",
+            "Sci-fi",
+            "Shooter",
+            "Tactical",
+            "First-Person",
+            "Team-Based",
+            "Indie",
+            "Real-Time",
+            "Futuristic",
+            "Dystopian",
+            "Real Time Tactics",
+            "3D",
+            "Top-Down",
+            "Base Building",
+            "Alternate History"
+        ]
+    },
+    "209080": {
+        "name": "Guns Of Icarus Online",
+        "devs": [
+            "Muse Games"
+        ],
+        "pubs": [
+            "Muse Games"
+        ],
+        "tags": [
+            "Steampunk",
+            "Team-Based",
+            "Multiplayer",
+            "Co-op",
+            "Action",
+            "Tactical",
+            "Indie",
+            "Competitive",
+            "Simulation",
+            "Adventure",
+            "Flight",
+            "FPS",
+            "Online Co-Op",
+            "Strategy",
+            "PvP",
+            "First-Person",
+            "Shooter",
+            "Class-Based",
+            "Kickstarter",
+            "Massively Multiplayer"
+        ]
+    },
+    "55230": {
+        "name": "Saints Row The Third",
+        "devs": [
+            "Volition"
+        ],
+        "pubs": [
+            "Deep Silver"
+        ],
+        "tags": [
+            "Open World",
+            "Action",
+            "Comedy",
+            "Co-op",
+            "Third-Person Shooter",
+            "Funny",
+            "Sandbox",
+            "Character Customization",
+            "Third Person",
+            "Online Co-Op",
+            "Singleplayer",
+            "Great Soundtrack",
+            "Shooter",
+            "Multiplayer",
+            "Crime",
+            "Female Protagonist",
+            "Adventure",
+            "Satire",
+            "Zombies",
+            "RPG"
+        ]
+    },
+    "202270": "NA",
+    "248820": {
+        "name": "Risk Of Rain",
+        "devs": [
+            "Hopoo Games"
+        ],
+        "pubs": [
+            "Chucklefish"
+        ],
+        "tags": [
+            "Action Roguelike",
+            "Roguelike",
+            "Indie",
+            "Platformer",
+            "Action",
+            "Pixel Graphics",
+            "Great Soundtrack",
+            "Online Co-Op",
+            "Difficult",
+            "Perma Death",
+            "Co-op",
+            "2D",
+            "Local Co-Op",
+            "Roguelite",
+            "Multiplayer",
+            "RPG",
+            "Singleplayer",
+            "Addictive",
+            "Replay Value",
+            "Survival"
+        ]
+    },
+    "233840": {
+        "name": "Worms Clan Wars",
+        "devs": [
+            "Team17 Digital Ltd"
+        ],
+        "pubs": [
+            "Team17 Digital Ltd"
+        ],
+        "tags": [
+            "Strategy",
+            "Multiplayer",
+            "Turn-Based",
+            "Funny",
+            "Local Co-Op",
+            "Comedy",
+            "2D",
+            "Action",
+            "Singleplayer",
+            "2.5D",
+            "Local Multiplayer",
+            "Turn-Based Strategy"
+        ]
+    },
+    "4570": {
+        "name": "Warhammer 40 000 Dawn Of War - Game Of The Year Edition",
+        "devs": [
+            "Relic Entertainment"
+        ],
+        "pubs": [
+            "SEGA"
+        ],
+        "tags": [
+            "Strategy",
+            "Warhammer 40K",
+            "RTS",
+            "Base Building",
+            "Sci-fi",
+            "Multiplayer",
+            "Real-Time",
+            "Games Workshop",
+            "Tactical",
+            "Singleplayer",
+            "War",
+            "Classic",
+            "Action",
+            "Gore",
+            "Fantasy",
+            "Great Soundtrack",
+            "Epic",
+            "Futuristic",
+            "Story Rich",
+            "Dark"
+        ]
+    },
+    "4580": {
+        "name": "Warhammer 40 000 Dawn Of War - Dark Crusade",
+        "devs": [
+            "Relic Entertainment"
+        ],
+        "pubs": [
+            "SEGA"
+        ],
+        "tags": [
+            "Strategy",
+            "Warhammer 40K",
+            "RTS",
+            "Base Building",
+            "Sci-fi",
+            "Multiplayer",
+            "Singleplayer",
+            "Games Workshop",
+            "Real-Time",
+            "Classic",
+            "War",
+            "Action",
+            "Tactical",
+            "Atmospheric",
+            "Gore",
+            "Co-op",
+            "Fantasy",
+            "Space",
+            "Adventure",
+            "Nostalgia"
+        ]
+    },
+    "9310": {
+        "name": "Warhammer 40 000 Dawn Of War Winter Assault",
+        "devs": [
+            "Relic Entertainment"
+        ],
+        "pubs": [
+            "SEGA"
+        ],
+        "tags": [
+            "Strategy",
+            "Warhammer 40K",
+            "RTS",
+            "Games Workshop",
+            "Base Building",
+            "Sci-fi",
+            "Singleplayer",
+            "Multiplayer",
+            "Real-Time",
+            "Tactical",
+            "Futuristic",
+            "War",
+            "Action",
+            "Classic"
+        ]
+    },
+    "9450": {
+        "name": "Warhammer 40 000 Dawn Of War - Soulstorm",
+        "devs": [
+            "Relic Entertainment"
+        ],
+        "pubs": [
+            "SEGA"
+        ],
+        "tags": [
+            "Warhammer 40K",
+            "Strategy",
+            "RTS",
+            "Base Building",
+            "Sci-fi",
+            "Multiplayer",
+            "Real-Time",
+            "Games Workshop",
+            "Singleplayer",
+            "Futuristic",
+            "Classic",
+            "Action",
+            "Atmospheric",
+            "Great Soundtrack",
+            "Gore",
+            "Moddable",
+            "Adventure",
+            "Fantasy",
+            "Memes",
+            "Co-op"
+        ]
+    },
+    "219640": {
+        "name": "Chivalry Medieval Warfare",
+        "devs": [
+            "Torn Banner Studios"
+        ],
+        "pubs": [
+            "Torn Banner Studios"
+        ],
+        "tags": [
+            "Medieval",
+            "Multiplayer",
+            "Action",
+            "Gore",
+            "First-Person",
+            "Swordplay",
+            "Violent",
+            "PvP",
+            "Indie",
+            "Third Person",
+            "Competitive",
+            "Team-Based",
+            "Hack and Slash",
+            "Historical",
+            "Co-op",
+            "FPS",
+            "Class-Based",
+            "Atmospheric",
+            "Simulation",
+            "Difficult"
+        ]
+    },
+    "208610": "NA",
+    "262060": {
+        "name": "Darkest Dungeon",
+        "devs": [
+            "Red Hook Studios"
+        ],
+        "pubs": [
+            "Red Hook Studios"
+        ],
+        "tags": [
+            "Turn-Based Combat",
+            "Dark Fantasy",
+            "Dungeon Crawler",
+            "Roguelike",
+            "RPG",
+            "Lovecraftian",
+            "Difficult",
+            "Turn-Based",
+            "Singleplayer",
+            "Perma Death",
+            "Strategy",
+            "Atmospheric",
+            "Dark",
+            "Indie",
+            "2D",
+            "Roguelite",
+            "Horror",
+            "Gothic",
+            "Fantasy",
+            "Kickstarter"
+        ]
+    },
+    "230230": {
+        "name": "Divinity Original Sin (Classic)",
+        "devs": [
+            "Larian Studios"
+        ],
+        "pubs": [
+            "Larian Studios"
+        ],
+        "tags": [
+            "RPG",
+            "Turn-Based",
+            "Co-op",
+            "Fantasy",
+            "Adventure",
+            "Strategy",
+            "Open World",
+            "Isometric",
+            "CRPG",
+            "Story Rich",
+            "Kickstarter",
+            "Indie",
+            "Multiplayer",
+            "Singleplayer",
+            "Turn-Based Strategy",
+            "Magic",
+            "Online Co-Op",
+            "Crowdfunded",
+            "Atmospheric",
+            "Female Protagonist"
+        ]
+    },
+    "373420": {
+        "name": "Divinity Original Sin - Enhanced Edition",
+        "devs": [
+            "Larian Studios"
+        ],
+        "pubs": [
+            "Larian Studios"
+        ],
+        "tags": [
+            "RPG",
+            "Turn-Based",
+            "Co-op",
+            "Adventure",
+            "Fantasy",
+            "Party-Based RPG",
+            "Strategy",
+            "Story Rich",
+            "Turn-Based Combat",
+            "Character Customization",
+            "Open World",
+            "CRPG",
+            "Singleplayer",
+            "Local Co-Op",
+            "Isometric",
+            "Multiplayer",
+            "Indie",
+            "Turn-Based Strategy",
+            "Great Soundtrack",
+            "Split Screen"
+        ]
+    },
+    "8930": {
+        "name": "Sid Meier'S Civilization V",
+        "devs": [
+            "Firaxis Games",
+            "Aspyr (Mac)",
+            "Aspyr (Linux)"
+        ],
+        "pubs": [
+            "2K",
+            "Aspyr (Mac)",
+            "Aspyr (Linux)"
+        ],
+        "tags": [
+            "Turn-Based Strategy",
+            "Strategy",
+            "Turn-Based",
+            "Multiplayer",
+            "Historical",
+            "4X",
+            "Addictive",
+            "Singleplayer",
+            "Hex Grid",
+            "Grand Strategy",
+            "Replay Value",
+            "Co-op",
+            "Tactical",
+            "Economy",
+            "Diplomacy",
+            "Moddable",
+            "Simulation",
+            "Classic",
+            "Great Soundtrack",
+            "Touch-Friendly"
+        ]
+    },
+    "213670": {
+        "name": "South Park The Stick Of Truth",
+        "devs": [
+            "Obsidian Entertainment"
+        ],
+        "pubs": [
+            "Ubisoft"
+        ],
+        "tags": [
+            "RPG",
+            "Comedy",
+            "Adventure",
+            "Funny",
+            "Turn-Based",
+            "Dark Humor",
+            "Singleplayer",
+            "Action",
+            "Mature",
+            "2D",
+            "Satire",
+            "Nudity",
+            "Cartoon",
+            "Open World",
+            "Story Rich",
+            "Fantasy",
+            "Epic",
+            "Turn-Based Strategy",
+            "Zombies",
+            "JRPG"
+        ]
+    },
+    "281990": {
+        "name": "Stellaris",
+        "devs": [
+            "Paradox Development Studio"
+        ],
+        "pubs": [
+            "Paradox Interactive"
+        ],
+        "tags": [
+            "Space",
+            "Grand Strategy",
+            "Strategy",
+            "Sci-fi",
+            "4X",
+            "Exploration",
+            "Sandbox",
+            "Simulation",
+            "Real-Time with Pause",
+            "Multiplayer",
+            "Moddable",
+            "Singleplayer",
+            "Diplomacy",
+            "Management",
+            "Futuristic",
+            "Military",
+            "Replay Value",
+            "Great Soundtrack",
+            "Atmospheric",
+            "Procedural Generation"
+        ]
+    },
+    "292910": {
+        "name": "Deponia The Complete Journey",
+        "devs": [
+            "Daedalic Entertainment"
+        ],
+        "pubs": [
+            "Daedalic Entertainment"
+        ],
+        "tags": [
+            "Adventure",
+            "Point &amp; Click",
+            "Comedy",
+            "Puzzle",
+            "Singleplayer",
+            "Funny",
+            "2D",
+            "Story Rich",
+            "Great Soundtrack",
+            "Classic",
+            "Cult Classic",
+            "Retro",
+            "Steampunk",
+            "Sci-fi",
+            "Indie",
+            "Hand-drawn",
+            "Cartoon",
+            "Escape Room",
+            "Dystopian",
+            "Sexual Content"
+        ]
+    },
+    "15620": {
+        "name": "Warhammer 40 000 Dawn Of War 2",
+        "devs": [
+            "Relic Entertainment",
+            "Feral Interactive (Mac/Linux)"
+        ],
+        "pubs": [
+            "SEGA",
+            "Feral Interactive (Mac/Linux)"
+        ],
+        "tags": [
+            "Warhammer 40K",
+            "Strategy",
+            "RTS",
+            "Sci-fi",
+            "Multiplayer",
+            "Games Workshop",
+            "Tactical",
+            "Singleplayer",
+            "Co-op",
+            "Futuristic",
+            "Gore",
+            "Online Co-Op",
+            "RPG",
+            "Action",
+            "Real-Time",
+            "Co-op Campaign",
+            "Fantasy",
+            "Great Soundtrack",
+            "Atmospheric",
+            "Story Rich"
+        ]
+    },
+    "20570": {
+        "name": "Warhammer 40 000 Dawn Of War 2 Chaos Rising",
+        "devs": [
+            "Relic Entertainment",
+            "Feral Interactive (Mac/Linux)"
+        ],
+        "pubs": [
+            "SEGA",
+            "Feral Interactive (Mac/Linux)"
+        ],
+        "tags": [
+            "Strategy",
+            "Warhammer 40K",
+            "RTS",
+            "Sci-fi",
+            "Multiplayer",
+            "Games Workshop",
+            "Tactical",
+            "Co-op",
+            "Real-Time",
+            "RPG",
+            "Singleplayer",
+            "Action",
+            "Great Soundtrack",
+            "Gore",
+            "Real Time Tactics",
+            "Futuristic",
+            "Atmospheric"
+        ]
+    },
+    "56400": {
+        "name": "Warhammer 40 000 Dawn Of War 2 Retribution",
+        "devs": [
+            "Relic Entertainment",
+            "Feral Interactive (Mac/Linux)"
+        ],
+        "pubs": [
+            "SEGA",
+            "Feral Interactive (Mac/Linux)"
+        ],
+        "tags": [
+            "Warhammer 40K",
+            "Strategy",
+            "RTS",
+            "Tactical",
+            "Sci-fi",
+            "Multiplayer",
+            "Games Workshop",
+            "Online Co-Op",
+            "Co-op",
+            "Singleplayer",
+            "Real-Time",
+            "Futuristic",
+            "Gore",
+            "RPG",
+            "Action",
+            "Fantasy",
+            "Great Soundtrack",
+            "Atmospheric",
+            "Adventure",
+            "Co-op Campaign"
+        ]
+    },
+    "304930": {
+        "name": "Unturned",
+        "devs": [
+            "Smartly Dressed Games"
+        ],
+        "pubs": [
+            "Smartly Dressed Games"
+        ],
+        "tags": [
+            "Free to Play",
+            "Survival",
+            "Zombies",
+            "Open World Survival Craft",
+            "Multiplayer",
+            "Open World",
+            "Adventure",
+            "Crafting",
+            "Action",
+            "First-Person",
+            "Co-op",
+            "Sandbox",
+            "Shooter",
+            "Post-apocalyptic",
+            "FPS",
+            "Singleplayer",
+            "Massively Multiplayer",
+            "Indie",
+            "Casual",
+            "Atmospheric"
+        ]
+    },
+    "305050": {
+        "name": "Outland",
+        "devs": [
+            "Housemarque"
+        ],
+        "pubs": [
+            "Housemarque"
+        ],
+        "tags": [
+            "Platformer",
+            "Action",
+            "Metroidvania",
+            "Co-op",
+            "2D",
+            "Adventure",
+            "Indie",
+            "Bullet Hell",
+            "Multiplayer",
+            "Controller",
+            "Singleplayer",
+            "Great Soundtrack",
+            "Difficult",
+            "Online Co-Op",
+            "Arcade",
+            "Atmospheric"
+        ]
+    },
+    "38400": {
+        "name": "Fallout A Post Nuclear Role Playing Game",
+        "devs": [
+            "Interplay Inc."
+        ],
+        "pubs": [
+            "Bethesda Softworks"
+        ],
+        "tags": [
+            "RPG",
+            "Post-apocalyptic",
+            "Classic",
+            "Open World",
+            "Isometric",
+            "Turn-Based",
+            "Turn-Based Combat",
+            "Singleplayer",
+            "Sci-fi",
+            "Atmospheric",
+            "Multiple Endings",
+            "Retro",
+            "1990's",
+            "CRPG",
+            "Adventure",
+            "Exploration",
+            "2D",
+            "Difficult",
+            "Tactical",
+            "Sandbox"
+        ]
+    },
+    "38410": {
+        "name": "Fallout 2 A Post Nuclear Role Playing Game",
+        "devs": [
+            "Black Isle Studios"
+        ],
+        "pubs": [
+            "Bethesda Softworks"
+        ],
+        "tags": [
+            "RPG",
+            "Post-apocalyptic",
+            "Classic",
+            "Open World",
+            "Isometric",
+            "Turn-Based Combat",
+            "Turn-Based",
+            "Singleplayer",
+            "Sci-fi",
+            "Atmospheric",
+            "Story Rich",
+            "Retro",
+            "Great Soundtrack",
+            "Exploration",
+            "Dark Humor",
+            "Replay Value",
+            "CRPG",
+            "Adventure",
+            "Sandbox",
+            "2D"
+        ]
+    },
+    "38420": {
+        "name": "Fallout Tactics Brotherhood Of Steel",
+        "devs": [
+            "14\u00b0 East"
+        ],
+        "pubs": [
+            "Bethesda Softworks"
+        ],
+        "tags": [
+            "Post-apocalyptic",
+            "RPG",
+            "Strategy",
+            "Turn-Based",
+            "Tactical",
+            "Isometric",
+            "Classic",
+            "Singleplayer",
+            "Turn-Based Strategy",
+            "Sci-fi",
+            "Tactical RPG",
+            "Open World",
+            "Real-Time with Pause",
+            "Action",
+            "Atmospheric",
+            "Turn-Based Tactics",
+            "Multiplayer",
+            "Story Rich",
+            "CRPG",
+            "Adventure"
+        ]
+    },
+    "206420": {
+        "name": "Saints Row Iv",
+        "devs": [
+            "Deep Silver Volition"
+        ],
+        "pubs": [
+            "Deep Silver"
+        ],
+        "tags": [
+            "Open World",
+            "Action",
+            "Comedy",
+            "Co-op",
+            "Third-Person Shooter",
+            "Superhero",
+            "Character Customization",
+            "Sandbox",
+            "Funny",
+            "Third Person",
+            "Adventure",
+            "Online Co-Op",
+            "Aliens",
+            "Parody",
+            "Multiplayer",
+            "Great Soundtrack",
+            "Singleplayer",
+            "Sci-fi",
+            "Dark Humor",
+            "Female Protagonist"
+        ]
+    },
+    "320040": {
+        "name": "Moon Hunters",
+        "devs": [
+            "Kitfox Games"
+        ],
+        "pubs": [
+            "Kitfox Games"
+        ],
+        "tags": [
+            "Relaxing",
+            "Roguelite",
+            "Action Roguelike",
+            "Hack and Slash",
+            "Dungeon Crawler",
+            "Exploration",
+            "Character Action Game",
+            "Family Friendly",
+            "Action RPG",
+            "2D",
+            "Action-Adventure",
+            "RPG",
+            "Roguelike",
+            "Story Rich",
+            "Choices Matter",
+            "Conversation",
+            "Multiple Endings",
+            "Adventure",
+            "Procedural Generation",
+            "Action"
+        ]
+    },
+    "323190": {
+        "name": "Frostpunk",
+        "devs": [
+            "11 bit studios"
+        ],
+        "pubs": [
+            "11 bit studios"
+        ],
+        "tags": [
+            "City Builder",
+            "Survival",
+            "Strategy",
+            "Resource Management",
+            "Post-apocalyptic",
+            "Steampunk",
+            "Colony Sim",
+            "Building",
+            "Base Building",
+            "Simulation",
+            "Singleplayer",
+            "Management",
+            "Choices Matter",
+            "Atmospheric",
+            "Economy",
+            "Dark",
+            "RTS",
+            "Difficult",
+            "Great Soundtrack",
+            "Real-Time with Pause"
+        ]
+    },
+    "330840": {
+        "name": "Game Of Thrones - A Telltale Games Series",
+        "devs": [
+            "Telltale Games"
+        ],
+        "pubs": [
+            "Telltale Games"
+        ],
+        "tags": [
+            "Story Rich",
+            "Episodic",
+            "Adventure",
+            "Choices Matter",
+            "Fantasy",
+            "Point &amp; Click",
+            "Singleplayer",
+            "Atmospheric",
+            "Medieval",
+            "Choose Your Own Adventure",
+            "Interactive Fiction",
+            "Based On A Novel",
+            "Mature",
+            "Nudity",
+            "Gore",
+            "Female Protagonist",
+            "Dragons",
+            "War",
+            "Casual",
+            "Third Person"
+        ]
+    },
+    "332360": {
+        "name": "Spriter Pro",
+        "devs": [
+            "BrashMonkey"
+        ],
+        "pubs": [
+            "BrashMonkey"
+        ],
+        "tags": [
+            "Animation &amp; Modeling",
+            "Design &amp; Illustration",
+            "Utilities",
+            "Software",
+            "Game Development"
+        ]
+    },
+    "246110": {
+        "name": "Massive Chalice",
+        "devs": [
+            "Double Fine Productions"
+        ],
+        "pubs": [
+            "Double Fine Productions"
+        ],
+        "tags": [
+            "Strategy",
+            "Turn-Based",
+            "Turn-Based Tactics",
+            "Tactical",
+            "Indie",
+            "Fantasy",
+            "Singleplayer",
+            "RPG",
+            "Kickstarter",
+            "Management",
+            "Tactical RPG",
+            "Perma Death",
+            "Turn-Based Strategy",
+            "Roguelike"
+        ]
+    },
+    "323470": {
+        "name": "Dragon Ball Xenoverse",
+        "devs": [
+            "DIMPS"
+        ],
+        "pubs": [
+            "BANDAI NAMCO Entertainment"
+        ],
+        "tags": [
+            "Anime",
+            "Fighting",
+            "Action",
+            "Character Customization",
+            "Multiplayer",
+            "Co-op",
+            "Adventure",
+            "Singleplayer",
+            "RPG",
+            "Online Co-Op",
+            "Third Person",
+            "Fantasy",
+            "Dragons",
+            "Beat 'em up",
+            "Controller",
+            "Open World",
+            "Action RPG",
+            "Funny",
+            "Fast-Paced",
+            "Local Co-Op"
+        ]
+    },
+    "322330": {
+        "name": "Don'T Starve Together",
+        "devs": [
+            "Klei Entertainment"
+        ],
+        "pubs": [
+            "Klei Entertainment"
+        ],
+        "tags": [
+            "Exploration",
+            "Open World Survival Craft",
+            "Survival",
+            "Roguelite",
+            "Crafting",
+            "Sandbox",
+            "Multiplayer",
+            "Difficult",
+            "2D",
+            "Open World",
+            "Strategy",
+            "Funny",
+            "Horror",
+            "Action",
+            "Adventure",
+            "Atmospheric",
+            "Survival Horror",
+            "Simulation",
+            "Online Co-Op",
+            "PvP"
+        ]
+    },
+    "356570": {
+        "name": "Party Hard",
+        "devs": [
+            "Pinokl Games",
+            "Kverta"
+        ],
+        "pubs": [
+            "tinyBuild"
+        ],
+        "tags": [
+            "Pixel Graphics",
+            "Strategy",
+            "Stealth",
+            "Indie",
+            "Action",
+            "Violent",
+            "Great Soundtrack",
+            "Villain Protagonist",
+            "Gore",
+            "Singleplayer",
+            "Dark Humor",
+            "2D",
+            "Crime",
+            "Retro",
+            "Difficult",
+            "Top-Down",
+            "Funny",
+            "Horror",
+            "Story Rich",
+            "Comedy"
+        ]
+    },
+    "359320": {
+        "name": "Elite Dangerous",
+        "devs": [
+            "Frontier Developments"
+        ],
+        "pubs": [
+            "Frontier Developments"
+        ],
+        "tags": [
+            "Space Sim",
+            "Space",
+            "Open World",
+            "Exploration",
+            "Sci-fi",
+            "Simulation",
+            "Massively Multiplayer",
+            "Multiplayer",
+            "First-Person",
+            "Action",
+            "VR",
+            "Adventure",
+            "Sandbox",
+            "Online Co-Op",
+            "Trading",
+            "Singleplayer",
+            "RPG",
+            "Difficult",
+            "Strategy",
+            "TrackIR"
+        ]
+    },
+    "359870": {
+        "name": "Final Fantasy X X-2 Hd Remaster",
+        "devs": [
+            "Square Enix"
+        ],
+        "pubs": [
+            "Square Enix"
+        ],
+        "tags": [
+            "JRPG",
+            "Story Rich",
+            "RPG",
+            "Turn-Based Combat",
+            "Great Soundtrack",
+            "Fantasy",
+            "Singleplayer",
+            "Classic",
+            "Adventure",
+            "Turn-Based",
+            "Atmospheric",
+            "Romance",
+            "Female Protagonist",
+            "Anime",
+            "Action",
+            "Open World",
+            "Remake",
+            "Linear",
+            "Puzzle",
+            "Sports"
+        ]
+    },
+    "362380": {
+        "name": "Push Me Pull You",
+        "devs": [
+            "House House"
+        ],
+        "pubs": [
+            "House House"
+        ],
+        "tags": [
+            "Local Multiplayer",
+            "Sports",
+            "Indie",
+            "Physics",
+            "Action",
+            "Funny",
+            "Colorful",
+            "Cute",
+            "4 Player Local",
+            "Comedy",
+            "Multiplayer",
+            "Stylized",
+            "PvP",
+            "Team-Based",
+            "Competitive",
+            "Wrestling",
+            "Controller",
+            "Family Friendly",
+            "Party Game",
+            "Psychological Horror"
+        ]
+    },
+    "364060": {
+        "name": "Capsule Force",
+        "devs": [
+            "klobit LLC"
+        ],
+        "pubs": [
+            "Iron Galaxy"
+        ],
+        "tags": [
+            "Action",
+            "Indie",
+            "Local Multiplayer",
+            "Retro",
+            "Arcade",
+            "1980s",
+            "Cute",
+            "Anime",
+            "Pixel Graphics",
+            "Platformer",
+            "4 Player Local"
+        ]
+    },
+    "238370": {
+        "name": "Magicka 2",
+        "devs": [
+            "Pieces Interactive"
+        ],
+        "pubs": [
+            "Paradox Interactive"
+        ],
+        "tags": [
+            "Magic",
+            "Co-op",
+            "Adventure",
+            "Multiplayer",
+            "Comedy",
+            "Action",
+            "Online Co-Op",
+            "Funny",
+            "Local Co-Op",
+            "RPG",
+            "Atmospheric",
+            "Team-Based",
+            "PvP",
+            "Fantasy",
+            "Open World",
+            "Local Multiplayer",
+            "Singleplayer",
+            "Gore",
+            "Memes",
+            "Isometric"
+        ]
+    },
+    "397080": "NA",
+    "404050": {
+        "name": "Black &Amp White Bushido",
+        "devs": [
+            "Good Catch Games"
+        ],
+        "pubs": [
+            "Green Man Gaming Publishing",
+            "Good Catch Games"
+        ],
+        "tags": [
+            "Action",
+            "Multiplayer",
+            "4 Player Local",
+            "Platformer",
+            "2D",
+            "Ninja",
+            "Swordplay",
+            "Fighting",
+            "Indie",
+            "Local Co-Op",
+            "Fast-Paced",
+            "PvP",
+            "Co-op",
+            "Competitive",
+            "2D Fighter",
+            "Local Multiplayer"
+        ]
+    },
+    "363890": {
+        "name": "Rpg Maker Mv",
+        "devs": [
+            "Gotcha Gotcha Games",
+            "KADOKAWA",
+            "Yoji Ojima"
+        ],
+        "pubs": [
+            "Degica"
+        ],
+        "tags": [
+            "RPGMaker",
+            "Game Development",
+            "RPG",
+            "Anime",
+            "GameMaker",
+            "Design &amp; Illustration",
+            "Web Publishing",
+            "JRPG",
+            "Software",
+            "2D",
+            "Singleplayer",
+            "Sexual Content",
+            "Action RPG",
+            "Nudity",
+            "Multiplayer",
+            "MMORPG",
+            "Pixel Graphics"
+        ]
+    },
+    "413150": {
+        "name": "Stardew Valley",
+        "devs": [
+            "ConcernedApe"
+        ],
+        "pubs": [
+            "ConcernedApe"
+        ],
+        "tags": [
+            "Farming Sim",
+            "Life Sim",
+            "Pixel Graphics",
+            "RPG",
+            "Multiplayer",
+            "Relaxing",
+            "Agriculture",
+            "Simulation",
+            "Crafting",
+            "Sandbox",
+            "Indie",
+            "Building",
+            "Singleplayer",
+            "Casual",
+            "Open World",
+            "2D",
+            "Great Soundtrack",
+            "Cute",
+            "Dating Sim",
+            "Fishing"
+        ]
+    },
+    "268500": {
+        "name": "Xcom 2",
+        "devs": [
+            "Firaxis Games",
+            "Feral Interactive (Mac)",
+            "Feral Interactive (Linux)"
+        ],
+        "pubs": [
+            "2K",
+            "Feral Interactive (Mac)",
+            "Feral Interactive (Linux)"
+        ],
+        "tags": [
+            "Strategy",
+            "Turn-Based",
+            "Turn-Based Strategy",
+            "Tactical",
+            "Turn-Based Tactics",
+            "Aliens",
+            "Sci-fi",
+            "Character Customization",
+            "Singleplayer",
+            "Difficult",
+            "Multiplayer",
+            "RPG",
+            "Moddable",
+            "Perma Death",
+            "Futuristic",
+            "Action",
+            "Atmospheric",
+            "Great Soundtrack",
+            "Co-op",
+            "Open World"
+        ]
+    },
+    "359550": {
+        "name": "Tom Clancy'S Rainbow Six Siege",
+        "devs": [
+            "Ubisoft Montreal"
+        ],
+        "pubs": [
+            "Ubisoft"
+        ],
+        "tags": [
+            "FPS",
+            "Hero Shooter",
+            "Multiplayer",
+            "Tactical",
+            "Shooter",
+            "Team-Based",
+            "Action",
+            "First-Person",
+            "Competitive",
+            "Co-op",
+            "Strategy",
+            "Realistic",
+            "Online Co-Op",
+            "Destruction",
+            "Physics",
+            "Atmospheric",
+            "Singleplayer",
+            "Massively Multiplayer",
+            "Casual",
+            "Simulation"
+        ]
+    },
+    "623990": "NA",
+    "573100": {
+        "name": "Battlefleet Gothic Armada 2",
+        "devs": [
+            "Tindalos Interactive"
+        ],
+        "pubs": [
+            "Focus Entertainment"
+        ],
+        "tags": [
+            "Strategy",
+            "Warhammer 40K",
+            "Space",
+            "Real Time Tactics",
+            "RTS",
+            "Sci-fi",
+            "Games Workshop",
+            "Singleplayer",
+            "Violent",
+            "Co-op",
+            "Multiplayer",
+            "Naval",
+            "Atmospheric",
+            "War"
+        ]
+    },
+    "578080": {
+        "name": "Pubg Battlegrounds",
+        "devs": [
+            "KRAFTON, Inc."
+        ],
+        "pubs": [
+            "KRAFTON, Inc."
+        ],
+        "tags": [
+            "Survival",
+            "Shooter",
+            "Multiplayer",
+            "Battle Royale",
+            "FPS",
+            "PvP",
+            "Third-Person Shooter",
+            "Action",
+            "Online Co-Op",
+            "Tactical",
+            "Co-op",
+            "First-Person",
+            "Strategy",
+            "Early Access",
+            "Competitive",
+            "Third Person",
+            "Team-Based",
+            "Difficult",
+            "Simulation",
+            "Stealth"
+        ]
+    },
+    "586210": {
+        "name": "Ovrdrop",
+        "devs": [
+            "Nicholas Ewalt"
+        ],
+        "pubs": [
+            "Nicholas Ewalt"
+        ],
+        "tags": [
+            "Utilities",
+            "VR"
+        ]
+    },
+    "611670": {
+        "name": "The Elder Scrolls V Skyrim Vr",
+        "devs": [
+            "Bethesda Game Studios"
+        ],
+        "pubs": [
+            "Bethesda Softworks"
+        ],
+        "tags": [
+            "Open World",
+            "RPG",
+            "VR",
+            "Singleplayer",
+            "Adventure",
+            "Fantasy",
+            "Magic",
+            "First-Person",
+            "Action",
+            "Memes",
+            "Dragons",
+            "Moddable",
+            "Exploration",
+            "Great Soundtrack",
+            "Character Customization",
+            "Story Rich",
+            "Sexual Content",
+            "Atmospheric",
+            "Stealth",
+            "Walking Simulator"
+        ]
+    },
+    "306130": {
+        "name": "The Elder Scrolls Online",
+        "devs": [
+            "ZeniMax Online Studios"
+        ],
+        "pubs": [
+            "Bethesda Softworks"
+        ],
+        "tags": [
+            "RPG",
+            "MMORPG",
+            "Adventure",
+            "Open World",
+            "Exploration",
+            "Fantasy",
+            "Multiplayer",
+            "Action",
+            "Singleplayer",
+            "Massively Multiplayer",
+            "PvP",
+            "PvE",
+            "Lore-Rich",
+            "Character Customization",
+            "Choose Your Own Adventure",
+            "Story Rich",
+            "Atmospheric",
+            "Class-Based",
+            "Action RPG",
+            "Magic"
+        ]
+    },
+    "236150": {
+        "name": "Starpoint Gemini 2",
+        "devs": [
+            "Little Green Men Games"
+        ],
+        "pubs": [
+            "Little Green Men Games"
+        ],
+        "tags": [
+            "Space",
+            "Simulation",
+            "RPG",
+            "Open World",
+            "Sci-fi",
+            "Space Sim",
+            "Singleplayer",
+            "Action",
+            "Moddable",
+            "Spaceships",
+            "Indie",
+            "Trading",
+            "Futuristic",
+            "Flight",
+            "Tactical RPG",
+            "3D",
+            "Third Person",
+            "Atmospheric",
+            "Destruction",
+            "Science"
+        ]
+    },
+    "323580": {
+        "name": "Jotun Valhalla Edition",
+        "devs": [
+            "Thunder Lotus Games"
+        ],
+        "pubs": [
+            "Thunder Lotus Games"
+        ],
+        "tags": [
+            "Adventure",
+            "Mythology",
+            "Action",
+            "Indie",
+            "Female Protagonist",
+            "Hand-drawn",
+            "Difficult",
+            "Singleplayer",
+            "Atmospheric",
+            "Exploration",
+            "Great Soundtrack",
+            "2D",
+            "Isometric",
+            "Fantasy",
+            "Vikings",
+            "Kickstarter",
+            "Controller",
+            "Story Rich",
+            "Souls-like",
+            "RPG"
+        ]
+    },
+    "15700": {
+        "name": "Oddworld Abe'S Oddysee",
+        "devs": [
+            "Oddworld Inhabitants"
+        ],
+        "pubs": [
+            "Oddworld Inhabitants"
+        ],
+        "tags": [
+            "Adventure",
+            "Platformer",
+            "Classic",
+            "Puzzle",
+            "2D",
+            "Singleplayer",
+            "Cult Classic",
+            "Retro",
+            "Dark",
+            "Funny",
+            "Atmospheric",
+            "Comedy",
+            "Difficult",
+            "1990's",
+            "Cinematic",
+            "Puzzle Platformer",
+            "Action",
+            "Fantasy",
+            "Indie",
+            "Old School"
+        ]
+    },
+    "594570": {
+        "name": "Total War Warhammer 2",
+        "devs": [
+            "CREATIVE ASSEMBLY",
+            "Feral Interactive (Mac)",
+            "Feral Interactive (Linux)"
+        ],
+        "pubs": [
+            "SEGA",
+            "Feral Interactive (Mac)",
+            "Feral Interactive (Linux)"
+        ],
+        "tags": [
+            "Strategy",
+            "Fantasy",
+            "Turn-Based Strategy",
+            "RTS",
+            "Grand Strategy",
+            "War",
+            "Multiplayer",
+            "Games Workshop",
+            "Action",
+            "Turn-Based",
+            "Singleplayer",
+            "Dark Fantasy",
+            "Co-op",
+            "Tactical",
+            "Real Time Tactics",
+            "Atmospheric",
+            "Story Rich",
+            "Dinosaurs",
+            "Great Soundtrack",
+            "Warhammer 40K"
+        ]
+    },
+    "743450": {
+        "name": "Monster Prom",
+        "devs": [
+            "Beautiful Glitch"
+        ],
+        "pubs": [
+            "Those Awesome Guys"
+        ],
+        "tags": [
+            "Dating Sim",
+            "Comedy",
+            "Multiplayer",
+            "LGBTQ+",
+            "Choices Matter",
+            "Visual Novel",
+            "Indie",
+            "Funny",
+            "Simulation",
+            "Local Multiplayer",
+            "Sexual Content",
+            "Fantasy",
+            "Demons",
+            "Online Co-Op",
+            "Story Rich",
+            "Zombies",
+            "Nudity",
+            "Vampire",
+            "Great Soundtrack",
+            "Life Sim"
+        ]
+    },
+    "368230": {
+        "name": "Kingdom Classic",
+        "devs": [
+            "Noio",
+            "Licorice"
+        ],
+        "pubs": [
+            "Raw Fury"
+        ],
+        "tags": [
+            "Strategy",
+            "Pixel Graphics",
+            "Survival",
+            "Colony Sim",
+            "2D",
+            "Medieval",
+            "Indie",
+            "Singleplayer",
+            "Tower Defense",
+            "Side Scroller",
+            "Resource Management",
+            "Great Soundtrack",
+            "City Builder",
+            "Simulation",
+            "Roguelike",
+            "Atmospheric",
+            "Casual",
+            "Adventure",
+            "Difficult",
+            "Action"
+        ]
+    },
+    "209670": {
+        "name": "Cortex Command",
+        "devs": [
+            "Data Realms"
+        ],
+        "pubs": [
+            "Data Realms, LLC"
+        ],
+        "tags": [
+            "Strategy",
+            "Indie",
+            "Action",
+            "2D",
+            "Physics",
+            "Sandbox",
+            "Pixel Graphics",
+            "Local Co-Op",
+            "Moddable",
+            "Sci-fi",
+            "Singleplayer",
+            "Local Multiplayer",
+            "Difficult",
+            "Platformer",
+            "Multiplayer",
+            "Split Screen",
+            "RTS",
+            "Replay Value",
+            "Zombies",
+            "4 Player Local"
+        ]
+    },
+    "673880": {
+        "name": "Warhammer 40 000 Mechanicus",
+        "devs": [
+            "Bulwark Studios"
+        ],
+        "pubs": [
+            "Kasedo Games"
+        ],
+        "tags": [
+            "Warhammer 40K",
+            "Strategy",
+            "Turn-Based Tactics",
+            "Games Workshop",
+            "Turn-Based Combat",
+            "Sci-fi",
+            "Turn-Based",
+            "Atmospheric",
+            "Tactical",
+            "Turn-Based Strategy",
+            "Singleplayer",
+            "Indie",
+            "Great Soundtrack",
+            "Robots",
+            "RPG",
+            "Dungeon Crawler",
+            "Difficult",
+            "Character Customization",
+            "Story Rich",
+            "Board Game"
+        ]
+    },
+    "1079800": {
+        "name": "Pistol Whip",
+        "devs": [
+            "Cloudhead Games ltd."
+        ],
+        "pubs": [
+            "Cloudhead Games ltd."
+        ],
+        "tags": [
+            "Action",
+            "Indie",
+            "VR",
+            "Shooter",
+            "Music",
+            "On-Rails Shooter",
+            "Rhythm",
+            "Great Soundtrack",
+            "First-Person",
+            "FPS",
+            "Bullet Hell",
+            "Soundtrack",
+            "Arcade",
+            "Sports",
+            "Boxing"
+        ]
+    },
+    "1276790": {
+        "name": "Ruined King A League Of Legends Story",
+        "devs": [
+            "Airship Syndicate"
+        ],
+        "pubs": [
+            "Riot Forge"
+        ],
+        "tags": [
+            "RPG",
+            "Turn-Based Combat",
+            "Singleplayer",
+            "Fantasy",
+            "Isometric",
+            "Indie",
+            "Story Rich",
+            "Adventure",
+            "JRPG",
+            "Great Soundtrack",
+            "Female Protagonist",
+            "Nudity",
+            "Psychological Horror"
+        ]
+    },
+    "1328670": {
+        "name": "Mass Effect Legendary Edition",
+        "devs": [
+            "BioWare"
+        ],
+        "pubs": [
+            "Electronic Arts"
+        ],
+        "tags": [
+            "RPG",
+            "Story Rich",
+            "Choices Matter",
+            "Sci-fi",
+            "Singleplayer",
+            "Action",
+            "Third-Person Shooter",
+            "Space",
+            "Action RPG",
+            "Character Customization",
+            "Shooter",
+            "Sexual Content",
+            "Great Soundtrack",
+            "Atmospheric",
+            "Nudity",
+            "Military",
+            "Combat",
+            "Female Protagonist",
+            "Classic",
+            "Tactical RPG"
+        ]
+    },
+    "1286680": {
+        "name": "Tiny Tina'S Wonderlands",
+        "devs": [
+            "Gearbox Software"
+        ],
+        "pubs": [
+            "2K"
+        ],
+        "tags": [
+            "Adventure",
+            "Loot",
+            "Shooter",
+            "Fantasy",
+            "Multiplayer",
+            "FPS",
+            "Action",
+            "RPG",
+            "Comedy",
+            "Stylized",
+            "Narration",
+            "Online Co-Op",
+            "Looter Shooter",
+            "Singleplayer",
+            "Character Customization",
+            "Co-op",
+            "Class-Based",
+            "PvE",
+            "Local Co-Op",
+            "3D"
+        ]
+    },
+    "264710": {
+        "name": "Subnautica",
+        "devs": [
+            "Unknown Worlds Entertainment"
+        ],
+        "pubs": [
+            "Unknown Worlds Entertainment"
+        ],
+        "tags": [
+            "Open World Survival Craft",
+            "Survival",
+            "Open World",
+            "Exploration",
+            "Underwater",
+            "Horror",
+            "Crafting",
+            "Base Building",
+            "Singleplayer",
+            "Adventure",
+            "First-Person",
+            "Sci-fi",
+            "Sandbox",
+            "Aliens",
+            "Atmospheric",
+            "Survival Horror",
+            "Action",
+            "Multiplayer",
+            "Indie",
+            "Early Access"
+        ]
+    },
+    "1574580": {
+        "name": "Strange Horticulture",
+        "devs": [
+            "Bad Viking"
+        ],
+        "pubs": [
+            "Iceberg Interactive"
+        ],
+        "tags": [
+            "Mystery",
+            "Exploration",
+            "Puzzle",
+            "Investigation",
+            "Nature",
+            "Relaxing",
+            "2D",
+            "Detective",
+            "Choices Matter",
+            "Multiple Endings",
+            "Story Rich",
+            "Simulation",
+            "Lovecraftian",
+            "Atmospheric",
+            "Adventure",
+            "Dark",
+            "Conversation",
+            "Point &amp; Click",
+            "Alternate History",
+            "Colorful"
+        ]
+    },
+    "7110": {
+        "name": "Jade Empire Special Edition",
+        "devs": [
+            "BioWare"
+        ],
+        "pubs": [
+            "BioWare",
+            "Electronic Arts"
+        ],
+        "tags": [
+            "RPG",
+            "Fantasy",
+            "Story Rich",
+            "Martial Arts",
+            "Third Person",
+            "Singleplayer",
+            "Action",
+            "Action RPG",
+            "Female Protagonist",
+            "Party-Based RPG",
+            "Romance",
+            "Choices Matter",
+            "Great Soundtrack",
+            "Adventure",
+            "Atmospheric",
+            "Character Customization",
+            "Multiple Endings",
+            "Mythology",
+            "Classic",
+            "CRPG"
+        ]
+    },
+    "40720": {
+        "name": "Samorost 2",
+        "devs": [
+            "Amanita Design"
+        ],
+        "pubs": [
+            "Amanita Design"
+        ],
+        "tags": [
+            "Casual",
+            "Point &amp; Click",
+            "Exploration",
+            "2D",
+            "Family Friendly",
+            "Space",
+            "Surreal",
+            "Stylized",
+            "Funny",
+            "Story Rich",
+            "Psychedelic",
+            "Puzzle",
+            "Atmospheric",
+            "Dog",
+            "Aliens",
+            "Hand-drawn",
+            "Short",
+            "Fantasy",
+            "Singleplayer",
+            "Adventure"
+        ]
+    },
+    "204060": {
+        "name": "Superbrothers Sword &Amp Sworcery Ep",
+        "devs": [
+            "Capybara",
+            "Superbrothers",
+            "Jim Guthrie"
+        ],
+        "pubs": [
+            "Capybara Games"
+        ],
+        "tags": [
+            "Adventure",
+            "Indie",
+            "Pixel Graphics",
+            "Great Soundtrack",
+            "Point &amp; Click",
+            "Atmospheric",
+            "Female Protagonist",
+            "Singleplayer",
+            "Fantasy",
+            "Puzzle",
+            "Relaxing",
+            "Beautiful",
+            "2D",
+            "Casual",
+            "Music",
+            "Story Rich",
+            "Touch-Friendly",
+            "Exploration",
+            "Retro",
+            "Walking Simulator"
+        ]
+    },
+    "210170": {
+        "name": "Spirits",
+        "devs": [
+            "Spaces of Play UG"
+        ],
+        "pubs": [
+            "Spaces of Play UG"
+        ],
+        "tags": [
+            "Indie",
+            "Lemmings",
+            "Strategy",
+            "Action",
+            "Puzzle",
+            "Nature",
+            "2D",
+            "Singleplayer",
+            "Cute",
+            "Atmospheric",
+            "Hand-drawn",
+            "Relaxing",
+            "Touch-Friendly",
+            "Casual"
+        ]
+    },
+    "221640": {
+        "name": "Super Hexagon",
+        "devs": [
+            "Terry Cavanagh"
+        ],
+        "pubs": [
+            "Terry Cavanagh"
+        ],
+        "tags": [
+            "Difficult",
+            "Great Soundtrack",
+            "Indie",
+            "Fast-Paced",
+            "Arcade",
+            "Addictive",
+            "Rhythm",
+            "Singleplayer",
+            "Action",
+            "Minimalist",
+            "Score Attack",
+            "Music",
+            "2D",
+            "Psychedelic",
+            "Colorful",
+            "Casual",
+            "Replay Value",
+            "Controller",
+            "Puzzle",
+            "Soundtrack"
+        ]
+    },
+    "203830": {
+        "name": "The Dark Eye Chains Of Satinav",
+        "devs": [
+            "Daedalic Entertainment"
+        ],
+        "pubs": [
+            "Daedalic Entertainment"
+        ],
+        "tags": [
+            "Adventure",
+            "Point &amp; Click",
+            "Fantasy",
+            "Singleplayer",
+            "Puzzle",
+            "Story Rich",
+            "Indie",
+            "Escape Room",
+            "Great Soundtrack",
+            "2D",
+            "Retro",
+            "Cult Classic",
+            "Hand-drawn"
+        ]
+    },
+    "225600": {
+        "name": "Blade Symphony",
+        "devs": [
+            "Puny Human"
+        ],
+        "pubs": [
+            "Puny Human"
+        ],
+        "tags": [
+            "Action",
+            "Fighting",
+            "Indie",
+            "Multiplayer",
+            "Swordplay",
+            "Competitive",
+            "Third Person",
+            "Hack and Slash",
+            "Ninja",
+            "Parkour",
+            "Sci-fi",
+            "PvP",
+            "Strategy",
+            "Early Access",
+            "Tactical",
+            "Kickstarter",
+            "Fantasy",
+            "Adventure",
+            "Great Soundtrack",
+            "Free to Play"
+        ]
+    },
+    "243200": {
+        "name": "The Dark Eye Memoria",
+        "devs": [
+            "Daedalic Entertainment"
+        ],
+        "pubs": [
+            "Daedalic Entertainment"
+        ],
+        "tags": [
+            "Adventure",
+            "Point &amp; Click",
+            "Puzzle",
+            "Story Rich",
+            "Singleplayer",
+            "2D",
+            "Classic",
+            "Retro",
+            "Fantasy",
+            "1990's",
+            "Indie",
+            "Atmospheric",
+            "Hand-drawn",
+            "Female Protagonist",
+            "Escape Room"
+        ]
+    },
+    "246680": {
+        "name": "Secrets Of Rtikon",
+        "devs": [
+            "Broken Rules"
+        ],
+        "pubs": [
+            "Broken Rules"
+        ],
+        "tags": [
+            "Indie",
+            "Adventure",
+            "Action",
+            "Puzzle",
+            "Nature",
+            "Exploration",
+            "Open World",
+            "Flight",
+            "Beautiful",
+            "Singleplayer",
+            "Metroidvania",
+            "2D",
+            "Controller",
+            "Platformer",
+            "Side Scroller"
+        ]
+    },
+    "268540": {
+        "name": "The Whispered World Special Edition",
+        "devs": [
+            "Daedalic Entertainment"
+        ],
+        "pubs": [
+            "Daedalic Entertainment"
+        ],
+        "tags": [
+            "Adventure",
+            "Point &amp; Click",
+            "Indie",
+            "Singleplayer",
+            "Puzzle",
+            "Story Rich",
+            "Fantasy",
+            "Atmospheric",
+            "Great Soundtrack",
+            "Escape Room",
+            "Comedy",
+            "Hand-drawn",
+            "2D",
+            "Funny"
+        ]
+    },
+    "289760": {
+        "name": "Rocketsrocketsrockets",
+        "devs": [
+            "Radial Games Corp",
+            "Loren Bednar",
+            "Dr. Kimberly Voll",
+            "Lindsay Jorgensen"
+        ],
+        "pubs": [
+            "Radial Games Corp"
+        ],
+        "tags": [
+            "Indie",
+            "Action",
+            "Casual",
+            "Local Multiplayer",
+            "Sports",
+            "Strategy",
+            "Local Co-Op",
+            "Multiplayer",
+            "Fast-Paced",
+            "Racing",
+            "Arcade",
+            "4 Player Local",
+            "Colorful",
+            "Space",
+            "Singleplayer",
+            "Great Soundtrack",
+            "Soundtrack",
+            "Co-op",
+            "2D",
+            "Party Game"
+        ]
+    },
+    "292230": {
+        "name": "Game Character Hub",
+        "devs": [
+            "Sebastien Bini"
+        ],
+        "pubs": [
+            "Degica"
+        ],
+        "tags": [
+            "Design &amp; Illustration",
+            "Utilities",
+            "RPGMaker",
+            "Software"
+        ]
+    },
+    "295490": {
+        "name": "Schrodingers Cat And The Raiders Of The Lost Quark",
+        "devs": [
+            "Italic Pig Limited"
+        ],
+        "pubs": [
+            "Italic Pig Limited"
+        ],
+        "tags": [
+            "Action",
+            "Adventure",
+            "Indie",
+            "Casual",
+            "Platformer",
+            "Cats",
+            "Puzzle Platformer"
+        ]
+    },
+    "242640": {
+        "name": "Styx Master Of Shadows",
+        "devs": [
+            "Cyanide Studio"
+        ],
+        "pubs": [
+            "Cyanide Studio",
+            "Nacon"
+        ],
+        "tags": [
+            "Stealth",
+            "Fantasy",
+            "Singleplayer",
+            "Action",
+            "Adventure",
+            "Third Person",
+            "RPG",
+            "Assassin",
+            "Parkour",
+            "Steampunk",
+            "Dark Fantasy",
+            "Atmospheric",
+            "Magic",
+            "Story Rich",
+            "Open World",
+            "Difficult",
+            "Great Soundtrack",
+            "Indie",
+            "Gore",
+            "Multiplayer"
+        ]
+    },
+    "305620": {
+        "name": "The Long Dark",
+        "devs": [
+            "Hinterland Studio Inc."
+        ],
+        "pubs": [
+            "Hinterland Studio Inc."
+        ],
+        "tags": [
+            "Survival",
+            "Open World Survival Craft",
+            "Open World",
+            "Exploration",
+            "Atmospheric",
+            "First-Person",
+            "Singleplayer",
+            "Adventure",
+            "Crafting",
+            "Sandbox",
+            "Simulation",
+            "Post-apocalyptic",
+            "Indie",
+            "Walking Simulator",
+            "Survival Horror",
+            "Strategy",
+            "Difficult",
+            "Action",
+            "Early Access",
+            "Horror"
+        ]
+    },
+    "311720": {
+        "name": "Sproggiwood",
+        "devs": [
+            "Freehold Games"
+        ],
+        "pubs": [
+            "Freehold Games"
+        ],
+        "tags": [
+            "Turn-Based",
+            "Grid-Based Movement",
+            "Procedural Generation",
+            "Traditional Roguelike",
+            "Roguelike",
+            "RPG",
+            "Indie",
+            "Strategy",
+            "Cute",
+            "Turn-Based Combat",
+            "Tactical",
+            "Turn-Based Tactics",
+            "Fantasy",
+            "Great Soundtrack",
+            "Perma Death",
+            "Loot",
+            "Replay Value",
+            "Turn-Based Strategy",
+            "Tactical RPG",
+            "Story Rich"
+        ]
+    },
+    "219740": {
+        "name": "Don'T Starve",
+        "devs": [
+            "Klei Entertainment"
+        ],
+        "pubs": [
+            "Klei Entertainment"
+        ],
+        "tags": [
+            "Survival",
+            "Open World Survival Craft",
+            "Crafting",
+            "Adventure",
+            "Indie",
+            "Sandbox",
+            "Singleplayer",
+            "Perma Death",
+            "Open World",
+            "Exploration",
+            "Multiplayer",
+            "Roguelike",
+            "Replay Value",
+            "Moddable",
+            "Difficult",
+            "Simulation",
+            "2D",
+            "Top-Down",
+            "Survival Horror",
+            "Horror"
+        ]
+    },
+    "386360": {
+        "name": "Smite",
+        "devs": [
+            "Titan Forge Games"
+        ],
+        "pubs": [
+            "Hi-Rez Studios"
+        ],
+        "tags": [
+            "Free to Play",
+            "MOBA",
+            "Multiplayer",
+            "Action",
+            "Third Person",
+            "Mythology",
+            "Team-Based",
+            "Competitive",
+            "PvP",
+            "Strategy",
+            "Co-op",
+            "Massively Multiplayer",
+            "eSports",
+            "RPG",
+            "Adventure",
+            "MMORPG",
+            "Funny",
+            "Casual",
+            "Nudity",
+            "Survival"
+        ]
+    },
+    "858460": "NA",
+    "291550": {
+        "name": "Brawlhalla",
+        "devs": [
+            "Blue Mammoth Games"
+        ],
+        "pubs": [
+            "Ubisoft"
+        ],
+        "tags": [
+            "Free to Play",
+            "Multiplayer",
+            "Fighting",
+            "Casual",
+            "2D Fighter",
+            "2D Platformer",
+            "Fantasy",
+            "Action",
+            "Family Friendly",
+            "Local Multiplayer",
+            "Co-op",
+            "Platformer",
+            "Controller",
+            "eSports",
+            "Cartoony",
+            "Online Co-Op",
+            "Local Co-Op",
+            "4 Player Local",
+            "Indie",
+            "Singleplayer"
+        ]
+    },
+    "393350": {
+        "name": "Shu'S Garden",
+        "devs": [
+            "Colin Sanders",
+            "Jason RT Bond"
+        ],
+        "pubs": [
+            "Jason RT Bond"
+        ],
+        "tags": [
+            "Casual",
+            "Simulation",
+            "Indie",
+            "Cute",
+            "Relaxing",
+            "Abstract",
+            "Local Multiplayer"
+        ]
+    },
+    "236110": {
+        "name": "Dungeon Defenders 2",
+        "devs": [
+            "Trendy Entertainment"
+        ],
+        "pubs": [
+            "Trendy Entertainment"
+        ],
+        "tags": [
+            "Multiplayer",
+            "Online Co-Op",
+            "Co-op Campaign",
+            "Singleplayer",
+            "Tower Defense",
+            "Strategy RPG",
+            "Survival",
+            "Character Customization",
+            "Action RPG",
+            "Family Friendly",
+            "Tactical",
+            "Third Person",
+            "Building",
+            "Cartoony",
+            "Fantasy",
+            "Loot",
+            "Team-Based",
+            "3D",
+            "Colorful",
+            "Party-Based RPG"
+        ]
+    },
+    "460700": {
+        "name": "Song Of The Deep",
+        "devs": [
+            "Insomniac Games"
+        ],
+        "pubs": [
+            "GameTrust Games"
+        ],
+        "tags": [
+            "Adventure",
+            "Metroidvania",
+            "Underwater",
+            "Female Protagonist",
+            "Action",
+            "2D",
+            "Platformer",
+            "Great Soundtrack",
+            "Puzzle",
+            "Indie"
+        ]
+    },
+    "512790": {
+        "name": "Quern - Undying Thoughts",
+        "devs": [
+            "Zadbox Entertainment"
+        ],
+        "pubs": [
+            "Zadbox Entertainment"
+        ],
+        "tags": [
+            "Puzzle",
+            "Adventure",
+            "First-Person",
+            "Exploration",
+            "Indie",
+            "Atmospheric",
+            "Singleplayer",
+            "Story Rich",
+            "Mystery",
+            "Difficult",
+            "Relaxing",
+            "Point &amp; Click",
+            "Walking Simulator",
+            "Great Soundtrack",
+            "Casual",
+            "Surreal",
+            "Open World",
+            "Steampunk",
+            "Classic",
+            "Drama"
+        ]
+    },
+    "514620": {
+        "name": "Ellipsis",
+        "devs": [
+            "Salmi Games"
+        ],
+        "pubs": [
+            "Salmi Games"
+        ],
+        "tags": [
+            "Action",
+            "Indie",
+            "Touch-Friendly",
+            "Retro",
+            "Shoot 'Em Up",
+            "Bullet Hell",
+            "Casual",
+            "Arcade",
+            "Replay Value"
+        ]
+    },
+    "582270": {
+        "name": "Everything",
+        "devs": [
+            "David OReilly"
+        ],
+        "pubs": [
+            "David OReilly",
+            "PLAYISM (Japan)"
+        ],
+        "tags": [
+            "Simulation",
+            "Philosophical",
+            "Casual",
+            "Indie",
+            "Relaxing",
+            "Sandbox",
+            "Open World",
+            "RPG",
+            "Exploration",
+            "Atmospheric",
+            "Singleplayer",
+            "Experimental",
+            "God Game",
+            "Funny",
+            "Experience",
+            "Great Soundtrack",
+            "Procedural Generation",
+            "Walking Simulator",
+            "Family Friendly",
+            "Adventure"
+        ]
+    },
+    "234270": {
+        "name": "Ken Follett'S The Pillars Of The Earth",
+        "devs": [
+            "Daedalic Entertainment"
+        ],
+        "pubs": [
+            "Daedalic Entertainment"
+        ],
+        "tags": [
+            "Adventure",
+            "Choices Matter",
+            "Point &amp; Click",
+            "Visual Novel",
+            "Medieval",
+            "Story Rich",
+            "Indie",
+            "Casual",
+            "Interactive Fiction",
+            "Based On A Novel",
+            "Atmospheric",
+            "Singleplayer",
+            "Historical",
+            "Great Soundtrack",
+            "Violent",
+            "Female Protagonist",
+            "Hand-drawn",
+            "RPG",
+            "Choose Your Own Adventure",
+            "2D"
+        ]
+    },
+    "658590": {
+        "name": "She And The Light Bearer",
+        "devs": [
+            "Mojiken"
+        ],
+        "pubs": [
+            "Toge Productions"
+        ],
+        "tags": [
+            "Adventure",
+            "Indie",
+            "Casual",
+            "Point &amp; Click",
+            "Great Soundtrack",
+            "Hand-drawn",
+            "Atmospheric",
+            "Cute",
+            "Beautiful",
+            "Emotional",
+            "Fantasy",
+            "Relaxing",
+            "Mythology",
+            "Story Rich",
+            "Touch-Friendly",
+            "Experimental",
+            "Foreign",
+            "Colorful",
+            "Family Friendly",
+            "Philosophical"
+        ]
+    },
+    "666140": {
+        "name": "My Time At Portia",
+        "devs": [
+            "Pathea Games"
+        ],
+        "pubs": [
+            "Team17"
+        ],
+        "tags": [
+            "RPG",
+            "Life Sim",
+            "Open World",
+            "Farming Sim",
+            "Crafting",
+            "Simulation",
+            "Casual",
+            "Adventure",
+            "Singleplayer",
+            "Agriculture",
+            "Building",
+            "Sandbox",
+            "Indie",
+            "Mining",
+            "Relaxing",
+            "Exploration",
+            "Survival",
+            "Cartoony",
+            "Post-apocalyptic",
+            "Female Protagonist"
+        ]
+    },
+    "377160": {
+        "name": "Fallout 4",
+        "devs": [
+            "Bethesda Game Studios"
+        ],
+        "pubs": [
+            "Bethesda Softworks"
+        ],
+        "tags": [
+            "Open World",
+            "Post-apocalyptic",
+            "Exploration",
+            "Singleplayer",
+            "RPG",
+            "Atmospheric",
+            "Adventure",
+            "Shooter",
+            "First-Person",
+            "Story Rich",
+            "Action",
+            "Sci-fi",
+            "FPS",
+            "Action RPG",
+            "Sandbox",
+            "Great Soundtrack",
+            "Third Person",
+            "Survival",
+            "Third-Person Shooter",
+            "Casual"
+        ]
+    },
+    "714120": {
+        "name": "Little Misfortune",
+        "devs": [
+            "Killmonday Games AB"
+        ],
+        "pubs": [
+            "Killmonday Games AB"
+        ],
+        "tags": [
+            "Adventure",
+            "Point &amp; Click",
+            "Indie",
+            "Choices Matter",
+            "Story Rich",
+            "Horror",
+            "Psychological Horror",
+            "Female Protagonist",
+            "Singleplayer",
+            "Cute",
+            "Atmospheric",
+            "Dark",
+            "Dark Humor",
+            "Casual",
+            "Dark Fantasy",
+            "2D",
+            "Funny",
+            "Great Soundtrack",
+            "Interactive Fiction",
+            "Puzzle"
+        ]
+    },
+    "715560": {
+        "name": "Eastshade",
+        "devs": [
+            "Eastshade Studios"
+        ],
+        "pubs": [
+            "Eastshade Studios"
+        ],
+        "tags": [
+            "Exploration",
+            "Open World",
+            "Relaxing",
+            "Beautiful",
+            "Atmospheric",
+            "Adventure",
+            "Walking Simulator",
+            "Singleplayer",
+            "First-Person",
+            "Indie",
+            "Nature",
+            "Colorful",
+            "Casual",
+            "Interactive Fiction",
+            "RPG",
+            "Story Rich",
+            "Fantasy",
+            "Great Soundtrack",
+            "Survival",
+            "Crafting"
+        ]
+    },
+    "291650": {
+        "name": "Pillars Of Eternity",
+        "devs": [
+            "Obsidian Entertainment"
+        ],
+        "pubs": [
+            "Paradox Interactive"
+        ],
+        "tags": [
+            "RPG",
+            "Fantasy",
+            "Isometric",
+            "Story Rich",
+            "Singleplayer",
+            "CRPG",
+            "Party-Based RPG",
+            "Real-Time with Pause",
+            "Adventure",
+            "Kickstarter",
+            "Character Customization",
+            "Atmospheric",
+            "Dark Fantasy",
+            "Open World",
+            "Exploration",
+            "Classic",
+            "Great Soundtrack",
+            "Strategy",
+            "Indie",
+            "Crowdfunded"
+        ]
+    },
+    "465100": {
+        "name": "Luna The Shadow Dust",
+        "devs": [
+            "Lantern Studio"
+        ],
+        "pubs": [
+            "Coconut Island Games",
+            "Application Systems Heidelberg"
+        ],
+        "tags": [
+            "Adventure",
+            "Casual",
+            "Indie",
+            "Point &amp; Click",
+            "Hand-drawn",
+            "Puzzle",
+            "Great Soundtrack",
+            "Atmospheric",
+            "Beautiful",
+            "Cartoon",
+            "Fantasy",
+            "Stylized",
+            "Singleplayer",
+            "Cute",
+            "2D",
+            "Story Rich",
+            "Mystery",
+            "Female Protagonist"
+        ]
+    },
+    "853550": {
+        "name": "Equilinox",
+        "devs": [
+            "ThinMatrix"
+        ],
+        "pubs": [
+            "ThinMatrix"
+        ],
+        "tags": [
+            "Simulation",
+            "Indie",
+            "Casual",
+            "Relaxing",
+            "Sandbox",
+            "Singleplayer",
+            "Nature",
+            "God Game",
+            "Great Soundtrack",
+            "Atmospheric",
+            "Management",
+            "Family Friendly",
+            "Colorful",
+            "Beautiful"
+        ]
+    },
+    "956030": {
+        "name": "Creaks",
+        "devs": [
+            "Amanita Design"
+        ],
+        "pubs": [
+            "Amanita Design"
+        ],
+        "tags": [
+            "Puzzle",
+            "Hand-drawn",
+            "Atmospheric",
+            "Surreal",
+            "2D",
+            "Stylized",
+            "Puzzle Platformer",
+            "Relaxing",
+            "Mystery",
+            "Cartoon",
+            "Supernatural",
+            "Singleplayer",
+            "Story Rich",
+            "Adventure",
+            "Linear",
+            "Platformer",
+            "Indie",
+            "Funny",
+            "Casual",
+            "Dark"
+        ]
+    },
+    "999820": {
+        "name": "Behind The Schemes",
+        "devs": [
+            "Devolver Digital"
+        ],
+        "pubs": [
+            "Devolver Digital"
+        ],
+        "tags": [
+            "Episodic",
+            "Gaming",
+            "Documentary",
+            "Short",
+            "Game Development"
+        ]
+    },
+    "1049280": {
+        "name": "Pilgrims",
+        "devs": [
+            "Amanita Design"
+        ],
+        "pubs": [
+            "Amanita Design"
+        ],
+        "tags": [
+            "Hand-drawn",
+            "Stylized",
+            "Short",
+            "Funny",
+            "Cartoon",
+            "Replay Value",
+            "Relaxing",
+            "Singleplayer",
+            "2D",
+            "Family Friendly",
+            "Nonlinear",
+            "Card Game",
+            "Point &amp; Click",
+            "Comedy",
+            "Cute",
+            "Indie",
+            "Cartoony",
+            "Puzzle",
+            "Adventure",
+            "Casual"
+        ]
+    },
+    "1112890": {
+        "name": "Calico",
+        "devs": [
+            "Peachy Keen Games"
+        ],
+        "pubs": [
+            "Whitethorn Games",
+            "Maple Whispering Limited"
+        ],
+        "tags": [
+            "Casual",
+            "Cute",
+            "Indie",
+            "Simulation",
+            "Cats",
+            "Open World",
+            "LGBTQ+",
+            "Female Protagonist",
+            "Singleplayer",
+            "Relaxing",
+            "Character Customization",
+            "RPG",
+            "Family Friendly",
+            "Life Sim",
+            "3D",
+            "Building",
+            "Magic",
+            "Anime",
+            "Dog",
+            "Horses"
+        ]
+    },
+    "1206060": {
+        "name": "Happy Game",
+        "devs": [
+            "Amanita Design"
+        ],
+        "pubs": [
+            "Amanita Design"
+        ],
+        "tags": [
+            "Horror",
+            "Cute",
+            "Psychedelic",
+            "Dark",
+            "Casual",
+            "Atmospheric",
+            "Indie",
+            "Funny",
+            "Surreal",
+            "Stylized",
+            "Singleplayer",
+            "Adventure",
+            "2D",
+            "Colorful",
+            "Point &amp; Click",
+            "Supernatural",
+            "Story Rich",
+            "Linear",
+            "Gore",
+            "Violent"
+        ]
+    },
+    "1222670": {
+        "name": "The Sims 4",
+        "devs": [
+            "Maxis"
+        ],
+        "pubs": [
+            "Electronic Arts"
+        ],
+        "tags": [
+            "Life Sim",
+            "Character Customization",
+            "Simulation",
+            "Building",
+            "Sexual Content",
+            "Casual",
+            "Singleplayer",
+            "Relaxing",
+            "Romance",
+            "Funny",
+            "Family Friendly",
+            "Multiplayer",
+            "Cute",
+            "Immersive Sim",
+            "Realistic",
+            "Cartoony",
+            "Beautiful",
+            "Fantasy",
+            "Atmospheric",
+            "LGBTQ+"
+        ]
     }
 }
