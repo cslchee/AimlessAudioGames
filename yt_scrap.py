@@ -48,7 +48,6 @@ def add_playlist(playlist_id: str, mode=None):
             file.write(json.dumps(data_dict, indent=4))
 
 
-#TODO This seems useful --> https://animethemes.moe/
 
 def main():
     #add_playlist("PLEWxb4I8sM9IANpBRkCH-c7fL6sIAq-Ql", mode='openings')

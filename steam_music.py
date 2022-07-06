@@ -1,8 +1,9 @@
 """
 JSON of all Steam Games and IDs https://raw.githubusercontent.com/dgibbs64/SteamCMD-AppID-List/master/steamcmd_appid.json
 
-TODO Check if the user left a negative review on the game.
-TODO recent_games_page = http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={API_KEY}&steamid={my_id}&format=json
+Also consider:
+    recent_games_page = 'http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key={API_KEY}&steamid={my_id}&format=json'
+TODO Check if the user left a negative review on the game. [Very difficult]
 TODO Can't identify Deltarune since it's a demo...?
 TODO Some indie game's soundtracks only exist as single, long videos...
 

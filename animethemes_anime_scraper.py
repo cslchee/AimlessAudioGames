@@ -1,11 +1,21 @@
-# Same logic as 'animethemes_series_scrap', but it EVERYTHING. Skips 'Seasons' page
+"""
+ Same logic as 'animethemes_series_scrap', but it EVERYTHING. Skips 'Seasons' page
+ TODO Currently not catching a song's author (i.e. SONG NAME  by  BAND). It's all separate HTML elements
+ TODO Make an Alternate titles flip-flop.
+    Ex: search('stardust crusaders')  -> Check anime_data keys -> if no, check a json of:
+            "Pocket Monsters: Diamond &amp; Pearl" : "Pokemon Diamond & Pearl"
+            "Diamond and Pearl" : "Pokemon Diamond & Pearl"
+            "DP: Battle Dimension" : "Pokemon Diamond & Pearl"
+            "DP: Galactic Battles" : "Pokemon Diamond & Pearl"
+            "DP: Sinnoh League Victors" : "Pokemon Diamond & Pearl"
+"""
 import json, requests
 from random import uniform
 from time import sleep
 from bs4 import BeautifulSoup
 
 def wait_a_sec():
-    sleep(uniform(0.5, 1.5)) # Easy of DDOS/Banning potential
+    sleep(uniform(0.5, 1.5)) # Easy off DDOS/Banning potential
 
 def main():
     with open('oped_anime_data.json', 'r') as file:
@@ -28,8 +38,8 @@ def main():
             continue
 
         # ANIME OPENINGS / ENDINGS / DETAILS   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
-        print(f"{'- ' * 20}\n{anime_name}")
-        soup = BeautifulSoup(requests.get(base_url+anime_name).text, "html.parser")
+        print(f"{'- ' * 20}\n{anime_name}  -  {base_url+anime_url}")
+        soup = BeautifulSoup(requests.get(base_url+anime_url).text, "html.parser")
         wait_a_sec()
         data[anime_name] = {
             'alt titles': [],
@@ -60,7 +70,6 @@ def main():
         data[anime_name]['date'] = info[info.index('Premiere')+1]
         data[anime_name]['studios'] = info[info.index('Studios')+1:info.index('Links')] if 'Studios' in info else 'NA'
         data[anime_name]['series'] = info[info.index('Series')+1] if 'Series' in info else 'NA'
-        #TODO Could use
 
         vid_divs = soup.findAll('div', {'class': 'sc-47964127-0 sc-95e98e95-0 sc-ff93e959-0 kXAqYY dktsVH fmxeEY'})
         for vid in vid_divs:
@@ -85,8 +94,7 @@ def main():
                 print(f'\t\t{op_ed.upper()}: {vid_name} - {label}  -->  {file_source}')
 
                 data[anime_name][op_ed][vid_name] = {label: v_src}
-        input("HALT Pre-Write")
-        with open('oped_series_data.json', 'w') as file:
+        with open('oped_anime_data.json', 'w') as file:
             file.write(json.dumps(data, indent=4)) #Write after each series, to back up progress
 
 
