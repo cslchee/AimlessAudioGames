@@ -19,7 +19,7 @@ def add_playlist(playlist_id: str, mode=None):
 
     print(f"{'- '*15}\nAdding '{mode}' from playlist: https://www.youtube.com/playlist?list={playlist_id}\n{'- '*15}")
 
-    with open('data.json','r') as file:
+    with open('Data/data.json', 'r') as file:
         data_dict = json.load(file)
 
     videos = scrapetube.get_playlist(playlist_id)
@@ -44,7 +44,7 @@ def add_playlist(playlist_id: str, mode=None):
     print(f"\n~~Added {added_new} entries")
     #print(json.dumps(data_dict, indent=4))
     if added_new > 0:
-        with open('data.json', "w") as file:
+        with open('Data/data.json', "w") as file:
             file.write(json.dumps(data_dict, indent=4))
 
 

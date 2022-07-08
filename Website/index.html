@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Javascript!</title>
+</head>
+<body>
+    <h1>JavaScript is a Thing</h1>
+    <p><i>Prove your weebhood by accurately identifying some music</i></p>
+    <br>
+    <div id="menu">
+        <label for="opening_ending">Openings, Endings, or Both?</label>
+        <select id = "opening_ending">
+            <option value=undefined> --- </option>
+            <option value="op">OPs</option>
+            <option value="ed">EDs</option>
+            <option value="both">Both</option>
+        </select>
+        <br><br>
+        <label for="rounds">How many rounds?</label>
+        <select id="rounds">
+            <option value=undefined> --- </option>
+            <script type="text/javascript">
+                const select = document.getElementById("rounds");
+                const options = ['1','5','10','15','20','30','50','75','100'];
+                for(let i = 0; i < options.length; i++) {
+                    let opt = options[i];
+                    let el = document.createElement("option");
+                    el.textContent = opt;
+                    el.value = opt;
+                    select.appendChild(el);
+                }
+            </script>
+        </select>
+        <br><br>
+        <label for="countdown">Countdown (secs): </label>
+        <select id="countdown">
+            <option value=undefined> --- </option>
+            <option value="15"> 15 </option>
+            <option value="10"> 10 </option>
+            <option value="5"> 5 </option>
+            <script type="text/javascript">
+            </script>
+        </select>
+    </div>
+    <br><br>
+    <button type="button" id="start_button"
+            onmouseover="difficultyButton()"
+            onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
+    <script type="text/javascript">
+        function difficultyButton(mouse_off=false) {
+            const button = document.getElementById("start_button");
+            button.style.fontWeight = 'normal';  //a few dups to save lines
+            button.style.fontSize = 'medium';
+            button.style.color = "white";
+            if (mouse_off) {
+                button.style.background = "dimgrey";
+                button.innerText = "Ready?";
+                return;
+            }
+            const difficulty = document.querySelector('#countdown').value;
+            switch (difficulty) {
+                case '15':
+                    button.style.background = "dodgerblue";
+                    button.innerText = "Start (Casual Mode)";
+                    break;
+                case '10':
+                    button.style.background = "#4CAF50";
+                    button.innerText = "Start! (Recommended)";
+                    break;
+                case '5':
+                    button.style.background = "darkred";
+                    button.style.backgroundImage = "url('./images/fire.gif')";
+                    button.style.backgroundSize = 'cover';
+                    button.style.color = "black";
+                    button.style.fontSize = 'large';
+                    button.style.fontWeight = 'bold';
+                    button.innerText = "始める!!! (Weeb Mode)";
+                    break;
+                default:
+                    button.style.background = "dimgrey";
+                    button.style.color = "black";
+                    button.innerText = ":/";
+                    break;
+            }
+        }
+    </script>
+    <br>
+    <p id="incomplete_warning"></p>
+
+
+
+    <p>Created by CasualCheetah<br>
+        <a href="https://youtu.be/iik25wqIuFo" style="font-size:small;">Sub for Daily Minecraft Mod Spotlights</a>
+    </p>
+    <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

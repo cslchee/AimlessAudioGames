@@ -1,13 +1,6 @@
 """
  Same logic as 'animethemes_series_scrap', but it EVERYTHING. Skips 'Seasons' page
  TODO Currently not catching a song's author (i.e. SONG NAME  by  BAND). It's all separate HTML elements
- TODO Make an Alternate titles flip-flop.
-    Ex: search('stardust crusaders')  -> Check anime_data keys -> if no, check a json of:
-            "Pocket Monsters: Diamond &amp; Pearl" : "Pokemon Diamond & Pearl"
-            "Diamond and Pearl" : "Pokemon Diamond & Pearl"
-            "DP: Battle Dimension" : "Pokemon Diamond & Pearl"
-            "DP: Galactic Battles" : "Pokemon Diamond & Pearl"
-            "DP: Sinnoh League Victors" : "Pokemon Diamond & Pearl"
 """
 import json, requests
 from random import uniform
@@ -17,8 +10,21 @@ from bs4 import BeautifulSoup
 def wait_a_sec():
     sleep(uniform(0.5, 1.5)) # Easy off DDOS/Banning potential
 
-def main():
-    with open('oped_anime_data.json', 'r') as file:
+def create_alt_title_flip_flip():
+    with open('Data/oped_anime_data.json', 'r') as file:
+        data = json.load(file)
+    flip_flop = {}
+    for anime in tuple(data.keys()):
+        for alt in data[anime]['alt titles']:
+            flip_flop[alt] = anime
+
+    #print(json.dumps(flip_flop, indent=4))
+    with open('Data/oped_alt_titles_flip_flop.json','w') as file:
+        file.write(json.dumps(flip_flop, indent=4))
+
+
+def scrape_all_anime():
+    with open('Data/oped_anime_data.json', 'r') as file:
         data = json.load(file)
     # ANIME   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
     anime_and_url = {}
@@ -94,8 +100,13 @@ def main():
                 print(f'\t\t{op_ed.upper()}: {vid_name} - {label}  -->  {file_source}')
 
                 data[anime_name][op_ed][vid_name] = {label: v_src}
-        with open('oped_anime_data.json', 'w') as file:
+        with open('Data/oped_anime_data.json', 'w') as file:
             file.write(json.dumps(data, indent=4)) #Write after each series, to back up progress
+
+
+def main():
+    #scrape_all_anime()
+    create_alt_title_flip_flip()
 
 
 if __name__ == "__main__":

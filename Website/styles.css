@@ -1,0 +1,35 @@
+body {
+    background-color: black;
+    color: grey;
+    font-size: large;
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    font-family: Arial, serif;
+}
+
+#start_button {
+    background-color: dimgrey;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: medium;
+    height: 50px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+#menu {
+    text-align: right;
+}
+
+select {
+    text-align: center;
+}
+
+#incomplete_warning {
+    color: darkred;
+}
