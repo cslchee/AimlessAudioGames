@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-    <title>Javascript!</title>
+    <title>OPED!</title>
 </head>
 <body>
-    <h1>JavaScript is a Thing</h1>
-    <p><i>Prove your weebhood by accurately identifying some music</i></p>
+    <script type="text/javascript">
+        import data_anime from'../Data/oped_anime_data.json' assert {type: 'json'};
+        console.log(data_anime);
+    </script>
+    <h1>The Aimless Audio Games!</h1>
+    <h3><b>A</b>ssess an Individual's Media Literacy by Employing Selective Sounds</h3>
+    <p style="font-size:medium"><i>
+        Prove your value as a human by quickly and accurately identifying some music from different types of media!
+    </i></p>
     <br>
-    <div id="menu">
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">OPED</button>
+        <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
+    </div>
+    <br>
+    <div id="oped_game" class="tabcontent">
+        <h2>Anime Openings and Endings</h2>
+        <div id="menu">
         <label for="opening_ending">Openings, Endings, or Both?</label>
         <select id = "opening_ending">
             <option value=undefined> --- </option>
@@ -40,60 +54,95 @@
             <option value="15"> 15 </option>
             <option value="10"> 10 </option>
             <option value="5"> 5 </option>
-            <script type="text/javascript">
-            </script>
         </select>
     </div>
-    <br><br>
-    <button type="button" id="start_button"
-            onmouseover="difficultyButton()"
-            onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
-    <script type="text/javascript">
-        function difficultyButton(mouse_off=false) {
-            const button = document.getElementById("start_button");
-            button.style.fontWeight = 'normal';  //a few dups to save lines
-            button.style.fontSize = 'medium';
-            button.style.color = "white";
-            if (mouse_off) {
-                button.style.background = "dimgrey";
-                button.innerText = "Ready?";
-                return;
-            }
-            const difficulty = document.querySelector('#countdown').value;
-            switch (difficulty) {
-                case '15':
-                    button.style.background = "dodgerblue";
-                    button.innerText = "Start (Casual Mode)";
-                    break;
-                case '10':
-                    button.style.background = "#4CAF50";
-                    button.innerText = "Start! (Recommended)";
-                    break;
-                case '5':
-                    button.style.background = "darkred";
-                    button.style.backgroundImage = "url('./images/fire.gif')";
-                    button.style.backgroundSize = 'cover';
-                    button.style.color = "black";
-                    button.style.fontSize = 'large';
-                    button.style.fontWeight = 'bold';
-                    button.innerText = "始める!!! (Weeb Mode)";
-                    break;
-                default:
+        <br><br>
+        <button type="button" id="start_button"
+                onmouseover="difficultyButton()"
+                onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
+        <script type="text/javascript">
+            function difficultyButton(mouse_off=false) {
+                const button = document.getElementById("start_button");
+                button.style.fontWeight = 'normal';  //a few dups to save lines
+                button.style.fontSize = 'medium';
+                button.style.color = "white";
+                if (mouse_off) {
                     button.style.background = "dimgrey";
-                    button.style.color = "black";
-                    button.innerText = ":/";
-                    break;
+                    button.innerText = "Ready?";
+                    return;
+                }
+                const difficulty = document.querySelector('#countdown').value;
+                switch (difficulty) {
+                    case '15':
+                        button.style.background = "dodgerblue";
+                        button.innerText = "Start (Casual Mode)";
+                        break;
+                    case '10':
+                        button.style.background = "#4CAF50";
+                        button.innerText = "Start! (Recommended)";
+                        break;
+                    case '5':
+                        button.style.background = "darkred";
+                        button.style.backgroundImage = "url('./images/fire.gif')";
+                        button.style.backgroundSize = 'cover';
+                        button.style.color = "black";
+                        button.style.fontSize = 'large';
+                        button.style.fontWeight = 'bold';
+                        button.innerText = "始める!!! (Weeb Mode)";
+                        break;
+                    default:
+                        button.style.background = "dimgrey";
+                        button.style.color = "black";
+                        button.innerText = ":/";
+                        break;
+                }
             }
-        }
-    </script>
-    <br>
-    <p id="incomplete_warning"></p>
+        </script>
+        <br>
+        <p id="incomplete_warning">Enter All Values to Continue!</p>
+    </div>
+    <div id="steam_music_game" class="tabcontent">
+        <h2>Personalized Gaming OST Identification via Steam</h2>
+
+        <label for="steam_id">What's Your 17-digit Steam ID?</label>
+        <input type="text" id="steam_id">
+        <br>
+        <button onclick="showSteamIDHelp()" id="steamIDHelpButton">"Whats a Steam ID?"</button>
+        <div id="steamIDHelp"><br>
+            <p>First, go to your Steam profile and look at it's URL.</p>
+            <p style="font-size: small">
+                (If you cannot see a URL, got the 'Steam' dropdown in the top left, pick "Settings",
+                 pick the "Interface" option in the left column, then check the box "Display web address bars when available".
+                Not go back to your Steam profile page.)
+            </p>
+            <img src="images/steam_profiles_url.PNG" alt="Steam generic profile url shown in Steam application">
+            <p>If you're URL has <b>"/profiles/"</b> in it, copy and paste that 17-digit number into the above text-input box.</p>
+            <p>
+                If there's an <b>"/id/"</b> in your profile's URL, you've given yourself a custom URL and will need to copy your
+                the last part of the URL into <a href="https://www.steamidfinder.com/"> Steam ID Finder</a> to get your ID.
+            </p>
+            <img src="images/steam_id_url.PNG" alt="Steam profile with custom url shown in Steam application">
+            <p>For me this would be "casualcheetah".</p>
+            <p>(For other people, your URL name may differ from your username. In that case, use the URL.</p>
+        </div>
+        <script type="text/javascript">
+            function showSteamIDHelp() {
+                let x = document.getElementById("steamIDHelp")
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
+    </div>
 
 
 
     <p>Created by CasualCheetah<br>
         <a href="https://youtu.be/iik25wqIuFo" style="font-size:small;">Sub for Daily Minecraft Mod Spotlights</a>
     </p>
+    <script type="module" src="../Data/oped_anime_data.json"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
