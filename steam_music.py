@@ -407,7 +407,7 @@ def main():
     music = get_OSTs(games_selected, manually_provide_playlist=False, elaborate_search=False)
 
 
-    # TODO Should image using "https://i.ytimg.com/vi/__ID__/maxresdefault.jpg"
+    # TODO Should get image using "https://i.ytimg.com/vi/__ID__/maxresdefault.jpg"
 
 
 if __name__ == '__main__':

@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <title>OPED!</title>
 </head>
 <body>
-    <script type="text/javascript">
-        import data_anime from'../Data/oped_anime_data.json' assert {type: 'json'};
-        console.log(data_anime);
-    </script>
     <h1>The Aimless Audio Games!</h1>
-    <h3><b>A</b>ssess an Individual's Media Literacy by Employing Selective Sounds</h3>
+    <h3><b>A</b>ssess an <b>I</b>ndividual's <b>M</b>edia <b>L</b>iteracy by <b>E</b>mploying <b>S</b>elective <b>S</b>ounds</h3>
     <p style="font-size:medium"><i>
         Prove your value as a human by quickly and accurately identifying some music from different types of media!
     </i></p>
@@ -19,6 +17,24 @@
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">OPED</button>
         <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
+        <script type="text/javascript">
+            function openCity(evt, game_type) {
+              var i, tabcontent, tablinks;
+              // Get all elements with class="tabcontent" and hide them
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              // Get all elements with class="tablinks" and remove the class "active"
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              // Show the current tab, and add an "active" class to the button that opened the tab
+              document.getElementById(game_type).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+        </script>
     </div>
     <br>
     <div id="oped_game" class="tabcontent">
@@ -137,12 +153,14 @@
         </script>
     </div>
 
-
-
     <p>Created by CasualCheetah<br>
         <a href="https://youtu.be/iik25wqIuFo" style="font-size:small;">Sub for Daily Minecraft Mod Spotlights</a>
     </p>
-    <script type="module" src="../Data/oped_anime_data.json"></script>
+    <py-script src="index.py"></py-script>
     <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">
+        //Default Open Tab - Needs to be here for some reason
+        document.getElementById("default_game_tab").click();
+    </script>
 </body>
 </html>

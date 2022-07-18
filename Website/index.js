@@ -1,4 +1,27 @@
 
+async function getJsonFile(file_name) {
+    if (!file_name.endsWith('.json'))
+        file_name += '.json';
+    console.log(`Getting file '${file_name}'`);
+    let file_location = `http://127.0.0.1:8887/${file_name}`;
+
+    const data = await fetch(file_location, {
+        method: 'GET',
+        mode: 'no-cors',
+        cache: 'default',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
+    .then(response => console.log(response))
+    .then(data => console.log(data))
+    .then(text => console.log(text));
+}
+
+getJsonFile('oped_anime_data');
+
 
 function start() {
     let inputs = {
@@ -38,33 +61,3 @@ function start() {
     console.log(game_data);
 }
 
-
-function the_game(game_data) {
-
-}
-
-
-
-
-
-function openCity(evt, game_type) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(game_type).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-document.getElementById("default_game_tab").click(); //Default Open</script>

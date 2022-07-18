@@ -19,7 +19,7 @@ def create_alt_title_flip_flip():
             flip_flop[alt] = anime
 
     #print(json.dumps(flip_flop, indent=4))
-    with open('Data/oped_alt_titles_flip_flop.json','w') as file:
+    with open('Data/oped_alt_titles_flip_flop.json', 'w') as file:
         file.write(json.dumps(flip_flop, indent=4))
 
 
