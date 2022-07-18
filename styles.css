@@ -60,6 +60,10 @@ select {
     font-size: medium;
 }
 
+#the_game {
+    display: none;
+}
+
 
 
 
