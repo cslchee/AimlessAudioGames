@@ -1,7 +1,7 @@
 import json, requests
 from bs4 import BeautifulSoup
 
-with open("Data/oped_anime_data.json", 'r') as file:
+with open("../Data/oped_anime_data.json", 'r') as file:
     data = json.load(file)
 print(json.dumps(data, separators=(',', ':')))
 

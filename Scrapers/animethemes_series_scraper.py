@@ -13,7 +13,7 @@ def wait_a_sec():
     sleep(uniform(0.5, 1.5)) # Easy off DDOS/Banning potential
 
 def main():
-    with open('Data/oped_series_data.json', 'r') as file:
+    with open('../Data/oped_series_data.json', 'r') as file:
         data = json.load(file)
     # SERIES   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
     series_and_url = {}
@@ -102,7 +102,7 @@ def main():
                 print(f'\t\t{op_ed.upper()}: {vid_name} - {label}  -->  {file_source}')
 
                 data[series_name][season_name][op_ed][vid_name] = {label: v_src}
-        with open('Data/oped_series_data.json', 'w') as file:
+        with open('../Data/oped_series_data.json', 'w') as file:
             file.write(json.dumps(data, indent=4)) #Write after each series, to back up progress
 
 

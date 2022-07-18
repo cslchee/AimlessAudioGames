@@ -11,7 +11,7 @@ def wait_a_sec():
     sleep(uniform(0.5, 1.5)) # Easy off DDOS/Banning potential
 
 def create_alt_title_flip_flip():
-    with open('Data/oped_anime_data.json', 'r') as file:
+    with open('../Data/oped_anime_data.json', 'r') as file:
         data = json.load(file)
     flip_flop = {}
     for anime in tuple(data.keys()):
@@ -19,12 +19,12 @@ def create_alt_title_flip_flip():
             flip_flop[alt] = anime
 
     #print(json.dumps(flip_flop, indent=4))
-    with open('Data/oped_alt_titles_flip_flop.json', 'w') as file:
+    with open('../Data/oped_alt_titles_flip_flop.json', 'w') as file:
         file.write(json.dumps(flip_flop, indent=4))
 
 
 def scrape_all_anime():
-    with open('Data/oped_anime_data.json', 'r') as file:
+    with open('../Data/oped_anime_data.json', 'r') as file:
         data = json.load(file)
     # ANIME   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
     anime_and_url = {}
@@ -100,7 +100,7 @@ def scrape_all_anime():
                 print(f'\t\t{op_ed.upper()}: {vid_name} - {label}  -->  {file_source}')
 
                 data[anime_name][op_ed][vid_name] = {label: v_src}
-        with open('Data/oped_anime_data.json', 'w') as file:
+        with open('../Data/oped_anime_data.json', 'w') as file:
             file.write(json.dumps(data, indent=4)) #Write after each series, to back up progress
 
 

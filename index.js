@@ -1,23 +1,14 @@
-
-async function getJsonFile(file_name) {
+function getJsonFile(file_name) {
     if (!file_name.endsWith('.json'))
         file_name += '.json';
+    file_name = `./Data/${file_name}`
     console.log(`Getting file '${file_name}'`);
-    let file_location = `http://127.0.0.1:8887/${file_name}`;
 
-    const data = await fetch(file_location, {
-        method: 'GET',
-        mode: 'no-cors',
-        cache: 'default',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
-    .then(response => console.log(response))
-    .then(data => console.log(data))
-    .then(text => console.log(text));
+    fetch(file_name)
+    .then(response => {
+       return response.json();
+    })
+    .then(data => console.log(data));
 }
 
 getJsonFile('oped_anime_data');

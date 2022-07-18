@@ -26,7 +26,7 @@ def get_games_and_data(page: str) -> dict:
     data_ids = json.loads(soup.text)['response']['games']
     # print(json.dumps(data_ids, indent=3))
 
-    with open('Data/known_game_data.json', 'r') as file:
+    with open('../Data/known_game_data.json', 'r') as file:
         known_games = json.load(file)
     game_dict = {}
     new_games = {}
@@ -103,7 +103,7 @@ def get_games_and_data(page: str) -> dict:
     if new_games:
         print(f"Adding {len(new_games)} new games to local database")
         combined_dict = {**known_games, **new_games}
-        with open('Data/known_game_data.json', "w") as file:
+        with open('../Data/known_game_data.json', "w") as file:
             file.write(json.dumps(combined_dict, indent=4))
     # print(json.dumps(game_dict, indent=4))
     return game_dict
@@ -285,7 +285,7 @@ def get_OST_playlist(search_term, game) -> tuple:
 
 def get_OSTs(games: tuple, manually_provide_playlist=False, elaborate_search=False) -> dict:
     music_entries = {}
-    with open('Data/known_game_music.json', 'r') as file:
+    with open('../Data/known_game_music.json', 'r') as file:
         known_music = json.load(file)
 
     for g in games:
@@ -376,11 +376,11 @@ def get_OSTs(games: tuple, manually_provide_playlist=False, elaborate_search=Fal
                 music_entries[g] = music_entry
                 # update it every time if it's being done manually
                 if manually_provide_playlist:
-                    with open('Data/known_game_music.json', 'w') as file:
+                    with open('../Data/known_game_music.json', 'w') as file:
                         file.write(json.dumps({**known_music, **music_entries}, indent=4))
 
     input("HALT! Review the above! >_")
-    with open('Data/known_game_music.json', "w") as file:
+    with open('../Data/known_game_music.json', "w") as file:
         file.write(json.dumps({**known_music, **music_entries}, indent=4))
 
     return music_entries
