@@ -64,6 +64,11 @@ select {
     display: none;
 }
 
+canvas {
+    background: dimgray;
+    border:2px solid white;
+    border-radius: 5px;
+}
 
 
 
