@@ -1,3 +1,4 @@
+
 function sleep(ms) {
     console.log(`Sleeping for ${ms}ms`)
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -138,13 +139,25 @@ async function the_game(op, ed, rounds, countdown) {
         ctx.font = '80px Arial';
 
 
-        //PLAY THE MUSIC
-        var ent_video = document.querySelector('video');
-        ent_video.addEventListener('')
+        //Play the Video Without Visuals
         let the_video = document.getElementById("the_video");
-        the_video.style.display = "none"; //hide video
+        //the_video.style.display = "none"; //TODO hide video
+        the_video.src = `https://v.animethemes.moe/${picked.vid_source}.webm`;
 
-        the_video.play();
+        //TODO Wait to load
+        the_video.postMessage("Now loading...");
+
+        //TODO Play
+
+
+
+
+
+        // document.getElementById('the_video').addEventListener('loadedmetadata', function() {
+        //     this.currentTime = 50;
+        // }, false);
+        //From https://stackoverflow.com/questions/5981427/start-html5-video-at-a-particular-position-when-loading
+
 
 
 
@@ -165,7 +178,9 @@ async function the_game(op, ed, rounds, countdown) {
         }
 
 
-        //Display Result
+        //Display The Video
+        the_video.style.display = "block";
+        the_canvas.style.display = "none";
         let ntas = `<b>${picked.show_name}</b>`;
         if (op !== ed) //Only use for both
             ntas += ` (${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'})`;
@@ -177,13 +192,11 @@ async function the_game(op, ed, rounds, countdown) {
         document.getElementById("name_type_and_series").innerHTML = ntas;
         document.getElementById("synopsis").innerHTML = picked.synopsis;
 
-
-        for (let sec = 0; sec < countdown; sec++ ) {
-
-        }
+        sleep(10000); //Always ten seconds?
 
 
-
+        //TODO Turn Off Video
+        the_video.src = ""
 
 
 
@@ -201,6 +214,7 @@ async function the_game(op, ed, rounds, countdown) {
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "block";
     }
+    document.getElementById("the_video").style.display = "none";
     document.getElementById("the_game").style.display = "none";
 
 }

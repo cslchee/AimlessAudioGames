@@ -82,6 +82,9 @@ def scrape_all_anime():
             op_ed = 'op' if ('OP' in vid.find('span', {'class': 'sc-76ad0c61-0 sc-ff93e959-2 kbNlyE'}).text) else 'ed'
             try:
                 vid_name = vid.find('span',{'class': 'sc-76ad0c61-0 SdTj'}).text
+                #Add song artist's if there is any
+                if len(vid.findAll('small', {'class': 'sc-76ad0c61-0 hNUQbd'})) != 0: #look for 'by'
+                    vid_name += f' by {vid.findAll("a", {"class": "sc-76ad0c61-0 hgYgJl"})[0].text}'
             except AttributeError as e:
                 vid_name = 'NA'
             vid_sources = [x['href'] for x in vid.findAll('a', {'class': 'sc-aa5e92bc-0 sc-aa5e92bc-2 eJSgxI gWHZqy'})]
@@ -97,16 +100,16 @@ def scrape_all_anime():
                 soup = BeautifulSoup(requests.get(base_url+v_src).text, "html.parser")
                 wait_a_sec()
                 file_source = soup.find('video', {'class': 'sc-9cfb0b81-1 ekthvd'})['src']
+                file_source = file_source[file_source.index('.moe/')+5:-5] #remove 'https://v.animethemes.moe/' and '.webm'
                 print(f'\t\t{op_ed.upper()}: {vid_name} - {label}  -->  {file_source}')
-
-                data[anime_name][op_ed][vid_name] = {label: v_src}
+                data[anime_name][op_ed][vid_name] = {label: file_source}
         with open('../Data/oped_anime_data.json', 'w') as file:
             file.write(json.dumps(data, indent=4)) #Write after each series, to back up progress
 
 
 def main():
-    #scrape_all_anime()
-    create_alt_title_flip_flip()
+    scrape_all_anime()
+    #create_alt_title_flip_flip()
 
 
 if __name__ == "__main__":
