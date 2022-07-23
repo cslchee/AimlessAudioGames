@@ -30,11 +30,20 @@ function start() {
     console.log(Object.values(inputs));
 
     //Check that all values are entered/not 'undefined'
-    if (!Object.values(inputs).every(value => value)) {
-        document.getElementById('incomplete_warning').display = 'block'; //TODO This isn't working?
+    let all_inputs_valid = true;
+    for (const prop in inputs) {
+        console.log(inputs[prop])
+        if (inputs[prop] === "undefined" || inputs[prop] === 0) { //HTML is sending back a string
+            all_inputs_valid = false;
+            break;
+        }
+    }
+    if (!all_inputs_valid) {
+        console.log("Attempted to play without checking all settings.");
+        document.getElementById('incomplete_warning').style.display = "block";
         return;
     }
-    document.getElementById('incomplete_warning').display = 'none'; //Remove error msg
+    document.getElementById('incomplete_warning').style.display = "none"; //Remove error msg before continuing
 
     let op = false;
     let ed = false;
@@ -126,6 +135,7 @@ async function the_game(op, ed, rounds, countdown) {
         }
         if (cannot_find_a_video > 10) {
             console.log("ERROR - Did too many loops while trying to find an appropriate video.");
+            //TODO Doesn't clean up visuals before returning...
             return;
         }
         console.log(`Going to play ${picked.name_of_vid} from ${picked.show_name}`);
@@ -243,7 +253,7 @@ async function the_game(op, ed, rounds, countdown) {
         if (this_series !== '') show_info += `<br>Series: ${this_series}`
         if (used !== used) show_info += `<br>${used}`
         document.getElementById('show_info').innerHTML = show_info;
-        document.getElementById('synopsis').innerHTML = `<b>synopsis:</b> ${picked.synopsis}`;
+        document.getElementById('synopsis').innerHTML = `<b>Synopsis:</b> ${picked.synopsis}`;
 
 
         while (!all_done) {

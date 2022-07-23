@@ -2,7 +2,8 @@ body {
     background-color: black;
     color: grey;
     font-size: large;
-    max-width: 75%;
+    width: 85%;
+    max-width: 1500px;
     margin: auto;
     text-align: center;
     font-family: Arial, serif;
@@ -68,6 +69,13 @@ canvas {
     background: dimgray;
     border:2px solid white;
     border-radius: 5px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 95%;
+    max-width: 1024px;
 }
 
 video {
@@ -78,7 +86,17 @@ video {
     text-align: left;
 }
 
+h3 {
+    margin: 0;
+}
 
+p {
+    margin: 5px
+}
+
+a {
+    text-decoration: none;
+}
 
 
 
