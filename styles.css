@@ -2,7 +2,7 @@ body {
     background-color: black;
     color: grey;
     font-size: large;
-    max-width: 750px;
+    max-width: 75%;
     margin: auto;
     text-align: center;
     font-family: Arial, serif;
@@ -41,7 +41,7 @@ select {
     height: 75%;
     padding: 10px 10px;
     text-align: center;
-    background-color: dimgrey;
+    background-color: dimgray;
     color: white;
     margin-top: 20px;
     border-radius: 5px;
@@ -70,10 +70,18 @@ canvas {
     border-radius: 5px;
 }
 
-iframe {
-    border:2px solid white;
-    border-radius: 5px;
+video {
+    display: none;
 }
+
+#show_info, #synopsis {
+    text-align: left;
+}
+
+
+
+
+
 
 
 

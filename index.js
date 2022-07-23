@@ -31,7 +31,7 @@ function start() {
 
     //Check that all values are entered/not 'undefined'
     if (!Object.values(inputs).every(value => value)) {
-        document.getElementById('incomplete_warning').display = 'block';
+        document.getElementById('incomplete_warning').display = 'block'; //TODO This isn't working?
         return;
     }
     document.getElementById('incomplete_warning').display = 'none'; //Remove error msg
@@ -51,7 +51,7 @@ function start() {
             break;
     }
 
-    the_game(op, ed, inputs['rounds'], inputs['countdown'])
+    the_game(op, ed, inputs['rounds'], inputs['countdown']);
 }
 
 async function the_game(op, ed, rounds, countdown) {
@@ -59,6 +59,8 @@ async function the_game(op, ed, rounds, countdown) {
     console.log(all_data);
     let used_vids = [];
     let picked = undefined;
+
+    document.getElementById("the_game").style.display = "block";
 
     console.log("Hiding 'tabcontents' classes...");
     let i, tabcontent;
@@ -71,7 +73,7 @@ async function the_game(op, ed, rounds, countdown) {
         tabcontent[i].style.display = "none";
     }
 
-    //Main Countdown Loop
+    //Main Rounds Loop
     for (let i = 0; i < rounds; i++) {
         //Pick a video
         let cannot_find_a_video = 0;  //Stop it from getting stuck in a loop
@@ -129,82 +131,141 @@ async function the_game(op, ed, rounds, countdown) {
         console.log(`Going to play ${picked.name_of_vid} from ${picked.show_name}`);
 
 
-        //Display Countdown and play audio
-        document.getElementById("the_game").style.display = "block";
-        document.getElementById("name_type_and_series").innerHTML = "";
-        document.getElementById("synopsis").innerHTML = "";
-
-        let the_canvas = document.getElementById('the_canvas');
-        let ctx = the_canvas.getContext('2d');
-        ctx.font = '80px Arial';
+        //Get the new source
+        const display_video_max_frames = 30 * countdown; //Usually ten seconds
+        let now_showing_vid = false; //Turns on canvas drawing during a second 'play()'
+        let all_done = false; //Exists the loop after cntr
+        let cntr = 0;
 
 
-        //Play the Video Without Visuals
-        let the_video = document.getElementById("the_video");
-        //the_video.style.display = "none"; //TODO hide video
-        the_video.src = `https://v.animethemes.moe/${picked.vid_source}.webm`;
+        let canvas = document.getElementById('the_canvas');
+        let ctx = canvas.getContext('2d');
 
-        //TODO Wait to load
-        the_video.postMessage("Now loading...");
+        let video = document.getElementById('video');
+        let source = document.createElement('source');
 
-        //TODO Play
+        source.setAttribute('src', `https://v.animethemes.moe/${picked.vid_source}.webm`);
+        source.setAttribute('type', 'video/webm');
 
-
-
-
-
-        // document.getElementById('the_video').addEventListener('loadedmetadata', function() {
-        //     this.currentTime = 50;
-        // }, false);
-        //From https://stackoverflow.com/questions/5981427/start-html5-video-at-a-particular-position-when-loading
+        video.appendChild(source);
+        //console.log({ src: source.getAttribute('src'), type: source.getAttribute('type'), });
+        video.play();
+        video.volume = 1.0;
 
 
+        //Buffering delay
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'skyblue';
+        ctx.font = "60px Arial";
+        while (video.buffered.length === 0) {
+            ctx.fillText("Buffering...", 512, 288);
+            await sleep(100);
+        }
+        console.log("Buffered!");
 
-
+        //Countdown
+        ctx.font = "120px Arial";
         for (let sec = 0; sec < countdown*100; sec++) {
-            //Redraw Background
+            if (sec === 0) console.log("Starting Countdown");
             ctx.fillStyle = 'dimgrey';
-            ctx.clearRect(0, 0, the_canvas.width, the_canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = 'skyblue';
-            ctx.fillText((Math.floor((countdown*100-sec)/100)+1).toString(), 360, 240);
+            ctx.fillText((Math.floor((countdown*100-sec)/100)+1).toString(), 512, 288);
 
-            let grd = ctx.createLinearGradient(720, 480, 0, 0);
+            let grd = ctx.createLinearGradient(1024, 576, 0, 0);
             grd.addColorStop(0, "skyblue");
             grd.addColorStop(1, "dimgrey");
             ctx.fillStyle = grd;
-            ctx.fillRect(0, 440, 720 - Math.floor(720 * (sec/(countdown*100))), 40);
+            ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*100))), 76);
             await sleep(10);
         }
+        now_showing_vid = true;
+        video.pause();
+        await sleep(1); //You need another pause to reactivate play
+        video.play(); //Activate 'show' phase
 
 
-        //Display The Video
-        the_video.style.display = "block";
-        the_canvas.style.display = "none";
-        let ntas = `<b>${picked.show_name}</b>`;
-        if (op !== ed) //Only use for both
-            ntas += ` (${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'})`;
-        if (picked.alt_names.length !== 0)
-            ntas += `<br>&emsp;<i>aka ${picked.alt_names.join(', ')}</i>`;
-        if (picked.series !== 'NA')
-            ntas += `<br>Series: ${picked.series}`;
-        ntas += `<br>Used in episode(s) '${picked.vid_episodes}'`;
-        document.getElementById("name_type_and_series").innerHTML = ntas;
-        document.getElementById("synopsis").innerHTML = picked.synopsis;
+        // Prepare info for canvas/paragraphs
+        let this_show_name = picked.show_name + ` - ${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'}`;
+        let aka = picked.alt_names.length !== 0 ? `aka ${picked.alt_names.join(', ')}` : '';
+        let this_series = picked.series !== 'NA' ? `Series: ${picked.series}` : '';
+        let used = picked.vid_episodes === '---' ? `This ${picked.type_of_vid === 'op' ? 'OP' : 'ED'} used in episode(s) '${picked.vid_episodes}'` : '';
 
-        sleep(10000); //Always ten seconds?
+        const show_name_font = this_show_name.length > 50 ? 30 : 40; //40px by default
+
+        //Show video with name
+        video.addEventListener('play', function () {
+            let $this = this; //cache
+            (function loop() {
+                if (!$this.paused && !$this.ended && now_showing_vid) { //only react to 'play' when you've set a bool
+                    ctx.drawImage($this, 0, 0, 1024, 576);
+
+                    ctx.fillStyle = '#696969'; //dimgrey
+                    ctx.strokeStyle = '#87CEEB'; //skyblue
+                    ctx.lineWidth = 8;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 516); //1
+                    ctx.lineTo(1024, 516); //2
+                    ctx.stroke();
+                    ctx.lineTo(1024, 576); //3
+                    ctx.lineTo(0, 576); //4 - lowest left
+                    ctx.closePath();
+                    ctx.fill();
+
+                    //Display Title
+                    ctx.strokeStyle = '#1e90ff'; //dodgerblue
+                    ctx.lineWidth = 5
+                    ctx.fillStyle = '#fff';
+                    ctx.font = `${show_name_font}px Verdana`; //${Math.floor(this_show_name.length / 60)}
+                    ctx.strokeText(this_show_name, 512, 558);
+                    ctx.fillText(this_show_name, 512, 558);
+
+                    cntr++;
+                    if (cntr > display_video_max_frames) {
+                        $this.pause();
+                        all_done = true;
+                    } else if (cntr > display_video_max_frames - 30 && video.volume > 0.05) { //Fade out
+                        //Note: if the argument is 'video.volume > 0', the video will not pause at the end
+                        video.volume -= 0.05;
+                    }
+
+                    if (!all_done) {
+                        setTimeout(loop, 100/3); // drawing at 30fps
+                    }
+                }
+            })();
+        }, 0);
 
 
-        //TODO Turn Off Video
-        the_video.src = ""
+        let show_info = this_show_name;
+        if (aka !== '') show_info += `<br>   ${aka}`
+        if (this_series !== '') show_info += `<br>Series: ${this_series}`
+        if (used !== used) show_info += `<br>${used}`
+        document.getElementById('show_info').innerHTML = show_info;
+        document.getElementById('synopsis').innerHTML = `<b>synopsis:</b> ${picked.synopsis}`;
+
+
+        while (!all_done) {
+            await sleep(1000);
+        }
+        console.log("You've reached the end!")
 
 
 
-
-
-
-
+        //Clean up for next round
         picked = undefined;
+        document.getElementById('show_info').innerHTML = '';
+        document.getElementById('synopsis').innerHTML = '';
+        video.pause();
+        video.setAttribute('src','');
+
+
+
+
+
+
+
     }
 
 
@@ -214,7 +275,6 @@ async function the_game(op, ed, rounds, countdown) {
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "block";
     }
-    document.getElementById("the_video").style.display = "none";
     document.getElementById("the_game").style.display = "none";
 
 }
