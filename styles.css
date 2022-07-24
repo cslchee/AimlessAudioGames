@@ -24,7 +24,7 @@ body {
 }
 
 #menu {
-    text-align: right;
+    text-align: center;
 }
 
 select {
@@ -36,28 +36,28 @@ select {
     color: darkred;
 }
 
-#steadIDHelp {
+#steamIDHelp {
     display: none;
-    width: 100%;
+    max-width: 95%;
     height: 75%;
+    margin: auto;
     padding: 10px 10px;
-    text-align: center;
-    background-color: dimgray;
-    color: white;
-    margin-top: 20px;
+    color: dimgray;
     border-radius: 5px;
+    border: 3px solid #ccc;
 }
 
-#steadIDHelp img {
-    max-width: 100%;
-    max-height: 100%;
+#steamIDHelp img {
+    width: 80%;
+    height: auto;
 }
 
-#steadIDHelp a {
+#steamIDHelp a {
     color: aquamarine;
 }
 
-#steadIDHelp p{
+#steamIDHelp p{
+    text-align: left;
     font-size: medium;
 }
 
@@ -86,7 +86,7 @@ video {
     text-align: left;
 }
 
-h3 {
+h2, h3 {
     margin: 0;
 }
 
@@ -98,7 +98,20 @@ a {
     text-decoration: none;
 }
 
+table {
+    border-radius: 5px;
+    border: 3px solid #ccc;
+    margin: auto;
+    width: 95%;
+}
 
+td {
+    padding: 10px;
+}
+
+#custom_rounds_div, #custom_rounds_error_msg {
+    display: none;
+}
 
 
 

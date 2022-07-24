@@ -37,39 +37,83 @@
     <br>
     <div id="oped_game" class="tabcontent">
         <h2>Anime Openings and Endings</h2>
+        <br>
         <div id="menu">
-        <label for="opening_ending">Openings, Endings, or Both?</label>
-        <select id = "opening_ending">
-            <option value=undefined> --- </option>
-            <option value="op">OPs</option>
-            <option value="ed">EDs</option>
-            <option value="both">Both</option>
-        </select>
-        <br><br>
-        <label for="rounds">How many rounds?</label>
-        <select id="rounds">
-            <option value="0"> --- </option>
-            <script type="text/javascript">
-                const select = document.getElementById("rounds");
-                const options = ['1','2','5','10','15','20','30','50','75','100'];
-                for(let i = 0; i < options.length; i++) {
-                    let opt = options[i];
-                    let el = document.createElement("option");
-                    el.textContent = opt;
-                    el.value = opt;
-                    select.appendChild(el);
-                }
-            </script>
-        </select>
-        <br><br>
-        <label for="countdown">Countdown (secs): </label>
-        <select id="countdown">
-            <option value="0"> --- </option>
-            <option value="15"> 15 </option>
-            <option value="10"> 10 </option>
-            <option value="5"> 5 </option>
-        </select>
-    </div>
+            <table>
+                <tr>
+                    <td>
+                        <label for="opening_ending">Openings, Endings, or Both?</label>
+                        <br>
+                        <select id = "opening_ending">
+                            <option value=undefined> --- </option>
+                            <option value="op">OPs</option>
+                            <option value="ed">EDs</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="rounds">How many rounds?</label>
+                        <br>
+                        <select id="rounds" on onclick="check_if_custom()">
+                        <option value="0"> --- </option>
+                        <script type="text/javascript">
+                            const select = document.getElementById("rounds");
+                            const options = ['1','2','5','10','15','20','30','50','75','100','Custom'];
+                            for(let i = 0; i < options.length; i++) {
+                                let opt = options[i];
+                                let el = document.createElement("option");
+                                el.textContent = opt;
+                                el.value = opt;
+                                select.appendChild(el);
+                            }
+
+                            function check_if_custom() {
+                                let current_val = document.querySelector('#rounds').value
+                                if (current_val === 'Custom') {
+                                    document.getElementById('custom_rounds_div').style.display = 'block';
+                                } else {
+                                    document.getElementById('custom_rounds_div').style.display = 'none';
+                                }
+                            }
+                        </script>
+                        </select>
+                        <div id="custom_rounds_div">
+                            <label for="custom_rounds" style="font-size: small;">Custom:&nbsp;</label>
+                            <input id="custom_rounds" type="text" style="margin: auto" maxlength="3" size="3">
+                            <div id="custom_rounds_error_msg" style="color: darkred; font-size: small;">
+                                Invalid Entry.
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <label for="countdown">Countdown (secs): </label>
+                        <br>
+                        <select id="countdown">
+                            <option value="0"> --- </option>
+                            <option value="15"> 15 </option>
+                            <option value="10"> 10 </option>
+                            <option value="5"> 5 </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        C
+                    </td>
+                    <td>
+                        D
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E
+                    </td>
+                    <td>
+                        F
+                    </td>
+                </tr>
+            </table>
+        </div>
         <br><br>
         <button type="button" id="start_button"
                 onmouseover="difficultyButton()"
@@ -107,7 +151,7 @@
                     default:
                         button.style.background = "dimgrey";
                         button.style.color = "black";
-                        button.innerText = ":/";
+                        button.innerText = "(You're Not Ready Yet lol)";
                         break;
                 }
             }
@@ -124,7 +168,9 @@
         <input type="text" id="steam_id">
         <br>
         <button onclick="showSteamIDHelp()" id="steamIDHelpButton">"Whats a Steam ID?"</button>
-        <div id="steamIDHelp"><br>
+        <br>
+        <div id="steamIDHelp">
+            <br>
             <p>First, go to your Steam profile and look at it's URL.</p>
             <p style="font-size: small">
                 (If you cannot see a URL, got the 'Steam' dropdown in the top left, pick "Settings",

@@ -24,10 +24,22 @@ async function getJsonFile(file_name) {
 function start() {
     let inputs = {
         "type_of_vid": document.querySelector('#opening_ending').value, //OP, ED, or both
-        "rounds": parseInt(document.querySelector('#rounds').value),
+        "rounds": !isNaN(parseInt(document.querySelector('#rounds').value)) ? parseInt(document.querySelector('#rounds').value) : "undefined",
         "countdown": parseInt(document.querySelector('#countdown').value)
     }
     console.log(Object.values(inputs));
+
+    //Check for custom value
+    if (document.querySelector('#rounds').value === 'Custom' && inputs.rounds === "undefined") {
+        console.log("Validating Custom Rounds Entry")
+        const custom_rounds_val = parseInt(document.querySelector('#custom_rounds').value)
+        console.log(custom_rounds_val)
+        if (!isNaN(custom_rounds_val) && custom_rounds_val > 1 && custom_rounds_val < 1000) {
+            inputs.rounds = custom_rounds_val;
+        } else {
+            document.getElementById('custom_rounds_error_msg').style.display = 'block';
+        }
+    }
 
     //Check that all values are entered/not 'undefined'
     let all_inputs_valid = true;
@@ -43,6 +55,7 @@ function start() {
         return;
     }
     document.getElementById('incomplete_warning').style.display = "none"; //Remove error msg before continuing
+    document.getElementById('custom_rounds_error_msg').style.display = "none";
 
     let op = false;
     let ed = false;
@@ -152,12 +165,7 @@ async function the_game(op, ed, rounds, countdown) {
         source.setAttribute('src', vid_url);
         video.appendChild(source);
 
-        try {
-            //video.load();
-            video.play();
-        } catch (err) {
-            console.log(err)
-        }
+        video.play();
 
         video.volume = 1.0;
 
@@ -175,7 +183,7 @@ async function the_game(op, ed, rounds, countdown) {
 
 
         //Countdown
-        for (let sec = 0; sec < countdown*100; sec++) {
+        for (let sec = 0; sec < countdown*100; sec++) { //Use a 'time.now()' difference while-loop instead?
             if (sec === 0) console.log("Starting Countdown");
             ctx.fillStyle = 'dimgrey';
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -190,16 +198,18 @@ async function the_game(op, ed, rounds, countdown) {
             grd.addColorStop(0, "skyblue");
             grd.addColorStop(1, "dimgrey");
             ctx.fillStyle = grd;
-            ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*100))), 76);
+            ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*100))), 76); //Countdown bar
+            ctx.fillRect(0, 0, Math.floor(1024 * ((rounds-i)/rounds)), 20); //Progress bar
             await sleep(10, 'Drawing countdown');
         }
         now_showing_vid = true;
         video.pause();
-        await sleep(1, 'Pause buffer'); //You need another pause to reactivate play
+        await sleep(0.1, 'Pause buffer'); //You need another pause to reactivate play
         video.play();
 
         // Prepare info for canvas/paragraphs
-        let this_show_name = picked.show_name + ` - ${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'}`; //Must be a 'var'
+        let this_show_name = picked.show_name;
+        if (op && ed) this_show_name += ' - ' + picked.type_of_vid === 'op' ? 'Opening' : 'Ending' //Display which it is if we're doing both
         let aka = picked.alt_names.length !== 0 ? picked.alt_names.join(', ') : '';
         let this_series = picked.series !== 'NA' ? `${picked.series}` : '';
         let used = picked.vid_episodes === '---' ? `This ${picked.type_of_vid === 'op' ? 'OP' : 'ED'} used in episode(s) '${picked.vid_episodes}'` : '';
@@ -255,8 +265,8 @@ async function the_game(op, ed, rounds, countdown) {
         ctx.fillStyle = 'skyblue';
         ctx.font = "60px Arial";
         video.pause();
-
         source.remove();
+        if (i === rounds) { source.removeAttribute('src'); video.load(); } //Can't play afterwards (could hit keyboard |> key)
     }
 
 
