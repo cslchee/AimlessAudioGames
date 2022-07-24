@@ -45,7 +45,7 @@
                         <label for="opening_ending">Openings, Endings, or Both?</label>
                         <br>
                         <select id = "opening_ending">
-                            <option value=undefined> --- </option>
+                            <option value=undefined style="text-align: center"> --- </option>
                             <option value="op">OPs</option>
                             <option value="ed">EDs</option>
                             <option value="both">Both</option>
@@ -55,7 +55,7 @@
                         <label for="rounds">How many rounds?</label>
                         <br>
                         <select id="rounds" on onclick="check_if_custom()">
-                        <option value="0"> --- </option>
+                        <option value="0" style="text-align: center"> --- </option>
                         <script type="text/javascript">
                             const select = document.getElementById("rounds");
                             const options = ['1','2','5','10','15','20','30','50','75','100','Custom'];
@@ -89,7 +89,7 @@
                         <label for="countdown">Countdown (secs): </label>
                         <br>
                         <select id="countdown">
-                            <option value="0"> --- </option>
+                            <option value="0" style="text-align: center"> --- </option>
                             <option value="15"> 15 </option>
                             <option value="10"> 10 </option>
                             <option value="5"> 5 </option>
@@ -98,18 +98,50 @@
                 </tr>
                 <tr>
                     <td>
-                        C
+                        <label for="rankings">Rankings</label>
+                        <br>
+                        <select id="rankings">
+                            <option value="undefined" style="text-align: center"> --- </option>
+                            <option value="top50pop">Top 50 Popular</option>
+                            <option value="top100pop">Top 100 Popular</option>
+                            <option value="top150pop">Top 150 Popular</option>
+                            <option value="top50rate">Top 50 Rating</option>
+                            <option value="top100rate">Top 100 Rating</option>
+                            <option value="top150rate">Top 150 Rating</option>
+                            <option value="everything">Literally Everything</option>
+                        </select>
                     </td>
                     <td>
-                        D
+                        Random Timings
+                    </td>
+                    <td>
+                        Genre
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        E
+                        <label for="include_movies">Include Movies:&nbsp;</label>
+                        <select id="include_movies">
+                            <option value="yes" style="text-align: center"> Yes </option>
+                            <option value="no"> No </option>
+                        </select>
                     </td>
                     <td>
-                        F
+                        <label for="premiered_after">Premiered <i>After</i>:&nbsp;</label>
+                        <select id="premiered_after">
+                            <option value="NA"> Don't Care </option>
+                            <script type="text/javascript">
+                                const select_pa = document.getElementById("premiered_after");
+                                const options_pa = ['1960','1980','1990','2000','2005','2010','2015','2020'];
+                                for(let i = 0; i < options_pa.length; i++) {
+                                    let opt = options_pa[i];
+                                    let el = document.createElement("option");
+                                    el.textContent = opt;
+                                    el.value = opt;
+                                    select_pa.appendChild(el);
+                                }
+                            </script>
+                        </select>
                     </td>
                 </tr>
             </table>

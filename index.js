@@ -25,7 +25,9 @@ function start() {
     let inputs = {
         "type_of_vid": document.querySelector('#opening_ending').value, //OP, ED, or both
         "rounds": !isNaN(parseInt(document.querySelector('#rounds').value)) ? parseInt(document.querySelector('#rounds').value) : "undefined",
-        "countdown": parseInt(document.querySelector('#countdown').value)
+        "countdown": parseInt(document.querySelector('#countdown').value),
+        "include_movies": document.querySelector('#include_movies').value === 'yes',
+        "premiered_after": document.querySelector('#premiered_after').value //Just the year
     }
     console.log(Object.values(inputs));
 
@@ -72,13 +74,37 @@ function start() {
             break;
     }
 
-    the_game(op, ed, inputs['rounds'], inputs['countdown']);
+    the_game(op, ed, inputs['rounds'], inputs['countdown'], inputs['include_movies'], inputs['premiered_after']);
 }
 
-async function the_game(op, ed, rounds, countdown) {
+async function filtration(include_movies, premiered_after) { //Leaves op/ed handling to 'the_game'
+    console.log("Filtering Data...");
     const all_data = await getJsonFile('oped_anime_data');
+    let real_data = JSON.parse(JSON.stringify(all_data)); //Deep copy - Doing this subtractively. Few operations. Easier syntax.
+    let del_flag;
+    for (let anime in all_data) {
+        del_flag = false;
+        if (!include_movies && anime.toLowerCase().includes('movie')) { del_flag = true; }
+        if (!del_flag && premiered_after !== 'NA') {
+            let min_date = parseInt(premiered_after);
+            let this_date = parseInt(all_data[anime].date.split(' ')[1]);
+            if (this_date < min_date) { del_flag = true; } //Could make <=, sticking with 'after' for now though
+        }
+
+
+        if (del_flag) { delete real_data[anime]; }
+    }
+
+
+    return real_data;
+}
+
+async function the_game(op, ed, rounds, countdown, include_movies, premiered_after) {
+    const all_data = await filtration(include_movies, premiered_after);
+
     let used_vids = [];
     let picked = undefined;
+
 
     document.getElementById("the_game").style.display = "block";
 
@@ -112,6 +138,7 @@ async function the_game(op, ed, rounds, countdown) {
                         alt_names: all_data[random_show]['alt titles'],
                         series: all_data[random_show]['series'],
                         synopsis: all_data[random_show]['synopsis'],
+                        premiere_of_vid: all_data[random_show]['date'],
                         type_of_vid: op_or_ed,
                         name_of_vid: all_vids[v],
                         vid_episodes: vid_epi,
@@ -209,7 +236,7 @@ async function the_game(op, ed, rounds, countdown) {
 
         // Prepare info for canvas/paragraphs
         let this_show_name = picked.show_name;
-        if (op && ed) this_show_name += ' - ' + picked.type_of_vid === 'op' ? 'Opening' : 'Ending' //Display which it is if we're doing both
+        if (op && ed) this_show_name += ` - ${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'}`; //Display which it is if we're doing both
         let aka = picked.alt_names.length !== 0 ? picked.alt_names.join(', ') : '';
         let this_series = picked.series !== 'NA' ? `${picked.series}` : '';
         let used = picked.vid_episodes === '---' ? `This ${picked.type_of_vid === 'op' ? 'OP' : 'ED'} used in episode(s) '${picked.vid_episodes}'` : '';
@@ -219,6 +246,7 @@ async function the_game(op, ed, rounds, countdown) {
         let show_info = ''; //`<b>Anime: </b>${this_show_name}`; //Already introduced the show
         if (aka !== '') show_info += `<li><b>Alternate Titles: </b>${aka}</li>`;
         show_info += `<li><b>Song: </b>${picked.name_of_vid}</li>`;
+        show_info += `<li><b>Premiered: </b>${picked.premiere_of_vid}</li>`
         if (this_series !== '') show_info += `<li><b>Series: </b>${this_series}</li>`
         if (used !== used) show_info += `<li>${used}</li>`
         document.getElementById('show_info').innerHTML = show_info;
