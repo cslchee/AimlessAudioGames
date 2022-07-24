@@ -64,7 +64,6 @@ function start() {
 
 async function the_game(op, ed, rounds, countdown) {
     const all_data = await getJsonFile('oped_anime_data');
-    console.log(all_data);
     let used_vids = [];
     let picked = undefined;
 
@@ -143,18 +142,22 @@ async function the_game(op, ed, rounds, countdown) {
         //Get the new source
         const display_video_max_frames = 30 * countdown; //Usually ten seconds
         let now_showing_vid = false; //Turns on canvas drawing during a second 'play()'
-        let all_done = false; //Exists the loop after cntr
-        let cntr = 0;
+
 
         let canvas = document.getElementById('the_canvas');
         let ctx = canvas.getContext('2d');
         let video = document.getElementById('video');
-        let source = document.getElementById('source');
-
+        let source = document.createElement('source');
         source.setAttribute('src', vid_url);
+        video.appendChild(source);
 
-        video.load();
-        video.play();
+        try {
+            //video.load();
+            video.play();
+        } catch (err) {
+            console.log(err)
+        }
+
         video.volume = 1.0;
 
         //Buffering delay
@@ -177,8 +180,10 @@ async function the_game(op, ed, rounds, countdown) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = 'skyblue';
-            ctx.font = "120px Arial";
+            ctx.font = "normal 120px Arial";
             ctx.fillText((Math.floor((countdown*100-sec)/100)+1).toString(), 512, 288);
+            ctx.font = "italic 50px Arial";
+            ctx.fillText(`#${i+1}`, 75, 75);
 
             let grd = ctx.createLinearGradient(1024, 576, 0, 0);
             grd.addColorStop(0, "skyblue");
@@ -190,65 +195,15 @@ async function the_game(op, ed, rounds, countdown) {
         now_showing_vid = true;
         video.pause();
         await sleep(1, 'Pause buffer'); //You need another pause to reactivate play
-        try {
-            video.play(); //Activate 'show' phase
-        } catch (err) {
-            console.log(err);
-            all_done = true; //Need to toggle here on error since you can't get the end the play() listener
-        }
-
+        video.play();
 
         // Prepare info for canvas/paragraphs
-        let this_show_name = picked.show_name + ` - ${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'}`;
+        let this_show_name = picked.show_name + ` - ${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'}`; //Must be a 'var'
         let aka = picked.alt_names.length !== 0 ? picked.alt_names.join(', ') : '';
         let this_series = picked.series !== 'NA' ? `${picked.series}` : '';
         let used = picked.vid_episodes === '---' ? `This ${picked.type_of_vid === 'op' ? 'OP' : 'ED'} used in episode(s) '${picked.vid_episodes}'` : '';
 
         const show_name_font = this_show_name.length > 50 ? 25 : 40; //40px by default
-
-        //Show video with name
-        video.addEventListener('play', function () {
-            let $this = this; //cache
-            (function loop() {
-                if (!$this.paused && !$this.ended && now_showing_vid) { //only react to 'play' when you've set a bool
-                    ctx.drawImage($this, 0, 0, 1024, 576);
-
-                    ctx.fillStyle = '#696969'; //dimgrey
-                    ctx.strokeStyle = '#87CEEB'; //skyblue
-                    ctx.lineWidth = 8;
-                    ctx.beginPath();
-                    ctx.moveTo(0, 516); //1
-                    ctx.lineTo(1024, 516); //2
-                    ctx.stroke();
-                    ctx.lineTo(1024, 576); //3
-                    ctx.lineTo(0, 576); //4 - lowest left
-                    ctx.closePath();
-                    ctx.fill();
-
-                    //Display Title
-                    ctx.strokeStyle = '#1e90ff'; //dodgerblue
-                    ctx.lineWidth = 5
-                    ctx.fillStyle = '#fff';
-                    ctx.font = `${show_name_font}px Verdana`; //${Math.floor(this_show_name.length / 60)}
-                    ctx.strokeText(this_show_name, 512, 558);
-                    ctx.fillText(this_show_name, 512, 558);
-
-                    cntr++;
-                    if (cntr > display_video_max_frames) {
-                        $this.pause();
-                        all_done = true;
-                    } else if (cntr > display_video_max_frames - 30 && video.volume > 0.05) { //Fade out
-                        //Note: if the argument is 'video.volume > 0', the video will not pause at the end
-                        video.volume -= 0.05;
-                    }
-
-                    if (!all_done) {
-                        setTimeout(loop, 100/3); // drawing at 30fps
-                    }
-                }
-            })();
-        }, 0);
-
 
         let show_info = ''; //`<b>Anime: </b>${this_show_name}`; //Already introduced the show
         if (aka !== '') show_info += `<li><b>Alternate Titles: </b>${aka}</li>`;
@@ -258,10 +213,36 @@ async function the_game(op, ed, rounds, countdown) {
         document.getElementById('show_info').innerHTML = show_info;
         document.getElementById('synopsis').innerHTML = `<b>Synopsis:</b> ${picked.synopsis}`;
 
+        //Displaying Results - Show video with name
+        for (let cntr = 0; cntr < display_video_max_frames; cntr++) {
+            ctx.drawImage(video, 0, 0, 1024, 576);
 
-        while (!all_done) {
-            await sleep(1000, 'Waiting for all_done');
+            ctx.fillStyle = '#696969'; //dimgrey
+            ctx.strokeStyle = '#87CEEB'; //skyblue
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.moveTo(0, 516); //1
+            ctx.lineTo(1024, 516); //2
+            ctx.stroke();
+            ctx.lineTo(1024, 576); //3
+            ctx.lineTo(0, 576); //4 - lowest left
+            ctx.closePath();
+            ctx.fill();
+
+            //Display Title
+            ctx.strokeStyle = '#1e90ff'; //dodgerblue
+            ctx.lineWidth = 5
+            ctx.fillStyle = '#fff';
+            ctx.font = `${show_name_font}px Verdana`; //${Math.floor(this_show_name.length / 60)}
+            ctx.strokeText(this_show_name, 512, 558);
+            ctx.fillText(this_show_name, 512, 558);
+
+            //Fade out
+            if (cntr > display_video_max_frames - 30 && video.volume > 0.05) video.volume -= 0.05;
+            //Note: if the argument is 'video.volume > 0', it will cause issues
+            await sleep(100/3,'Displaying results') //Draw at 30 FPS
         }
+
         console.log("You've reached the end!")
 
 
@@ -272,12 +253,13 @@ async function the_game(op, ed, rounds, countdown) {
         ctx.fillStyle = 'skyblue';
         ctx.font = "60px Arial";
         video.pause();
+
+        source.remove();
     }
 
 
     //Reset and Go Back to Default
     document.getElementById("oped_game").style.display = "block";
-    document.getElementById("source").setAttribute('src', ''); //May create media-loading issues...
     tabcontent = document.getElementsByClassName("tab");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "block";
