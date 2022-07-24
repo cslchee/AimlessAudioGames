@@ -148,6 +148,7 @@ async function the_game(op, ed, rounds, countdown) {
         let ctx = canvas.getContext('2d');
         let video = document.getElementById('video');
         let source = document.createElement('source');
+        source.removeAttribute('src'); video.load(); //Empty Source before getting new one
         source.setAttribute('src', vid_url);
         video.appendChild(source);
 
@@ -240,6 +241,7 @@ async function the_game(op, ed, rounds, countdown) {
             //Fade out
             if (cntr > display_video_max_frames - 30 && video.volume > 0.05) video.volume -= 0.05;
             //Note: if the argument is 'video.volume > 0', it will cause issues
+
             await sleep(100/3,'Displaying results') //Draw at 30 FPS
         }
 
