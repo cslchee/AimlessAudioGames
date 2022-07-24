@@ -1,6 +1,6 @@
 
-function sleep(ms) {
-    console.log(`Sleeping for ${ms}ms`)
+function sleep(ms, msg) {
+    console.log(`Sleeping for ${ms}ms - ${msg}`)
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -32,7 +32,6 @@ function start() {
     //Check that all values are entered/not 'undefined'
     let all_inputs_valid = true;
     for (const prop in inputs) {
-        console.log(inputs[prop])
         if (inputs[prop] === "undefined" || inputs[prop] === 0) { //HTML is sending back a string
             all_inputs_valid = false;
             break;
@@ -71,7 +70,6 @@ async function the_game(op, ed, rounds, countdown) {
 
     document.getElementById("the_game").style.display = "block";
 
-    console.log("Hiding 'tabcontents' classes...");
     let i, tabcontent;
     tabcontent = document.getElementsByClassName("tabcontent");
       for (i = 0; i < tabcontent.length; i++) {
@@ -135,11 +133,12 @@ async function the_game(op, ed, rounds, countdown) {
         }
         if (cannot_find_a_video > 10) {
             console.log("ERROR - Did too many loops while trying to find an appropriate video.");
-            //TODO Doesn't clean up visuals before returning...
+            //TODO Doesn't switch back visuals before returning...
             return;
         }
-        console.log(`Going to play ${picked.name_of_vid} from ${picked.show_name}`);
 
+        const vid_url = `https://v.animethemes.moe/${picked.vid_source}.webm`;
+        console.log(`Going to play ${picked.name_of_vid} from ${picked.show_name}  --  ${vid_url}`);
 
         //Get the new source
         const display_video_max_frames = 30 * countdown; //Usually ten seconds
@@ -147,40 +146,38 @@ async function the_game(op, ed, rounds, countdown) {
         let all_done = false; //Exists the loop after cntr
         let cntr = 0;
 
-
         let canvas = document.getElementById('the_canvas');
         let ctx = canvas.getContext('2d');
-
         let video = document.getElementById('video');
-        let source = document.createElement('source');
+        let source = document.getElementById('source');
 
-        source.setAttribute('src', `https://v.animethemes.moe/${picked.vid_source}.webm`);
-        source.setAttribute('type', 'video/webm');
+        source.setAttribute('src', vid_url);
 
-        video.appendChild(source);
-        //console.log({ src: source.getAttribute('src'), type: source.getAttribute('type'), });
+        video.load();
         video.play();
         video.volume = 1.0;
 
-
         //Buffering delay
+        ctx.fillStyle = 'dimgrey';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.textAlign = 'center';
         ctx.fillStyle = 'skyblue';
         ctx.font = "60px Arial";
         while (video.buffered.length === 0) {
             ctx.fillText("Buffering...", 512, 288);
-            await sleep(100);
+            await sleep(100, 'Buffering');
         }
         console.log("Buffered!");
 
+
         //Countdown
-        ctx.font = "120px Arial";
         for (let sec = 0; sec < countdown*100; sec++) {
             if (sec === 0) console.log("Starting Countdown");
             ctx.fillStyle = 'dimgrey';
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = 'skyblue';
+            ctx.font = "120px Arial";
             ctx.fillText((Math.floor((countdown*100-sec)/100)+1).toString(), 512, 288);
 
             let grd = ctx.createLinearGradient(1024, 576, 0, 0);
@@ -188,21 +185,26 @@ async function the_game(op, ed, rounds, countdown) {
             grd.addColorStop(1, "dimgrey");
             ctx.fillStyle = grd;
             ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*100))), 76);
-            await sleep(10);
+            await sleep(10, 'Drawing countdown');
         }
         now_showing_vid = true;
         video.pause();
-        await sleep(1); //You need another pause to reactivate play
-        video.play(); //Activate 'show' phase
+        await sleep(1, 'Pause buffer'); //You need another pause to reactivate play
+        try {
+            video.play(); //Activate 'show' phase
+        } catch (err) {
+            console.log(err);
+            all_done = true; //Need to toggle here on error since you can't get the end the play() listener
+        }
 
 
         // Prepare info for canvas/paragraphs
         let this_show_name = picked.show_name + ` - ${picked.type_of_vid === 'op' ? 'Opening' : 'Ending'}`;
-        let aka = picked.alt_names.length !== 0 ? `aka ${picked.alt_names.join(', ')}` : '';
-        let this_series = picked.series !== 'NA' ? `Series: ${picked.series}` : '';
+        let aka = picked.alt_names.length !== 0 ? picked.alt_names.join(', ') : '';
+        let this_series = picked.series !== 'NA' ? `${picked.series}` : '';
         let used = picked.vid_episodes === '---' ? `This ${picked.type_of_vid === 'op' ? 'OP' : 'ED'} used in episode(s) '${picked.vid_episodes}'` : '';
 
-        const show_name_font = this_show_name.length > 50 ? 30 : 40; //40px by default
+        const show_name_font = this_show_name.length > 50 ? 25 : 40; //40px by default
 
         //Show video with name
         video.addEventListener('play', function () {
@@ -248,43 +250,37 @@ async function the_game(op, ed, rounds, countdown) {
         }, 0);
 
 
-        let show_info = this_show_name;
-        if (aka !== '') show_info += `<br>   ${aka}`
-        if (this_series !== '') show_info += `<br>Series: ${this_series}`
-        if (used !== used) show_info += `<br>${used}`
+        let show_info = ''; //`<b>Anime: </b>${this_show_name}`; //Already introduced the show
+        if (aka !== '') show_info += `<li><b>Alternate Titles: </b>${aka}</li>`;
+        show_info += `<li><b>Song: </b>${picked.name_of_vid}</li>`;
+        if (this_series !== '') show_info += `<li><b>Series: </b>${this_series}</li>`
+        if (used !== used) show_info += `<li>${used}</li>`
         document.getElementById('show_info').innerHTML = show_info;
         document.getElementById('synopsis').innerHTML = `<b>Synopsis:</b> ${picked.synopsis}`;
 
 
         while (!all_done) {
-            await sleep(1000);
+            await sleep(1000, 'Waiting for all_done');
         }
         console.log("You've reached the end!")
-
 
 
         //Clean up for next round
         picked = undefined;
         document.getElementById('show_info').innerHTML = '';
         document.getElementById('synopsis').innerHTML = '';
+        ctx.fillStyle = 'skyblue';
+        ctx.font = "60px Arial";
         video.pause();
-        video.setAttribute('src','');
-
-
-
-
-
-
-
     }
 
 
     //Reset and Go Back to Default
     document.getElementById("oped_game").style.display = "block";
+    document.getElementById("source").setAttribute('src', ''); //May create media-loading issues...
     tabcontent = document.getElementsByClassName("tab");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "block";
     }
     document.getElementById("the_game").style.display = "none";
-
 }
