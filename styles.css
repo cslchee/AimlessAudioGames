@@ -78,9 +78,6 @@ canvas {
     max-width: 1024px;
 }
 
-video {
-    display: none;
-}
 
 #show_info, #synopsis {
     text-align: left;
@@ -109,9 +106,10 @@ td {
     padding: 10px;
 }
 
-#custom_rounds_div, #custom_rounds_error_msg {
+video, #custom_rounds_div, #custom_rounds_error_msg, #literally_everything_warning {
     display: none;
 }
+
 
 
 

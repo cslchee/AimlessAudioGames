@@ -27,7 +27,9 @@ function start() {
         "rounds": !isNaN(parseInt(document.querySelector('#rounds').value)) ? parseInt(document.querySelector('#rounds').value) : "undefined",
         "countdown": parseInt(document.querySelector('#countdown').value),
         "include_movies": document.querySelector('#include_movies').value === 'yes',
-        "premiered_after": document.querySelector('#premiered_after').value //Just the year
+        "premiered_after": document.querySelector('#premiered_after').value, //Just the year
+        "rankings": document.querySelector('#rankings').value,
+        "start_point_random": document.querySelector('#start_point_random').value === 'random_point'
     }
     console.log(Object.values(inputs));
 
@@ -74,23 +76,43 @@ function start() {
             break;
     }
 
-    the_game(op, ed, inputs['rounds'], inputs['countdown'], inputs['include_movies'], inputs['premiered_after']);
+    the_game(op, ed, inputs['rounds'], inputs['countdown'], inputs['include_movies'], inputs['premiered_after'],
+        inputs['rankings'], inputs['start_point_random']);
 }
 
-async function filtration(include_movies, premiered_after) { //Leaves op/ed handling to 'the_game'
+async function filtration(include_movies, premiered_after, rankings) { //Leaves op/ed handling to 'the_game'
     console.log("Filtering Data...");
     const all_data = await getJsonFile('oped_anime_data');
     let real_data = JSON.parse(JSON.stringify(all_data)); //Deep copy - Doing this subtractively. Few operations. Easier syntax.
+
+    const rankings_data = rankings === 'everything' ? [] : await getJsonFile('top_data.json');
+    const rankings_on = rankings_data.length !== 0; //simplified check for reuse later
+    let rankings_valid_shows = [];
+    if (rankings_on){
+        const rank_term = rankings.includes('pop') ? 'popular' : 'rating';
+        const top_num_term = rankings.replace(rank_term,'') //gives 'top50', etc.
+
+        //Always include top50
+        rankings_valid_shows = rankings_data[rank_term]['top50'];
+        if (top_num_term.includes('100') || top_num_term.includes('250')) {
+            rankings_valid_shows = rankings_valid_shows.concat(rankings_data[rank_term]['top100']);
+        }
+        if (top_num_term.includes('250')) {
+            rankings_valid_shows = rankings_valid_shows.concat(rankings_data[rank_term]['top250']);
+        }
+    }
+
+
     let del_flag;
     for (let anime in all_data) {
         del_flag = false;
+        if (!del_flag && rankings_on && !rankings_valid_shows.includes(anime)) { del_flag = true; }
         if (!include_movies && anime.toLowerCase().includes('movie')) { del_flag = true; }
         if (!del_flag && premiered_after !== 'NA') {
             let min_date = parseInt(premiered_after);
             let this_date = parseInt(all_data[anime].date.split(' ')[1]);
             if (this_date < min_date) { del_flag = true; } //Could make <=, sticking with 'after' for now though
         }
-
 
         if (del_flag) { delete real_data[anime]; }
     }
@@ -99,12 +121,11 @@ async function filtration(include_movies, premiered_after) { //Leaves op/ed hand
     return real_data;
 }
 
-async function the_game(op, ed, rounds, countdown, include_movies, premiered_after) {
-    const all_data = await filtration(include_movies, premiered_after);
+async function the_game(op, ed, rounds, countdown, include_movies, premiered_after, rankings, start_point_random) {
+    const all_data = await filtration(include_movies, premiered_after, rankings);
 
     let used_vids = [];
     let picked = undefined;
-
 
     document.getElementById("the_game").style.display = "block";
 
@@ -145,7 +166,7 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
                         vid_source: vid_src
                     });
                 }
-                console.log(vid_choices);
+                //console.log(vid_choices);
             }
             if (op && all_data[random_show].op.length !== 0) {
                 addToChoices('op');
@@ -181,7 +202,6 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
 
         //Get the new source
         const display_video_max_frames = 30 * countdown; //Usually ten seconds
-        let now_showing_vid = false; //Turns on canvas drawing during a second 'play()'
 
 
         let canvas = document.getElementById('the_canvas');
@@ -193,8 +213,8 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
         video.appendChild(source);
 
         video.play();
-
         video.volume = 1.0;
+
 
         //Buffering delay
         ctx.fillStyle = 'dimgrey';
@@ -202,22 +222,33 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
         ctx.textAlign = 'center';
         ctx.fillStyle = 'skyblue';
         ctx.font = "60px Arial";
+        ctx.fillText("Buffering...", 512, 288);
         while (video.buffered.length === 0) {
-            ctx.fillText("Buffering...", 512, 288);
-            await sleep(100, 'Buffering');
+            await sleep(50, 'Buffering');
         }
         console.log("Buffered!");
 
 
+        //TODO Sync video timecode loading with timecode change
+        if (start_point_random) { //Do after buffering to avoid 'video.duration' as NaN
+            // video.addEventListener('loadeddata', function() {
+            //     console.log("Can play data 'loadeddata'");
+            //     console.log(this.currentTime);
+            // }, false);
+            video.currentTime = Math.random() * (video.duration - 30); //Don't get within 30sec of the end. Round to 2nd place
+            await sleep(500, 'Waiting a bonus second for random time update')
+        }
+
+
         //Countdown
-        for (let sec = 0; sec < countdown*100; sec++) { //Use a 'time.now()' difference while-loop instead?
+        for (let sec = 0; sec < countdown*1000; sec += 25) { //Use a 'time.now()' difference while-loop instead?
             if (sec === 0) console.log("Starting Countdown");
             ctx.fillStyle = 'dimgrey';
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = 'skyblue';
             ctx.font = "normal 120px Arial";
-            ctx.fillText((Math.floor((countdown*100-sec)/100)+1).toString(), 512, 288);
+            ctx.fillText((Math.floor((countdown*1000-sec)/1000)+1).toString(), 512, 288);
             ctx.font = "italic 50px Arial";
             ctx.fillText(`#${i+1}`, 75, 75);
 
@@ -225,14 +256,10 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
             grd.addColorStop(0, "skyblue");
             grd.addColorStop(1, "dimgrey");
             ctx.fillStyle = grd;
-            ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*100))), 76); //Countdown bar
+            ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*1000))), 76); //Countdown bar
             ctx.fillRect(0, 0, Math.floor(1024 * ((rounds-i)/rounds)), 20); //Progress bar
-            await sleep(10, 'Drawing countdown');
+            await sleep(25, 'Drawing countdown');
         }
-        now_showing_vid = true;
-        video.pause();
-        await sleep(0.1, 'Pause buffer'); //You need another pause to reactivate play
-        video.play();
 
         // Prepare info for canvas/paragraphs
         let this_show_name = picked.show_name;

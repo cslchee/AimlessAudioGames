@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-    <title>OPED!</title>
+    <title>The Aimless Audio Games!</title>
 </head>
 <body>
     <h1>The Aimless Audio Games!</h1>
@@ -13,7 +13,7 @@
     </i></p>
     <br>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">OPED</button>
+        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">Anime Openings and Endings</button>
         <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
         <script type="text/javascript">
             function openCity(evt, game_type) {
@@ -54,28 +54,27 @@
                     <td>
                         <label for="rounds">How many rounds?</label>
                         <br>
-                        <select id="rounds" on onclick="check_if_custom()">
-                        <option value="0" style="text-align: center"> --- </option>
-                        <script type="text/javascript">
-                            const select = document.getElementById("rounds");
-                            const options = ['1','2','5','10','15','20','30','50','75','100','Custom'];
-                            for(let i = 0; i < options.length; i++) {
-                                let opt = options[i];
-                                let el = document.createElement("option");
-                                el.textContent = opt;
-                                el.value = opt;
-                                select.appendChild(el);
-                            }
-
-                            function check_if_custom() {
-                                let current_val = document.querySelector('#rounds').value
-                                if (current_val === 'Custom') {
-                                    document.getElementById('custom_rounds_div').style.display = 'block';
-                                } else {
-                                    document.getElementById('custom_rounds_div').style.display = 'none';
+                        <select id="rounds" onclick="check_if_custom()">
+                            <option value="0" style="text-align: center"> --- </option>
+                            <script type="text/javascript">
+                                const select = document.getElementById("rounds");
+                                const options = ['1','2','5','10','15','20','30','50','75','100','Custom'];
+                                for (let i = 0; i < options.length; i++) {
+                                    let opt = options[i];
+                                    let el = document.createElement("option");
+                                    el.textContent = opt;
+                                    el.value = opt;
+                                    select.appendChild(el);
                                 }
-                            }
-                        </script>
+
+                                function check_if_custom() {
+                                    if (document.querySelector('#rounds').value === 'Custom') {
+                                        document.getElementById('custom_rounds_div').style.display = 'block';
+                                    } else {
+                                        document.getElementById('custom_rounds_div').style.display = 'none';
+                                    }
+                                }
+                            </script>
                         </select>
                         <div id="custom_rounds_div">
                             <label for="custom_rounds" style="font-size: small;">Custom:&nbsp;</label>
@@ -100,29 +99,41 @@
                     <td>
                         <label for="rankings">Rankings</label>
                         <br>
-                        <select id="rankings">
-                            <option value="undefined" style="text-align: center"> --- </option>
+                        <select id="rankings" onclick="check_if_literally_everything()">
+                            <option value="everything"> Literally Everything </option>
                             <option value="top50pop">Top 50 Popular</option>
                             <option value="top100pop">Top 100 Popular</option>
-                            <option value="top150pop">Top 150 Popular</option>
+                            <option value="top250pop">Top 250 Popular</option>
                             <option value="top50rate">Top 50 Rating</option>
                             <option value="top100rate">Top 100 Rating</option>
-                            <option value="top150rate">Top 150 Rating</option>
-                            <option value="everything">Literally Everything</option>
+                            <option value="top250rate">Top 250 Rating</option>
+                        </select>
+                        <script type="text/javascript">
+                            function check_if_literally_everything() {
+                                if (document.querySelector('#rankings').value === 'everything') {
+                                    document.getElementById('literally_everything_warning').style.display = 'block';
+                                } else {
+                                    document.getElementById('literally_everything_warning').style.display = 'none';
+                                }
+                            }
+                        </script>
+                    </td>
+                    <td>
+                        <label for="start_point_random">Video starts at&nbsp;</label>
+                        <select id="start_point_random">
+                            <option value="start_point" > the beginning </option>
+                            <option value="random_point"> a random point </option>
                         </select>
                     </td>
                     <td>
-                        Random Timings
-                    </td>
-                    <td>
-                        Genre
+                        Genre <br> (wip)
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label for="include_movies">Include Movies:&nbsp;</label>
                         <select id="include_movies">
-                            <option value="yes" style="text-align: center"> Yes </option>
+                            <option value="yes"> Yes </option>
                             <option value="no"> No </option>
                         </select>
                     </td>
@@ -148,7 +159,7 @@
         </div>
         <br><br>
         <button type="button" id="start_button"
-                onmouseover="difficultyButton()"
+                onmouseover="difficultyButton(); check_if_literally_everything();"
                 onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
         <script type="text/javascript">
             function difficultyButton(mouse_off=false) {
@@ -190,6 +201,10 @@
         </script>
         <br>
         <p id="incomplete_warning">Please Set All Parameters to Continue!</p>
+        <p id="literally_everything_warning" style="font-size: small; color: cornflowerblue; margin: auto; width: 80%">
+            <br>Note: Given the size of the database that is being used,
+            using "<b>Literally Everything</b>" may on very rare occasions display mature content.
+        </p>
         <br>
         <p style="font-size: small">Created by <a href="https://youtu.be/iik25wqIuFo">CasualCheetah</a></p>
     </div>
