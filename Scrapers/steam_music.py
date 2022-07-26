@@ -388,7 +388,7 @@ def get_OSTs(games: tuple, manually_provide_playlist=False, elaborate_search=Fal
 
 
 def play_yt_video_audio(music) -> None:
-    pass
+    pass #TODO The next step if I were doing this locally...
 
 
 def main():

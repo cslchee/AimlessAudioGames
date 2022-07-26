@@ -10,8 +10,8 @@
     <h3><b>A</b>ssess an <b>I</b>ndividual's <b>M</b>edia <b>L</b>iteracy by <b>E</b>mploying <b>S</b>elective <b>S</b>ounds</h3>
     <br>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">Anime Openings and Endings</button>
-        <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
+        <button class="tablinks" onclick="openCity(event, 'oped_game')">Anime Openings and Endings</button>
+        <button class="tablinks" onclick="openCity(event, 'steam_music_game')" id="default_game_tab">Steam Game Music</button>
         <script type="text/javascript">
             function openCity(evt, game_type) {
               var i, tabcontent, tablinks;
@@ -262,12 +262,10 @@
         <h2>Personalized Gaming OST Identification via Steam</h2>
         <br>
         <label for="steam_id">What's Your 17-digit Steam ID?</label>
-        <input type="text" id="steam_id">
-        <br>
-        <br>
+        <input type="text" id="steam_id" maxlength="17" size="17">
         <button onclick="showSteamIDHelp()" id="steamIDHelpButton">"Whats a Steam ID?"</button>
         <br>
-        <div id="steamIDHelp">
+        <div id="steamIDHelp" style="display: none">
             <br>
             <p>First, go to your Steam profile and look at it's URL.</p>
             <p style="font-size: small">
@@ -285,17 +283,22 @@
             <p>For me this would be "casualcheetah".</p>
             <p>(For other people, your URL name may differ from your username. In that case, use the URL.</p>
             <script type="text/javascript">
-            function showSteamIDHelp() {
-                let x = document.getElementById("steamIDHelp")
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
+                function showSteamIDHelp() {
+                    let x = document.getElementById("steamIDHelp");
+                    x.style.display = x.style.display === 'none' ? 'block' : 'none';
                 }
-            }
-        </script>
+            </script>
         </div>
         <br>
+        <button type="button" id="start_button_steam" onclick="start_steam_game()"> Ready? </button>
+        <br>
+        <p id="steam_general_warnings"></p>
+        <br>
+
+
+
+
+
         <p style="font-size: xx-large; font-weight: bolder; background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); color: #000">
             This is game is a work in progress!
         </p>

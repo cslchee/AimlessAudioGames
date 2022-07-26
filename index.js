@@ -404,3 +404,46 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
     }
     document.getElementById("the_game").style.display = "none";
 }
+
+async function start_steam_game() {
+    let steam_id = document.getElementById('steam_id').value;
+    //Input validation
+    let steam_warning = document.getElementById('steam_general_warnings');
+    if (steam_id.length !== 17) {
+        steam_warning.innerHTML = "Please make sure that your Steam ID is exactly 17 digits long.";
+        steam_warning.style.display = 'block';
+        return;
+    } else if (steam_id.length === 0) {
+        steam_warning.innerHTML = "Dude, enter a number please.";
+        steam_warning.style.display = 'block';
+    }
+    if (isNaN(parseInt(steam_id))) {
+        steam_warning.innerHTML = "Your input was not a number.";
+        steam_warning.style.display = 'block';
+        return; 
+    } else if (parseInt(steam_id) <= 0) {
+        steam_warning.innerHTML = "Why would you even put a negative number in here dude?";
+        steam_warning.style.display = 'block';
+        return;
+    }
+    steam_warning.innerHTML = '';
+    steam_warning.style.display = 'none';
+
+    console.log(`Given steam profile: https://steamcommunity.com/profiles/${steam_id}`)
+
+    const API_KEY = "4130330FD6DE87CA2759338B96909684";
+    const game_page = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${API_KEY}&steamid=${steam_id}&format=json`
+
+    //Get games and playtimes from Value
+    const temp = await fetch(game_page, {
+        mode: 'cors',
+        headers: {
+            'Access-Control-Allow-Origin':'*'
+        }
+    })
+        .then(response => { return response.json(); })
+        .then(data => { console.log(data); return data; });
+    const user_ids_pts = temp['response']['games'];
+    console.log(temp)
+}
+
