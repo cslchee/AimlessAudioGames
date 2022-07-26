@@ -61,6 +61,11 @@ select {
     font-size: medium;
 }
 
+.skeleton_dance {
+    width: 200px;
+    height: auto;
+}
+
 #the_game {
     display: none;
 }

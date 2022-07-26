@@ -260,9 +260,10 @@
     </div>
     <div id="steam_music_game" class="tabcontent">
         <h2>Personalized Gaming OST Identification via Steam</h2>
-
+        <br>
         <label for="steam_id">What's Your 17-digit Steam ID?</label>
         <input type="text" id="steam_id">
+        <br>
         <br>
         <button onclick="showSteamIDHelp()" id="steamIDHelpButton">"Whats a Steam ID?"</button>
         <br>
@@ -283,8 +284,7 @@
             <img src="images/steam_id_url.PNG" alt="Steam profile with custom url shown in Steam application">
             <p>For me this would be "casualcheetah".</p>
             <p>(For other people, your URL name may differ from your username. In that case, use the URL.</p>
-        </div>
-        <script type="text/javascript">
+            <script type="text/javascript">
             function showSteamIDHelp() {
                 let x = document.getElementById("steamIDHelp")
                 if (x.style.display === "none") {
@@ -294,6 +294,14 @@
                 }
             }
         </script>
+        </div>
+        <br>
+        <p style="font-size: xx-large; font-weight: bolder; background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); color: #000">
+            This is game is a work in progress!
+        </p>
+        <img class="skeleton_dance" src="./images/skeleton_dance.gif" style="transform: scaleX(-1);">
+        <img class="skeleton_dance" src="./images/skeleton_dance.gif">
+
     </div>
     <div id="the_game">
         <canvas id="the_canvas" width="1024" height="576"></canvas>

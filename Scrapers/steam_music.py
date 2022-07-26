@@ -125,7 +125,8 @@ def filter_games(game_dict: dict, playtime_minimum=0, always_musical_games=False
 
     ignore_names = ('blender', "garry'smod", 'driver4vr', 'ovrtookit', 'tabletopsimulator', 'grandtheftautov', 'vrchat',
                     'zerocalibervr', 'pavlovvr', 'segamegadriveandgenesisclassics', 'goatsonabridge', 'echogrotto',
-                    'guidedmeditationvr', 'witchingtowervr', 'tulpa', 'glittermittengrove','david.','scanner sombre')
+                    'guidedmeditationvr', 'witchingtowervr', 'tulpa', 'glittermittengrove','david.','scanner sombre',
+                    'planetside 2 - test','toribash')
     general_ignore_tags = ('Utilities', 'Software', 'Video Production', 'NSFW', 'Trading Card Game')
     # Audio Production gets a few mistakes
 
@@ -391,20 +392,38 @@ def play_yt_video_audio(music) -> None:
 
 
 def main():
+    all_ids = {
+        "me": 76561198032632811,
+        "michael": 76561198145257760,
+        "liz": 76561198207764489,
+        "curtis": 76561198068361043,
+        "nick": 76561198307602151,
+        "bennett": 76561198143431157,
+        "eli": 76561198076322721,
+        "ethan": 76561198068272400,
+        "brengis": 76561198241791244,
+        "eric": 76561197996479889,
+        #"ian_chapman": 76561198045704747, #privated games
+        "myth": 76561197960777546
+    }
     # https://www.steamidfinder.com/
-    my_id = 76561198032632811   # Me
-    #my_id = 76561198145257760  # Michael
-    #my_id = 76561198207764489  # Liz
-    API_KEY = "4130330FD6DE87CA2759338B96909684"
-    games_page = f"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={API_KEY}&steamid={my_id}&format=json"
 
-    game_dict = get_games_and_data(games_page)
-    games_selected = filter_games(game_dict)  # Recommend >1
+    for name, my_id in all_ids.items():
+        print(f"{'- '*20}\nChecking out {name}\n{'- '*20}")
+        API_KEY = "4130330FD6DE87CA2759338B96909684"
+        games_page = f"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={API_KEY}&steamid={my_id}&format=json"
+
+        game_dict = get_games_and_data(games_page)
+        games_selected = filter_games(game_dict)  # Recommend >1
+
+        music = get_OSTs(games_selected, manually_provide_playlist=False, elaborate_search=False)
+
+    exit() #TODO TESTING BREAK HERE - - - - - - - - - - - -
+
     # print(f"Filter Games:")
     # for g in games_selected: print(f"\t{g}")
     # print(f"Length of games_selected: {len(games_selected)}")
 
-    music = get_OSTs(games_selected, manually_provide_playlist=False, elaborate_search=False)
 
 
     # TODO Should get image using "https://i.ytimg.com/vi/__ID__/maxresdefault.jpg"
