@@ -106,7 +106,7 @@ td {
     padding: 10px;
 }
 
-video, #custom_rounds_div, #custom_rounds_error_msg, #literally_everything_warning {
+video, #custom_rounds_div, #custom_rounds_error_msg, #literally_everything_warning, #genres {
     display: none;
 }
 
