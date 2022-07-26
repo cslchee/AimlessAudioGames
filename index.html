@@ -163,7 +163,6 @@
                 <tr>
                     <td colspan="3">
                         <div id="genres" style="font-size: medium">
-                            <hr>
                             <script type="text/javascript">
                                 function check_if_choose_genre() {
                                     if (document.querySelector('#pick_genres').value === 'choose') {
@@ -206,7 +205,10 @@
                 </tr>
             </table>
         </div>
-        <br><br>
+        <br>
+        <p id="incomplete_warning">Please Set All Parameters to Continue!</p>
+        <p id="general_warnings"></p>
+        <br>
         <button type="button" id="start_button"
                 onmouseover="difficultyButton(); check_if_literally_everything(); check_if_choose_genre();"
                 onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
@@ -249,8 +251,6 @@
             }
         </script>
         <br>
-        <p id="incomplete_warning">Please Set All Parameters to Continue!</p>
-        <p id="general_warnings"></p>
         <p id="literally_everything_warning" style="font-size: small; color: cornflowerblue; margin: auto; width: 80%">
             <br>Note: Given the size of the database that is being used (3700+ shows),
             using "<b>Literally Everything</b>" may very rarely display mature content.
