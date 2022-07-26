@@ -1,4 +1,12 @@
 
+function titleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+}
+
 function sleep(ms, msg) {
     console.log(`Sleeping for ${ms}ms - ${msg}`)
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -22,6 +30,7 @@ async function getJsonFile(file_name) {
 
 
 function start() {
+    //Collect loads of HTML data here to simplify code later
     let inputs = {
         "type_of_vid": document.querySelector('#opening_ending').value, //OP, ED, or both
         "rounds": !isNaN(parseInt(document.querySelector('#rounds').value)) ? parseInt(document.querySelector('#rounds').value) : "undefined",
@@ -29,11 +38,13 @@ function start() {
         "include_movies": document.querySelector('#include_movies').value === 'yes',
         "premiered_after": document.querySelector('#premiered_after').value, //Just the year
         "rankings": document.querySelector('#rankings').value,
-        "start_point_random": document.querySelector('#start_point_random').value === 'random_point'
+        "start_point_random": document.querySelector('#start_point_random').value === 'random_point',
+        "cas_bias": document.getElementById('cas_bias').checked,
+        "genre_is_all": document.getElementById('pick_genres').value === 'all'
     }
     console.log(Object.values(inputs));
 
-    //Check for custom value
+    //Check for custom rounds value
     if (document.querySelector('#rounds').value === 'Custom' && inputs.rounds === "undefined") {
         console.log("Validating Custom Rounds Entry")
         const custom_rounds_val = parseInt(document.querySelector('#custom_rounds').value)
@@ -43,6 +54,29 @@ function start() {
         } else {
             document.getElementById('custom_rounds_error_msg').style.display = 'block';
         }
+    }
+
+    //Check for custom genre choices
+    let genres_to_remove = [];
+    if (!inputs['genre_is_all']) {
+        const collection = document.getElementsByClassName('genre_checkboxes');
+        for (let i = 0; i < collection.length; i++) {
+            if (collection[i].checked === false) {
+                const temp = titleCase(collection[i].id.replace('genre_','').replace(' ','_'))
+                genres_to_remove.push(temp);
+            }
+        }
+        console.log(`Removing genres: ${genres_to_remove}`);
+    }
+    console.log(genres_to_remove.length)
+    if (!inputs['genre_is_all'] && genres_to_remove.length === 0) {
+        document.getElementById('general_warnings').innerHTML = `Please pick "All" from the dropdown list if you're not going to exclude any genres.`;
+        document.getElementById('general_warnings').style.display = 'block';
+        return;
+    } else if (genres_to_remove.length > 14) { //Don't get too small - also avoid 'ecchi-only'
+        document.getElementById('general_warnings').innerHTML = 'Must have at least 4 genres selected to continue.';
+        document.getElementById('general_warnings').style.display = 'block';
+        return;
     }
 
     //Check that all values are entered/not 'undefined'
@@ -58,8 +92,13 @@ function start() {
         document.getElementById('incomplete_warning').style.display = "block";
         return;
     }
-    document.getElementById('incomplete_warning').style.display = "none"; //Remove error msg before continuing
+    //Remove error messages before continuing
+    document.getElementById('incomplete_warning').style.display = "none";
     document.getElementById('custom_rounds_error_msg').style.display = "none";
+    document.getElementById('general_warnings').style.display = 'none';
+    document.getElementById('general_warnings').innerHTML = '';
+
+
 
     let op = false;
     let ed = false;
@@ -77,10 +116,10 @@ function start() {
     }
 
     the_game(op, ed, inputs['rounds'], inputs['countdown'], inputs['include_movies'], inputs['premiered_after'],
-        inputs['rankings'], inputs['start_point_random']);
+        inputs['rankings'], inputs['start_point_random'], inputs['cas_bias'], genres_to_remove); // TODO Clean this up. Just sent over inputs plz
 }
 
-async function filtration(include_movies, premiered_after, rankings) { //Leaves op/ed handling to 'the_game'
+async function filtration(include_movies, premiered_after, rankings, genres_to_remove) { //Leaves op/ed handling to 'the_game'
     console.log("Filtering Data...");
     const all_data = await getJsonFile('oped_anime_data');
     let real_data = JSON.parse(JSON.stringify(all_data)); //Deep copy - Doing this subtractively. Few operations. Easier syntax.
@@ -113,6 +152,22 @@ async function filtration(include_movies, premiered_after, rankings) { //Leaves 
             let this_date = parseInt(all_data[anime].date.split(' ')[1]);
             if (this_date < min_date) { del_flag = true; } //Could make <=, sticking with 'after' for now though
         }
+        if (!del_flag && genres_to_remove) {
+            const animes_genres = all_data[anime]['genres']
+            //Delete any 'genre-less' animes to avoid mix-ups
+            if (animes_genres.length === 0) {
+                del_flag = true; //Removes 287
+            } else {
+                //Delete this anime if it includes a genre that's being removed
+                for (const g of genres_to_remove) {
+                    if (animes_genres.includes(g)) {
+                        del_flag = true;
+                        break;
+                    }
+                }
+            }
+        }
+
 
         if (del_flag) { delete real_data[anime]; }
     }
@@ -121,8 +176,11 @@ async function filtration(include_movies, premiered_after, rankings) { //Leaves 
     return real_data;
 }
 
-async function the_game(op, ed, rounds, countdown, include_movies, premiered_after, rankings, start_point_random) {
-    const all_data = await filtration(include_movies, premiered_after, rankings);
+async function the_game(op, ed, rounds, countdown, include_movies, premiered_after, rankings,
+                        start_point_random, cas_bias, genres_to_remove) {
+    const all_data = await filtration(include_movies, premiered_after, rankings, genres_to_remove);
+    let cas_bias_data = cas_bias ? await getJsonFile('top_data') : [];
+    if (cas_bias) {cas_bias_data = cas_bias_data['cas_bias']}
 
     let used_vids = [];
     let picked = undefined;
@@ -147,7 +205,13 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
             let keys = Object.keys(all_data);
             let vid_choices = [];
             let random_show = keys[Math.floor(Math.random()*keys.length)];
-            console.log(`Random show '${random_show}'`);
+            //Cas Bias
+            if (Math.floor(Math.random() * 100) === 69) { //Small chance to get one I know
+                console.log("Doing a biased show for Cas~~~~~~~");
+                random_show = cas_bias_data[Math.floor(Math.random()*cas_bias_data.length)];
+            }
+
+            //console.log(`Random show '${random_show}'`); //Spoiler
 
             function addToChoices(op_or_ed) {
                 const all_vids = Object.keys(all_data[random_show][op_or_ed]);
@@ -162,6 +226,7 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
                         premiere_of_vid: all_data[random_show]['date'],
                         type_of_vid: op_or_ed,
                         name_of_vid: all_vids[v],
+                        anilist_genres: all_data[random_show]['genres'],
                         vid_episodes: vid_epi,
                         vid_source: vid_src
                     });
@@ -193,12 +258,16 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
         }
         if (cannot_find_a_video > 10) {
             console.log("ERROR - Did too many loops while trying to find an appropriate video.");
-            //TODO Doesn't switch back visuals before returning...
+            //Switch back visuals before returning...
+            document.getElementById("oped_game").style.display = "block";
+            tabcontent = document.getElementsByClassName("tab");
+            for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "block"; }
+            document.getElementById("the_game").style.display = "none";
             return;
         }
 
         const vid_url = `https://v.animethemes.moe/${picked.vid_source}.webm`;
-        console.log(`Going to play ${picked.name_of_vid} from ${picked.show_name}  --  ${vid_url}`);
+        //console.log(`Going to play ${picked.name_of_vid} from ${picked.show_name}  --  ${vid_url}`); //Spoilers
 
         //Get the new source
         const display_video_max_frames = 30 * countdown; //Usually ten seconds
@@ -267,15 +336,17 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
         let aka = picked.alt_names.length !== 0 ? picked.alt_names.join(', ') : '';
         let this_series = picked.series !== 'NA' ? `${picked.series}` : '';
         let used = picked.vid_episodes === '---' ? `This ${picked.type_of_vid === 'op' ? 'OP' : 'ED'} used in episode(s) '${picked.vid_episodes}'` : '';
+        let anilist_genres = picked.anilist_genres.length !== 0 ? picked.anilist_genres.join(', '): '';
 
         const show_name_font = this_show_name.length > 50 ? 25 : 40; //40px by default
 
         let show_info = ''; //`<b>Anime: </b>${this_show_name}`; //Already introduced the show
         if (aka !== '') show_info += `<li><b>Alternate Titles: </b>${aka}</li>`;
         show_info += `<li><b>Song: </b>${picked.name_of_vid}</li>`;
-        show_info += `<li><b>Premiered: </b>${picked.premiere_of_vid}</li>`
-        if (this_series !== '') show_info += `<li><b>Series: </b>${this_series}</li>`
-        if (used !== used) show_info += `<li>${used}</li>`
+        show_info += `<li><b>Premiered: </b>${picked.premiere_of_vid}</li>`;
+        if (this_series !== '') show_info += `<li><b>Series: </b>${this_series}</li>`;
+        if (anilist_genres !== '') show_info += `<li><b>Genres:</b> ${anilist_genres}</li>`;
+        if (used !== used) show_info += `<li>${used}</li>`;
         document.getElementById('show_info').innerHTML = show_info;
         document.getElementById('synopsis').innerHTML = `<b>Synopsis:</b> ${picked.synopsis}`;
 

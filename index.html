@@ -6,11 +6,8 @@
     <title>The Aimless Audio Games!</title>
 </head>
 <body>
-    <h1>The Aimless Audio Games!</h1>
+    <h1 style="margin: 10px 5px 5px 5px">The Aimless Audio Games!</h1>
     <h3><b>A</b>ssess an <b>I</b>ndividual's <b>M</b>edia <b>L</b>iteracy by <b>E</b>mploying <b>S</b>elective <b>S</b>ounds</h3>
-    <p style="font-size:medium"><i>
-        Prove your value as a human by quickly and accurately identifying some music from different types of media!
-    </i></p>
     <br>
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">Anime Openings and Endings</button>
@@ -126,7 +123,8 @@
                         </select>
                     </td>
                     <td>
-                        Genre <br> (wip)
+                        <label for="cas_bias">The Cas Bias:&nbsp;</label>
+                        <input id="cas_bias" type="checkbox">
                     </td>
                 </tr>
                 <tr>
@@ -154,12 +152,63 @@
                             </script>
                         </select>
                     </td>
+                    <td>
+                        <label for="pick_genres">Pick Genres</label>
+                        <select id="pick_genres" onclick="check_if_choose_genre()">
+                            <option value="all">All</option>
+                            <option value="choose">Choose</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div id="genres" style="font-size: medium">
+                            <hr>
+                            <script type="text/javascript">
+                                function check_if_choose_genre() {
+                                    if (document.querySelector('#pick_genres').value === 'choose') {
+                                        document.getElementById('genres').style.display = 'block';
+                                    } else {
+                                        document.getElementById('genres').style.display = 'none';
+                                    }
+                                }
+
+                                //Create huge swarm of checkboxes
+                                const select_genre = document.getElementById("genres");
+                                const checkbox_genre = ['Action', 'Adventure', 'Comedy', 'Drama', 'Ecchi', 'Fantasy',
+                                                        'Horror', 'Mahou Shoujo', 'Mecha', 'Music', 'Mystery',
+                                                        'Psychological', 'Romance', 'Sci-Fi', 'Slice of Life', 'Sports',
+                                                        'Supernatural', 'Thriller']; //can't use await json here, sry
+                                for (let i = 0; i < checkbox_genre.length; i++) {
+                                    let opt = checkbox_genre[i];
+                                    const id_name = `genre_${opt.toLowerCase().replace(' ','_')}`;
+
+                                    let el_label = document.createElement('label');
+                                    el_label.setAttribute('for',id_name);
+                                    el_label.innerHTML = opt;
+                                    select_genre.appendChild(el_label);
+
+                                    let el = document.createElement("input");
+                                    el.setAttribute('type', 'checkbox');
+                                    el.setAttribute('id', id_name);
+                                    el.setAttribute('class', 'genre_checkboxes');
+                                    el.setAttribute('value', id_name);
+                                    el.checked = true;
+                                    el.textContent = opt;
+                                    el.value = opt;
+                                    el_label.appendChild(el);
+
+                                    if ((i+1) % 5 === 0) {select_genre.appendChild(document.createElement('br'))}
+                                }
+                            </script>
+                        </div>
+                    </td>
                 </tr>
             </table>
         </div>
         <br><br>
         <button type="button" id="start_button"
-                onmouseover="difficultyButton(); check_if_literally_everything();"
+                onmouseover="difficultyButton(); check_if_literally_everything(); check_if_choose_genre();"
                 onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
         <script type="text/javascript">
             function difficultyButton(mouse_off=false) {
@@ -201,9 +250,10 @@
         </script>
         <br>
         <p id="incomplete_warning">Please Set All Parameters to Continue!</p>
+        <p id="general_warnings"></p>
         <p id="literally_everything_warning" style="font-size: small; color: cornflowerblue; margin: auto; width: 80%">
-            <br>Note: Given the size of the database that is being used,
-            using "<b>Literally Everything</b>" may on very rare occasions display mature content.
+            <br>Note: Given the size of the database that is being used (3700+ shows),
+            using "<b>Literally Everything</b>" may very rarely display mature content.
         </p>
         <br>
         <p style="font-size: small">Created by <a href="https://youtu.be/iik25wqIuFo">CasualCheetah</a></p>

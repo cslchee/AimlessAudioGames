@@ -52,6 +52,7 @@ def scrape_all_anime():
             'studios': [],
             'series': '',
             'date': '',
+            'genres': [],
             'synopsis': '',
             'op': {},
             'ed': {}
@@ -76,6 +77,24 @@ def scrape_all_anime():
         data[anime_name]['date'] = info[info.index('Premiere')+1]
         data[anime_name]['studios'] = info[info.index('Studios')+1:info.index('Links')] if 'Studios' in info else 'NA'
         data[anime_name]['series'] = info[info.index('Series')+1] if 'Series' in info else 'NA'
+
+        #Get AniList Genres
+        sidebar_links = soup.findAll('div', {'class': 'sc-65e34b5-0 bPpTyI'})[-1].findAll('a', {'class':'sc-76ad0c61-0 hgYgJl'})
+        anilist_link = ""
+        for sb_l in sidebar_links:
+            if 'anilist' in sb_l['href']:
+                anilist_link = sb_l['href']
+                break
+        if anilist_link:
+            soup_anilist = BeautifulSoup(requests.get(anilist_link).text, "html.parser")
+            anilist_info = soup_anilist.findAll('div', {'class': 'data-set data-list'})
+            for ani_info in anilist_info:
+                section_text = ani_info.findAll('div', {'class': 'type'})[0].text
+                if section_text == 'Genres':
+                    data[anime_name]['genres'] = [g.text for g in ani_info.findAll('a')]
+                    break
+        else:
+            print("\t\tCould not find an AniList link for this anime.")
 
         vid_divs = soup.findAll('div', {'class': 'sc-47964127-0 sc-95e98e95-0 sc-ff93e959-0 kXAqYY dktsVH fmxeEY'})
         for vid in vid_divs:
@@ -103,6 +122,7 @@ def scrape_all_anime():
                 file_source = file_source[file_source.index('.moe/')+5:-5] #remove 'https://v.animethemes.moe/' and '.webm'
                 print(f'\t\t{op_ed.upper()}: {vid_name} - {label}  -->  {file_source}')
                 data[anime_name][op_ed][vid_name] = {label: file_source}
+
         with open('../Data/oped_anime_data.json', 'w') as file:
             file.write(json.dumps(data, indent=4)) #Write after each series, to back up progress
 
