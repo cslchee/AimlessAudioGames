@@ -127,7 +127,7 @@ def filter_games(game_dict: dict, playtime_minimum=0, always_musical_games=False
                     'zerocalibervr', 'pavlovvr', 'segamegadriveandgenesisclassics', 'goatsonabridge', 'echogrotto',
                     'guidedmeditationvr', 'witchingtowervr', 'tulpa', 'glittermittengrove','david.','scanner sombre',
                     'planetside 2 - test','toribash')
-    general_ignore_tags = ('Utilities', 'Software', 'Video Production', 'NSFW', 'Trading Card Game')
+    general_ignore_tags = ('Utilities', 'Software', 'Video Production', 'NSFW')
     # Audio Production gets a few mistakes
 
     not_a_game_words = ('Demo', 'Soundtrack', 'Dlc', 'Hentai')
@@ -416,15 +416,11 @@ def main():
         game_dict = get_games_and_data(games_page)
         games_selected = filter_games(game_dict)  # Recommend >1
 
-        music = get_OSTs(games_selected, manually_provide_playlist=False, elaborate_search=False)
-
-    exit() #TODO TESTING BREAK HERE - - - - - - - - - - - -
+        #music = get_OSTs(games_selected, manually_provide_playlist=False, elaborate_search=False)
 
     # print(f"Filter Games:")
     # for g in games_selected: print(f"\t{g}")
     # print(f"Length of games_selected: {len(games_selected)}")
-
-
 
     # TODO Should get image using "https://i.ytimg.com/vi/__ID__/maxresdefault.jpg"
 

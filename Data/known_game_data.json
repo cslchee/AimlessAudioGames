@@ -60101,5 +60101,420 @@
             "Memes",
             "Free to Play"
         ]
+    },
+    "298600": {
+        "name": "Lovely Planet",
+        "devs": [
+            "quicktequila"
+        ],
+        "pubs": [
+            "tinyBuild"
+        ],
+        "tags": [
+            "Indie",
+            "Action",
+            "FPS",
+            "Cute",
+            "Great Soundtrack",
+            "Difficult",
+            "Fast-Paced",
+            "Shooter",
+            "First-Person",
+            "Anime",
+            "Singleplayer",
+            "Platformer",
+            "Abstract",
+            "Colorful",
+            "3D Platformer",
+            "Arcade",
+            "Psychological Horror",
+            "Adventure",
+            "Open World",
+            "Time Attack"
+        ]
+    },
+    "1210550": {
+        "name": "Hohokum",
+        "devs": [
+            "Honeyslug",
+            "Richard Hogg"
+        ],
+        "pubs": [
+            "Annapurna Interactive"
+        ],
+        "tags": [
+            "Adventure",
+            "Puzzle",
+            "Exploration",
+            "Hidden Object",
+            "2D",
+            "Colorful",
+            "Cute",
+            "Family Friendly",
+            "Indie",
+            "Casual",
+            "Relaxing",
+            "Controller",
+            "Singleplayer"
+        ]
+    },
+    "1313140": {
+        "name": "Cult Of The Lamb",
+        "devs": [
+            "Massive Monster"
+        ],
+        "pubs": [
+            "Devolver Digital"
+        ],
+        "tags": [
+            "Cute",
+            "Action Roguelike",
+            "Roguelite",
+            "Dungeon Crawler",
+            "Dark Humor",
+            "Building",
+            "Singleplayer",
+            "Funny",
+            "Faith",
+            "Action",
+            "Colony Sim",
+            "Adventure",
+            "2D",
+            "Character Customization",
+            "Fantasy",
+            "Controller",
+            "Strategy",
+            "Colorful",
+            "Comedy",
+            "Third Person"
+        ]
+    },
+    "1485080": {
+        "name": "Just Act Natural",
+        "devs": [
+            "Conor Garity",
+            "Liam Kerrigan"
+        ],
+        "pubs": [
+            "Conor Garity"
+        ],
+        "tags": [
+            "Multiplayer",
+            "Action",
+            "Casual",
+            "Arcade",
+            "Shooter",
+            "Stealth",
+            "Character Action Game",
+            "Arena Shooter",
+            "3D",
+            "Cartoon",
+            "Cartoony",
+            "Colorful",
+            "First-Person",
+            "Hand-drawn",
+            "Comedy",
+            "Free to Play",
+            "Sniper",
+            "PvP",
+            "Indie",
+            "Early Access"
+        ]
+    },
+    "1817070": {
+        "name": "Marvels Spider-Man Remastered",
+        "devs": [
+            "Insomniac Games",
+            "Nixxes Software"
+        ],
+        "pubs": [
+            "PlayStation PC LLC"
+        ],
+        "tags": [
+            "Superhero",
+            "Action",
+            "Open World",
+            "Singleplayer",
+            "Adventure",
+            "Story Rich",
+            "Combat",
+            "Action-Adventure",
+            "Third Person",
+            "Comic Book",
+            "Parkour",
+            "Exploration",
+            "Casual",
+            "Beautiful",
+            "Great Soundtrack",
+            "Stealth",
+            "Funny",
+            "Atmospheric",
+            "Sci-fi",
+            "RPG"
+        ]
+    },
+    "714010": {
+        "name": "Aim Lab",
+        "devs": [
+            "Statespace"
+        ],
+        "pubs": [
+            "Statespace"
+        ],
+        "tags": [
+            "Free to Play",
+            "FPS",
+            "Shooter",
+            "Simulation",
+            "First-Person",
+            "Singleplayer",
+            "Action",
+            "Early Access",
+            "Multiplayer",
+            "eSports",
+            "Casual",
+            "Competitive",
+            "Indie",
+            "Sniper",
+            "Adventure",
+            "Fast-Paced",
+            "Tactical",
+            "Difficult",
+            "Score Attack",
+            "Third-Person Shooter"
+        ]
+    },
+    "9050": {
+        "name": "Doom 3",
+        "devs": [
+            "id Software"
+        ],
+        "pubs": [
+            "id Software"
+        ],
+        "tags": [
+            "Action",
+            "Horror",
+            "FPS",
+            "Sci-fi",
+            "Dark",
+            "First-Person",
+            "Singleplayer",
+            "Classic",
+            "Shooter",
+            "Demons",
+            "Gore",
+            "Atmospheric",
+            "Survival Horror",
+            "Zombies",
+            "Mars",
+            "Futuristic",
+            "Moddable",
+            "Multiplayer",
+            "Co-op",
+            "Adventure"
+        ]
+    },
+    "9070": {
+        "name": "Doom 3 Resurrection Of Evil",
+        "devs": [
+            "id Software"
+        ],
+        "pubs": [
+            "id Software"
+        ],
+        "tags": [
+            "Action",
+            "FPS",
+            "Horror",
+            "Sci-fi",
+            "Dark",
+            "Atmospheric",
+            "Shooter",
+            "First-Person",
+            "Zombies",
+            "Singleplayer",
+            "Survival Horror",
+            "Demons",
+            "Classic",
+            "Gore"
+        ]
+    },
+    "714070": {
+        "name": "Entropy  Zero",
+        "devs": [
+            "Breadman"
+        ],
+        "pubs": [
+            "Breadman"
+        ],
+        "tags": [
+            "Free to Play",
+            "Action",
+            "Mod",
+            "FPS",
+            "Singleplayer",
+            "First-Person",
+            "Shooter",
+            "Great Soundtrack",
+            "Violent",
+            "Villain Protagonist",
+            "Atmospheric",
+            "Horror",
+            "Sci-fi",
+            "Adventure",
+            "Difficult",
+            "Puzzle",
+            "Zombies"
+        ]
+    },
+    "1944570": {
+        "name": "Boneraiser Minions",
+        "devs": [
+            "Anthony Case"
+        ],
+        "pubs": [
+            "Caiysware"
+        ],
+        "tags": [
+            "Casual",
+            "Action Roguelike",
+            "Pixel Graphics",
+            "Bullet Hell",
+            "Action",
+            "2D",
+            "RPG",
+            "Indie",
+            "Action RPG",
+            "Roguelite",
+            "Controller",
+            "Score Attack",
+            "Singleplayer",
+            "Dark Fantasy",
+            "Arcade",
+            "Retro",
+            "Roguelike",
+            "Gothic",
+            "1980s",
+            "Early Access"
+        ]
+    },
+    "1777620": {
+        "name": "Soul Hackers 2",
+        "devs": [
+            "ATLUS"
+        ],
+        "pubs": [
+            "SEGA"
+        ],
+        "tags": [
+            "RPG",
+            "JRPG",
+            "Cyberpunk",
+            "Demons",
+            "Futuristic",
+            "Female Protagonist",
+            "Turn-Based Combat",
+            "Mystery",
+            "Story Rich",
+            "Noir",
+            "Singleplayer",
+            "Violent",
+            "Anime",
+            "Great Soundtrack"
+        ]
+    },
+    "1239300": {
+        "name": "Gravewood High Multiplayer",
+        "devs": [
+            "HeroCraft PC"
+        ],
+        "pubs": [
+            "HeroCraft PC"
+        ],
+        "tags": [
+            "Early Access",
+            "Horror",
+            "Survival Horror",
+            "Action-Adventure",
+            "Stealth",
+            "Adventure",
+            "First-Person",
+            "3D",
+            "Singleplayer",
+            "Puzzle",
+            "Family Friendly",
+            "Atmospheric",
+            "Indie",
+            "Psychological Horror",
+            "Mystery",
+            "Dark",
+            "Controller",
+            "Procedural Generation",
+            "PvE",
+            "Action"
+        ]
+    },
+    "674140": {
+        "name": "Bugsnax",
+        "devs": [
+            "Young Horses"
+        ],
+        "pubs": [
+            "Young Horses"
+        ],
+        "tags": [
+            "Psychological Horror",
+            "Adventure",
+            "Creature Collector",
+            "LGBTQ+",
+            "Comedy",
+            "Story Rich",
+            "Singleplayer",
+            "First-Person",
+            "Puzzle",
+            "Action",
+            "Cute",
+            "Exploration",
+            "Cartoony",
+            "Casual",
+            "Colorful",
+            "Sandbox",
+            "Physics",
+            "Investigation",
+            "Multiple Endings",
+            "Narration"
+        ]
+    },
+    "1927720": {
+        "name": "Monument Valley Panoramic Edition",
+        "devs": [
+            "ustwo games"
+        ],
+        "pubs": [
+            "ustwo games"
+        ],
+        "tags": [
+            "Adventure",
+            "Puzzle",
+            "Relaxing",
+            "Singleplayer",
+            "Casual",
+            "Exploration",
+            "Design &amp; Illustration",
+            "Female Protagonist",
+            "Strategy",
+            "Emotional",
+            "3D",
+            "Point &amp; Click",
+            "Puzzle Platformer",
+            "Third Person",
+            "Linear",
+            "Fantasy",
+            "Atmospheric",
+            "Precision Platformer",
+            "Mystery",
+            "Indie"
+        ]
     }
 }

@@ -1,15 +1,9 @@
-import json
+#Source https://github.com/jschuhmann47/youtubeToWav
+import subprocess
 
-with open('../Data/oped_anime_data.json', 'r') as file:
-    data = json.load(file)
+mainDir = r'C:\Users\cheet\PycharmProjects\Oped\Audio'
+src = f"{mainDir}\\cerror - Rainbow parade - 01 A summer afternoon.mp3"
+dst = f"{mainDir}\\converted.wav"
 
-all_genres = set()
 
-for key in tuple(data.keys()):
-    genres = data[key]['genres']
-    if genres:
-        for g in genres:
-            all_genres.add(g)
-
-all_genres = sorted(all_genres)
-print(all_genres)
+subprocess.call(['ffmpeg', '-i', src, dst])

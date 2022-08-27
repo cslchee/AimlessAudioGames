@@ -432,18 +432,22 @@ async function start_steam_game() {
     console.log(`Given steam profile: https://steamcommunity.com/profiles/${steam_id}`)
 
     const API_KEY = "4130330FD6DE87CA2759338B96909684";
-    const game_page = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${API_KEY}&steamid=${steam_id}&format=json`
+    const game_page = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${API_KEY}&steamid=${steam_id}&format=json`;
 
     //Get games and playtimes from Value
-    const temp = await fetch(game_page, {
-        mode: 'cors',
-        headers: {
-            'Access-Control-Allow-Origin':'*'
-        }
-    })
-        .then(response => { return response.json(); })
-        .then(data => { console.log(data); return data; });
-    const user_ids_pts = temp['response']['games'];
-    console.log(temp)
+    // const temp = await fetch(game_page, {
+    //     mode: 'cors',
+    //     headers: {
+    //         'Access-Control-Allow-Origin': '*' //or 'http://api.steampowered.com'???
+    //     }
+    // })
+    // .then(response => {console.log(response);})
+    // .then(data => {console.log(data); return data;})
+    // .catch(error => {console.log('Request failed', error)});
+
+    //const user_ids_pts = temp['response']['games'];
+    console.log(temp);
+
+    //TODO https://stackoverflow.com/questions/35861871/steam-api-access-control-allow-origin-issue
 }
 
