@@ -10,8 +10,8 @@
     <h3><b>A</b>ssess an <b>I</b>ndividual's <b>M</b>edia <b>L</b>iteracy by <b>E</b>mploying <b>S</b>elective <b>S</b>ounds</h3>
     <br>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'oped_game')">Anime Openings and Endings</button>
-        <button class="tablinks" onclick="openCity(event, 'steam_music_game')" id="default_game_tab">Steam Game Music</button>
+        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">Anime Openings and Endings</button>
+        <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
         <script type="text/javascript">
             function openCity(evt, game_type) {
               var i, tabcontent, tablinks;
@@ -308,10 +308,16 @@
     </div>
     <div id="the_game">
         <canvas id="the_canvas" width="1024" height="576"></canvas>
+        <div class="slideContainer">
+            <img src="images/volume_off.png" width="15px" height="15px">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <img src="images/volume_on.png" width="15px" height="15px">
+        </div>
         <ul id="show_info"></ul>
         <p id="synopsis"></p>
         <video id="video" controls width="1024" height="576"></video>
     </div>
+
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript">
         //Default Open Tab - Needs to be here for some reason

@@ -284,7 +284,6 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
         video.play();
         video.volume = 1.0;
 
-
         //Buffering delay
         ctx.fillStyle = 'dimgrey';
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -327,6 +326,7 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
             ctx.fillStyle = grd;
             ctx.fillRect(0, 500, 1024 - Math.floor(1024 * (sec/(countdown*1000))), 76); //Countdown bar
             ctx.fillRect(0, 0, Math.floor(1024 * ((rounds-i)/rounds)), 20); //Progress bar
+            video.volume = document.getElementById("myRange").value / 100;
             await sleep(25, 'Drawing countdown');
         }
 
@@ -374,14 +374,15 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
             ctx.strokeText(this_show_name, 512, 558);
             ctx.fillText(this_show_name, 512, 558);
 
-            //Fade out
-            if (cntr > display_video_max_frames - 30 && video.volume > 0.05) video.volume -= 0.05;
-            //Note: if the argument is 'video.volume > 0', it will cause issues
+            //Volume
+            let fade_out_percent = (cntr >= display_video_max_frames - 30 && video.volume > 0.001) ? (display_video_max_frames - cntr) / 30 : 1;
+            video.volume = (document.getElementById("myRange").value / 100) * fade_out_percent;
+            //console.log("Video Volume:", video.volume, "\tSlider Volume:", document.getElementById("myRange").value, "\tPercentage:", (display_video_max_frames - cntr) / 30);
 
-            await sleep(100/3,'Displaying results') //Draw at 30 FPS
+            await sleep(100/3,'Displaying results'); //Draw at 30 FPS
         }
 
-        console.log("You've reached the end!")
+        console.log("You've reached the end!");
 
 
         //Clean up for next round
@@ -450,4 +451,3 @@ async function start_steam_game() {
 
     //TODO https://stackoverflow.com/questions/35861871/steam-api-access-control-allow-origin-issue
 }
-

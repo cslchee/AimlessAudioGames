@@ -60516,5 +60516,36 @@
             "Mystery",
             "Indie"
         ]
+    },
+    "1599020": {
+        "name": "Tinykin",
+        "devs": [
+            "Splashteam"
+        ],
+        "pubs": [
+            "tinyBuild"
+        ],
+        "tags": [
+            "Cute",
+            "Action-Adventure",
+            "3D Platformer",
+            "Cartoony",
+            "Family Friendly",
+            "Puzzle",
+            "Third Person",
+            "Funny",
+            "Story Rich",
+            "Adventure",
+            "Atmospheric",
+            "Puzzle Platformer",
+            "Comedy",
+            "Singleplayer",
+            "Platformer",
+            "Action",
+            "Exploration",
+            "Retro",
+            "Lore-Rich",
+            "Collectathon"
+        ]
     }
 }

@@ -1,7 +1,8 @@
-import json, requests, steam_music
+import json, requests, steam_music, subprocess, keyboard, os, random
 from bs4 import BeautifulSoup
 from tkinter import filedialog
-
+from time import sleep
+import urllib.request
 
 def inputVerify(message: str, low: int, high: int, neutralInput=False) -> int:
     if low > high:
@@ -87,14 +88,51 @@ def filter_games(game_dict: dict) -> dict:
     return game_names_and_ids
 
 def download_get_client_icons(game_names_and_ids: dict) -> None:
-    for game, id in game_names_and_ids.items():
-        soup = BeautifulSoup(requests.get(f"https://steamdb.info/app/{id}/info/").text, 'html.parser')
+    #TODO A very manual take on scraping for the icon on SteamDB
+    def firefox_test():
+        call = 'TASKLIST', '/FI', 'imagename eq %s' % 'firefox.exe'
+        output = subprocess.check_output(call).decode()
+        last_line = output.strip().split('\r\n')[-1]
+        while last_line.lower().startswith('firefox.exe'.lower()) != True:
+            input("Open Firefox! Any to Cont. >_")
+            output = subprocess.check_output(call).decode()
+            last_line = output.strip().split('\r\n')[-1]
 
-        icons = soup.findAll('a')
-        # TODO FUCKING CLOUDFLARE
-        # - - - - - - -
-        icons = soup.find('div', {'id': 'info'}).findAll('a')[0]
-        print(str(icons))
+    input("Press continue once you have an empty tab open in Firefox >_")
+
+    time_const = 1
+    slower_time_const = 1.5
+    faster_time_const = 0.25
+    for game, id in game_names_and_ids.items():
+        if os.path.isfile(f'C:\\Users\\cheet\\Downloads\\Test\\{game}.jpg'): #Skipping for testing
+            continue
+        subprocess.call([r'C:\Program Files\Mozilla Firefox\Firefox.exe', '-new-tab', f'https://steamdb.info/app/{id}/info/'])
+        print(f"Getting {game}")
+        sleep(slower_time_const) #wait for new page
+        keyboard.press_and_release('ctrl+f')
+        sleep(time_const)
+        keyboard.write('clienticon')
+        sleep(time_const)
+        keyboard.press_and_release('esc') #close the find tool
+        sleep(faster_time_const)
+        keyboard.press_and_release('tab')
+        sleep(faster_time_const)
+        keyboard.press_and_release('enter')
+        sleep(slower_time_const) #wait for file explorer to load
+        keyboard.press_and_release('ctrl+s')
+        sleep(slower_time_const) #wait for file explorer to load
+        keyboard.write(f'{game}.jpg')
+        sleep(faster_time_const)
+        keyboard.press_and_release('enter')
+        sleep(slower_time_const)  # wait for save
+        keyboard.press_and_release('ctrl+w') #close tab
+        sleep(faster_time_const)
+        keyboard.press_and_release("alt+tab")
+        print(f"\tWaiting... (Got {game})")
+        # subprocess.call([r'C:\Program Files\Mozilla Firefox\Firefox.exe'])
+        sleep(random.uniform(0.5, 1.5))  # throw off the site, maybe
+
+
 
 
 def label_client_icons(game_list: tuple) -> None:
@@ -106,8 +144,17 @@ def main():
 
     game_dict = steam_music.get_games_and_data(games_page)
     game_names_and_ids = filter_games(game_dict)
-    print(json.dumps(game_names_and_ids))
+    #print(json.dumps(game_names_and_ids))
     download_get_client_icons(game_names_and_ids)
+
+
+
+
+    # imageURL = 'https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1599020/d0a93bc7f753cf9cf0f6164fe87ba817b821b7f6.ico'
+    # imageDir = r'C:\Users\cheet\Downloads\Tinykin_icon.jpg'
+    # urllib.request.urlretrieve(imageURL, imageDir)
+
+    # https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1599020/d0a93bc7f753cf9cf0f6164fe87ba817b821b7f6.ico
 
     # print(f"Going to download {___} images.\nChoose a download location!")
     # sleep(1)
