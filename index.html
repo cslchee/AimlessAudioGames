@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>The Aimless Audio Games!</title>
+</head>
+<body>
+    <h1 style="margin: 10px 5px 5px 5px">The Aimless Audio Games!</h1>
+    <h3><b>A</b>ssess an <b>I</b>ndividual's <b>M</b>edia <b>L</b>iteracy by <b>E</b>mploying <b>S</b>elective <b>S</b>ounds</h3>
+    <br>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">Anime Openings and Endings</button>
+        <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
+        <script type="text/javascript">
+            function openCity(evt, game_type) {
+              var i, tabcontent, tablinks;
+              // Get all elements with class="tabcontent" and hide them
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              // Get all elements with class="tablinks" and remove the class "active"
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              // Show the current tab, and add an "active" class to the button that opened the tab
+              document.getElementById(game_type).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+        </script>
+    </div>
+    <br>
+    <div id="oped_game" class="tabcontent">
+        <h2>Anime Openings and Endings</h2>
+        <br>
+        <div id="menu">
+            <table>
+                <tr>
+                    <td>
+                        <label for="opening_ending">Openings, Endings, or Both?</label>
+                        <br>
+                        <select id = "opening_ending">
+                            <option value=undefined style="text-align: center"> --- </option>
+                            <option value="op">OPs</option>
+                            <option value="ed">EDs</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="rounds">How many rounds?</label>
+                        <br>
+                        <select id="rounds" onclick="check_if_custom()">
+                            <option value="0" style="text-align: center"> --- </option>
+                            <script type="text/javascript">
+                                const select = document.getElementById("rounds");
+                                const options = ['1','2','5','10','15','20','30','50','75','100','Custom'];
+                                for (let i = 0; i < options.length; i++) {
+                                    let opt = options[i];
+                                    let el = document.createElement("option");
+                                    el.textContent = opt;
+                                    el.value = opt;
+                                    select.appendChild(el);
+                                }
+
+                                function check_if_custom() {
+                                    if (document.querySelector('#rounds').value === 'Custom') {
+                                        document.getElementById('custom_rounds_div').style.display = 'block';
+                                    } else {
+                                        document.getElementById('custom_rounds_div').style.display = 'none';
+                                    }
+                                }
+                            </script>
+                        </select>
+                        <div id="custom_rounds_div">
+                            <label for="custom_rounds" style="font-size: small;">Custom:&nbsp;</label>
+                            <input id="custom_rounds" type="text" style="margin: auto" maxlength="3" size="3">
+                            <div id="custom_rounds_error_msg" style="color: darkred; font-size: small;">
+                                Invalid Entry.
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <label for="countdown">Countdown (secs): </label>
+                        <br>
+                        <select id="countdown">
+                            <option value="0" style="text-align: center"> --- </option>
+                            <option value="15"> 15 </option>
+                            <option value="10"> 10 </option>
+                            <option value="5"> 5 </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="rankings">Rankings</label>
+                        <br>
+                        <select id="rankings" onclick="check_if_literally_everything()">
+                            <option value="everything"> Literally Everything </option>
+                            <option value="top50pop">Top 50 Popular</option>
+                            <option value="top100pop">Top 100 Popular</option>
+                            <option value="top250pop">Top 250 Popular</option>
+                            <option value="top50rate">Top 50 Rating</option>
+                            <option value="top100rate">Top 100 Rating</option>
+                            <option value="top250rate">Top 250 Rating</option>
+                        </select>
+                        <script type="text/javascript">
+                            function check_if_literally_everything() {
+                                if (document.querySelector('#rankings').value === 'everything') {
+                                    document.getElementById('literally_everything_warning').style.display = 'block';
+                                } else {
+                                    document.getElementById('literally_everything_warning').style.display = 'none';
+                                }
+                            }
+                        </script>
+                    </td>
+                    <td>
+                        <label for="start_point_random">Video starts at&nbsp;</label>
+                        <select id="start_point_random">
+                            <option value="start_point" > the beginning </option>
+                            <option value="random_point"> a random point </option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="cas_bias">The Cas Bias:&nbsp;</label>
+                        <input id="cas_bias" type="checkbox">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="include_movies">Include Movies:&nbsp;</label>
+                        <select id="include_movies">
+                            <option value="yes"> Yes </option>
+                            <option value="no"> No </option>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="premiered_after">Premiered <i>After</i>:&nbsp;</label>
+                        <select id="premiered_after">
+                            <option value="NA"> Don't Care </option>
+                            <script type="text/javascript">
+                                const select_pa = document.getElementById("premiered_after");
+                                const options_pa = ['1960','1980','1990','2000','2005','2010','2015','2020'];
+                                for(let i = 0; i < options_pa.length; i++) {
+                                    let opt = options_pa[i];
+                                    let el = document.createElement("option");
+                                    el.textContent = opt;
+                                    el.value = opt;
+                                    select_pa.appendChild(el);
+                                }
+                            </script>
+                        </select>
+                    </td>
+                    <td>
+                        <label for="pick_genres">Pick Genres</label>
+                        <select id="pick_genres" onclick="check_if_choose_genre()">
+                            <option value="all">All</option>
+                            <option value="choose">Choose</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div id="genres" style="font-size: medium">
+                            <script type="text/javascript">
+                                function check_if_choose_genre() {
+                                    if (document.querySelector('#pick_genres').value === 'choose') {
+                                        document.getElementById('genres').style.display = 'block';
+                                    } else {
+                                        document.getElementById('genres').style.display = 'none';
+                                    }
+                                }
+
+                                //Create huge swarm of checkboxes
+                                const select_genre = document.getElementById("genres");
+                                const checkbox_genre = ['Action', 'Adventure', 'Comedy', 'Drama', 'Ecchi', 'Fantasy',
+                                                        'Horror', 'Mahou Shoujo', 'Mecha', 'Music', 'Mystery',
+                                                        'Psychological', 'Romance', 'Sci-Fi', 'Slice of Life', 'Sports',
+                                                        'Supernatural', 'Thriller']; //can't use await json here, sry
+                                for (let i = 0; i < checkbox_genre.length; i++) {
+                                    let opt = checkbox_genre[i];
+                                    const id_name = `genre_${opt.toLowerCase().replace(' ','_')}`;
+
+                                    let el_label = document.createElement('label');
+                                    el_label.setAttribute('for',id_name);
+                                    el_label.innerHTML = opt;
+                                    select_genre.appendChild(el_label);
+
+                                    let el = document.createElement("input");
+                                    el.setAttribute('type', 'checkbox');
+                                    el.setAttribute('id', id_name);
+                                    el.setAttribute('class', 'genre_checkboxes');
+                                    el.setAttribute('value', id_name);
+                                    el.checked = true;
+                                    el.textContent = opt;
+                                    el.value = opt;
+                                    el_label.appendChild(el);
+
+                                    if ((i+1) % 5 === 0) {select_genre.appendChild(document.createElement('br'))}
+                                }
+                            </script>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <p id="incomplete_warning">Please Set All Parameters to Continue!</p>
+        <p id="general_warnings"></p>
+        <br>
+        <button type="button" id="start_button"
+                onmouseover="difficultyButton(); check_if_literally_everything(); check_if_choose_genre();"
+                onmouseout="difficultyButton(mouse_off=true)" onclick="start()">Ready?</button>
+        <script type="text/javascript">
+            function difficultyButton(mouse_off=false) {
+                const button = document.getElementById("start_button");
+                button.style.fontWeight = 'normal';
+                button.style.fontSize = 'medium';
+                button.style.color = "white";
+                if (mouse_off) {
+                    button.style.background = "dimgrey";
+                    button.innerText = "Ready?";
+                    return;
+                }
+                const difficulty = document.querySelector('#countdown').value;
+                switch (difficulty) {
+                    case '15':
+                        button.style.background = "dodgerblue";
+                        button.innerText = "Start (Casual Mode)";
+                        break;
+                    case '10':
+                        button.style.background = "#4CAF50";
+                        button.innerText = "Start! (Recommended)";
+                        break;
+                    case '5':
+                        button.style.background = "darkred";
+                        button.style.backgroundImage = "url('./images/fire.gif')";
+                        button.style.backgroundSize = 'cover';
+                        button.style.color = "black";
+                        button.style.fontSize = 'large';
+                        button.style.fontWeight = 'bold';
+                        button.innerText = "始める!!! (Weeb Mode)";
+                        break;
+                    default:
+                        button.style.background = "dimgrey";
+                        button.style.color = "black";
+                        button.innerText = "(You're Not Ready Yet lol)";
+                        break;
+                }
+            }
+        </script>
+        <br>
+        <p id="literally_everything_warning" style="font-size: small; color: cornflowerblue; margin: auto; width: 80%">
+            <br>Note: Given the size of the database that is being used (3700+ shows),
+            using "<b>Literally Everything</b>" may very rarely display mature content.
+        </p>
+        <br>
+        <p style="font-size: small">v1.1 - Created by <a href="https://youtu.be/iik25wqIuFo">CasualCheetah</a></p>
+    </div>
+    <div id="steam_music_game" class="tabcontent">
+        <h2>Personalized Gaming OST Identification via Steam</h2>
+        <br>
+        <label for="steam_id">What's Your 17-digit Steam ID?</label>
+        <input type="text" id="steam_id" maxlength="17" size="17">
+        <button onclick="showSteamIDHelp()" id="steamIDHelpButton">"Whats a Steam ID?"</button>
+        <br>
+        <div id="steamIDHelp" style="display: none">
+            <br>
+            <p>First, go to your Steam profile and look at it's URL.</p>
+            <p style="font-size: small">
+                (If you cannot see a URL, got the 'Steam' dropdown in the top left, pick "Settings",
+                 pick the "Interface" option in the left column, then check the box "Display web address bars when available".
+                Not go back to your Steam profile page.)
+            </p>
+            <img src="images/steam_profiles_url.PNG" alt="Steam generic profile url shown in Steam application">
+            <p>If you're URL has <b>"/profiles/"</b> in it, copy and paste that 17-digit number into the above text-input box.</p>
+            <p>
+                If there's an <b>"/id/"</b> in your profile's URL, you've given yourself a custom URL and will need to copy your
+                the last part of the URL into <a href="https://www.steamidfinder.com/"> Steam ID Finder</a> to get your ID.
+            </p>
+            <img src="images/steam_id_url.PNG" alt="Steam profile with custom url shown in Steam application">
+            <p>For me this would be "casualcheetah".</p>
+            <p>(For other people, your URL name may differ from your username. In that case, use the URL.</p>
+            <script type="text/javascript">
+                function showSteamIDHelp() {
+                    let x = document.getElementById("steamIDHelp");
+                    x.style.display = x.style.display === 'none' ? 'block' : 'none';
+                }
+            </script>
+        </div>
+        <br>
+        <button type="button" id="start_button_steam" onclick="start_steam_game()"> Ready? </button>
+        <br>
+        <p id="steam_general_warnings"></p>
+        <br>
+
+
+
+
+
+        <p style="font-size: xx-large; font-weight: bolder; background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red); color: #000">
+            This is game is a work in progress!
+        </p>
+        <img alt="funni skelly" class="skeleton_dance" src="./images/skeleton_dance.gif" style="transform: scaleX(-1);">
+        <img alt="another funni skelly" class="skeleton_dance" src="./images/skeleton_dance.gif">
+
+    </div>
+    <div id="the_game">
+        <canvas id="the_canvas" width="1024" height="576"></canvas>
+        <div class="slideContainer">
+            <img src="images/volume_off.png" width="15px" height="15px">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <img src="images/volume_on.png" width="15px" height="15px">
+        </div>
+        <ul id="show_info"></ul>
+        <p id="synopsis"></p>
+        <video id="video" controls width="1024" height="576"></video>
+    </div>
+
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript">
+        //Default Open Tab - Needs to be here for some reason
+        document.getElementById("default_game_tab").click(); //Change which tab has this id to change the default
+    </script>
+</body>
+</html>
