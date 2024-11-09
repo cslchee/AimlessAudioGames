@@ -386,13 +386,35 @@
             </script>
         </div>
         <br>
-        <h3>Minor Volume Warning!</h3>
-        <p style="font-size: small">Different OSTs often have different volume levels, so don't crank things up to high.</p>
+        <h3>Minor Volume Warning! 🔊</h3>
+        <p style="font-size: small; color: cornflowerblue">Different OSTs often have different volume levels, so don't crank things up to high.</p>
         <br>
-        <p style="font-size: small">v0.1.0 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
-        <p style="font-size: small"><i>Database uses scraped info from KHInsider. Last updated October 2024.</i></p>
-        <p style="font-size: small"><i>Current database volume is 2000+ OSTs (some repeats in wider game queries).</i></p>
-
+        <div id="vgm_menu_notes">
+            <h3 style=>Notes:</h3>
+            <ul>
+              <li>Sadly, due to copyright reasons probably, certain franchises/publishers have pulled content from the database that this program uses:</li>
+                <p id="copyright_toggle_button" onclick="toggle_list()">[Show List]</p>
+                <ul id="copyright_list" style="display: none">
+                    <li>Sonic</li>
+                    <li>Undertale/Deltarune</li>
+                    <li>Square Enix (Final Fantasy/Chrono Trigger)</li>\
+                </ul>
+                <script>
+                    function toggle_list() {
+                        const list = document.getElementById("copyright_list");
+                        const btn = document.getElementById("copyright_toggle_button");
+                        const isHidden = list.style.display === "none";
+                        list.style.display = isHidden ? "block" : "none";
+                        btn.textContent = isHidden ? "[Hide List]" : "[Show List]";
+                    }
+                </script>
+                <li>Music titles/themes may contain references to a game's story content, so don't blame me for spoilers :)</li>
+                <li>Local database last update in October 2024.</li>
+                <li>Current database volume is 2100+ OSTs. Some repeats exist in wider game queries.</li>
+            </ul>
+        </div>
+        <p style="font-size: small">v0.1.1 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
+        <p style="font-size: small"><i>Database uses scraped info from KHInsider.</i></p>
     </div>
     <div id="steam_music_game_menu" class="tabcontent">
         <h2>Personalized Gaming OST Identification via Steam</h2>
@@ -454,7 +476,7 @@
         <video id="video" controls width="1024" height="576"></video>
     </div>
     <div id="the_vgm_game">
-        <img id="vgm_img" src="./images/question_block2.png" alt="" height="300px" width="300px">
+        <img id="vgm_img" src="./images/question_block2.png" alt="Question Mark Block" height="300px" width="300px">
         <br>
         <p id="album_info_box">Cheeky Quip Here</p>
         <audio src="" id="vgm_audio_player"></audio>
@@ -467,6 +489,8 @@
             // Update the volume when the slider changes
             volumeSlider.addEventListener("input", function() {audio.volume = volumeSlider.value;});
         </script>
+        <br>
+        <canvas id="vgm_canvas" width="400" height="20"></canvas>
         <br>
         <button id="next_vgm_button" onclick="play_vgm_game()">Next</button>
         <br>

@@ -242,3 +242,13 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
 #album_info_box {
     text-align: left;
 }
+
+#vgm_menu_notes {
+    text-align: left;
+    width: 60%;
+    font-size: small
+}
+
+#copyright_toggle_button {
+    color: darkcyan;
+}

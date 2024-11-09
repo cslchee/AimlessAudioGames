@@ -534,7 +534,7 @@ async function play_vgm_game() {
     let info_box = document.getElementById('album_info_box')
     info_box.textContent = mystery_quotes[Math.floor(Math.random() * mystery_quotes.length)]
     let vgm_image =  document.getElementById('vgm_img')
-    vgm_image.src = "/images/question_block2.png"
+    vgm_image.src = "./images/question_block2.png"
 
     let vgm_button = document.getElementById("next_vgm_button");
     vgm_button.disabled = true;
@@ -555,10 +555,36 @@ async function play_vgm_game() {
     //Add it to the src and play it at a random part
     console.log(`Cheat sheet\nNow playing ${random_album_title} - ${random_song_title}\nFrom ${random_song_url}`) //Cheat sheet
     const audio_player = document.getElementById('vgm_audio_player');
+    let vgm_canvas = document.getElementById('vgm_canvas');
+    let ctx = vgm_canvas.getContext('2d')
     audio_player.pause()
     audio_player.src = random_song_url
+    audio_player.load();
+
+    ctx.fillStyle = 'dimgrey'
+    ctx.clearRect(0,0, vgm_canvas.width, vgm_canvas.height); //Clear screen
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'skyblue';
+    ctx.font = '10px Arial bold';
+    ctx.fillText("Buffering...", 200, 14)
+
+    audio_player.addEventListener('waiting', () => {
+        console.log('Audio is buffering...');
+    });
+
+    audio_player.addEventListener('canplay', () => {
+        console.log('Audio can play now (not buffering)');
+    });
+
+    audio_player.addEventListener('stalled', () => {
+        console.log('Audio has stalled and may be buffering.');
+    });
+
     audio_player.currentTime = Math.random() * (random_song_time - 20);
     audio_player.play();
+    // TODO Detect and pause for buffering. Then get the duration from the loaded file
+
+
 
     //Show a 'x' second countdown
     await sleep(8000, "Sleeping for VGM game...")
@@ -575,7 +601,6 @@ async function play_vgm_game() {
     if (platforms.length !== 0) {msg +=  `<li><b>Platforms(s):</b> ${platforms}</li>`}
     if (developer.length !== 0) {msg +=  `<li><b>Developer(s):</b> ${developer}</li>`}
     if (publisher.length !== 0) {msg +=  `<li><b>Publisher(s):</b> ${publisher}</li>`}
-    msg += `</li>`
     info_box.innerHTML = msg
 
     vgm_image.src = album_thumbnail
@@ -594,16 +619,16 @@ function finish_vgm_game() {
     const audio_player = document.getElementById('vgm_audio_player');
     audio_player.pause()
 
-    const decrease_volume = () => {
-        if (current_volume > 0.4) {
-          current_volume -= 0.05;
-          audio_player.volume = current_volume;
-        console.log("PING")
-        } else {
-          clearInterval(volume_interval);
-        }
-    };
-    const volume_interval = setInterval(decrease_volume, 1200);
+    // const decrease_volume = () => {
+    //     if (current_volume > 0.4) {
+    //       current_volume -= 0.05;
+    //       audio_player.volume = current_volume;
+    //     console.log("PING")
+    //     } else {
+    //       clearInterval(volume_interval);
+    //     }
+    // };
+    // const volume_interval = setInterval(decrease_volume, 1200);
 
 
 

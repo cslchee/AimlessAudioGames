@@ -308,8 +308,8 @@ def clean_khi_data():
             del data_to_clean[title]
 
     # Uncomment to make a permanent change
-    # with open('../Data/khi_data.json', 'w') as file_to_clean:
-    #     file_to_clean.write(json.dumps(data_to_clean, indent=1))
+    with open('../Data/khi_data.json', 'w') as file_to_clean:
+        file_to_clean.write(json.dumps(data_to_clean, indent=1))
 
 
 def main():
@@ -338,6 +338,8 @@ def main():
         'botanicula','spy+fox','pajama+sam','meat+boy','guilty+gear','frog+detective','accounting','mass+effect','witcher',
         'cyberpunk+2077','stardew+valley','going+under','inscryption','super+smash+bros','banjo-kazooie','in+stars+and+time'
         )
+
+
 
     # for franchise in franchises:
     #     collect_category(f"search?search={franchise.replace(' ','+')}", scrape_or_category_titles='scrape')
