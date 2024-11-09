@@ -434,7 +434,7 @@ async function start_steam_game() {
 
     console.log(`Given steam profile: https://steamcommunity.com/profiles/${steam_id}`)
 
-    const API_KEY = "4130330FD6DE87CA2759338B96909684";
+    const API_KEY = ""; // It's a secret ;)
     const game_page = `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${API_KEY}&steamid=${steam_id}&format=json`;
 
     //Get games and playtimes from Value
