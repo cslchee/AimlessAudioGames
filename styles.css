@@ -9,7 +9,8 @@ body {
     font-family: Arial, serif;
 }
 
-#start_button, #start_button_steam {
+#start_button, #start_button_steam,
+#start_button_vgm, #exit_button_vgm {
     background-color: dimgrey;
     border: none;
     color: white;
@@ -24,18 +25,50 @@ body {
     transition-duration: 0.4s;
 }
 
-#start_button_steam:hover, #start_button:hover {
+#start_button_steam:hover, #start_button:hover,
+#start_button_vgm:hover, #exit_button_vgm:hover {
     transition-duration: 0.4s;
     width: 270px;
 }
 
-#start_button_steam:hover {
+#start_button_steam:hover, #start_button_vgm:hover {
     background-color: #4CAF50;
 }
 
+#exit_button_vgm:hover {
+    background-color: firebrick;
+}
 
+#next_vgm_button {
+    background-color: darkcyan;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: medium;
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
 
-#menu {
+#next_vgm_button:hover:enabled {
+    background-color: aqua;
+    width: 120px;
+}
+
+#next_vgm_button:disabled {
+    background-color: black;
+    border: 1px solid darkcyan;
+    transition-duration: 0.4s;
+}
+
+#vgm_img {
+    border-radius: 15px;
+}
+
+.menu {
     text-align: center;
 }
 
@@ -119,7 +152,8 @@ td {
     background-color: #111;
 }
 
-video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_everything_warning,
+video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_everything_warning, #the_vgm_game,
+#platforms, #franchise, #publisher,
 #genres {
     display: none;
 }
@@ -128,7 +162,9 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
     margin: 10px 20px 15px 5px;
 }
 
-
+.console_checkboxes {
+     margin: 10px 20px 15px 5px;
+}
 
 
 .tab {
@@ -201,4 +237,8 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
   border-radius: 50%;
   background: dimgray;
   cursor: pointer;
+}
+
+#album_info_box {
+    text-align: left;
 }

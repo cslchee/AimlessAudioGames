@@ -10,8 +10,9 @@
     <h3><b>A</b>ssess an <b>I</b>ndividual's <b>M</b>edia <b>L</b>iteracy by <b>E</b>mploying <b>S</b>elective <b>S</b>ounds</h3>
     <br>
     <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'oped_game')" id="default_game_tab">Anime Openings and Endings</button>
-        <button class="tablinks" onclick="openCity(event, 'steam_music_game')">Steam Game Music</button>
+        <button class="tablinks" onclick="openCity(event, 'oped_game_menu')">Anime Openings and Endings</button>
+        <button class="tablinks" onclick="openCity(event, 'vgm_game_menu')" id="default_game_tab">Video Game Music</button>
+        <button class="tablinks" onclick="openCity(event, 'steam_music_game_menu')">Steam Game Music</button>
         <script type="text/javascript">
             function openCity(evt, game_type) {
               var i, tabcontent, tablinks;
@@ -32,16 +33,16 @@
         </script>
     </div>
     <br>
-    <div id="oped_game" class="tabcontent">
+    <div id="oped_game_menu" class="tabcontent">
         <h2>Anime Openings and Endings</h2>
         <br>
-        <div id="menu">
+        <div class="menu">
             <table>
                 <tr>
                     <td>
                         <label for="opening_ending">Openings, Endings, or Both?</label>
                         <br>
-                        <select id = "opening_ending">
+                        <select id="opening_ending">
                             <option value=undefined style="text-align: center"> --- </option>
                             <option value="op">OPs</option>
                             <option value="ed">EDs</option>
@@ -259,7 +260,140 @@
         <p style="font-size: small">v1.1.2 - Created by <a href="https://youtu.be/iik25wqIuFo">CasualCheetah</a></p>
         <p style="font-size: small"><i>Full database last updated July 2024. Top popular/rating rankings last updated 2022.</i></p>
     </div>
-    <div id="steam_music_game" class="tabcontent">
+    <div id="vgm_game_menu" class="tabcontent">
+        <h2>Video Game Music!</h2>
+        <br>
+        <div class="menu">
+            <table>
+                <tr>
+                    <td style="width: 120px">
+                        <label for="sort_by">Sort By</label>
+                        <br>
+                        <select id="sort_by" onchange="show_a_vgm_option()">
+                            <option value="popularity">Popularity</option>
+                            <option value="platforms">Console(s)</option>
+                            <option value="franchises">Franchise</option>
+                            <option value="publishers">Publisher</option>
+                        </select>
+                    </td>
+                    <script type="text/javascript">
+                        // Run at start to always have default, even on refreshing the page
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.getElementById('sort_by').value = 'popularity'; // Set default value
+                        });
+
+                        function show_a_vgm_option() {
+                            // Hide all other rows
+                            const allContent = document.querySelectorAll(".sort_by_option");
+                            allContent.forEach(element => {
+                                element.style.display = 'none';
+                            })
+
+                            // Show the newly selected item
+                            const selectedValue  = document.getElementById('sort_by').value;
+                            if (selectedValue) {
+                                document.getElementById(selectedValue).style.display = "block";
+                            }
+                        }
+                    </script>
+                    <td id="popularity" class="sort_by_option">
+                        <label for="popularity_options">Popularity</label>
+                        <br>
+                        <select id="popularity_options">
+                            <option value="top40">Top 40</option>
+                            <option value="most-favorites">Top 100</option>
+                            <option value="all-time-top-100">Top 1000</option>
+                            <option value="literally_everything">Literally Everything</option>
+                            <option value="cas_bias">Cas Bias</option>
+                        </select>
+                    </td>
+                    <td id="platforms" class="sort_by_option">
+                        <div id="console_checkboxes">
+                            <script type="text/javascript">
+                            //Create checkboxes for a list of platforms
+                            const select_platforms = document.getElementById("console_checkboxes");
+                            const checkbox_platforms = ['NES', 'SNES', 'N64', 'GC', 'Wii', 'Wii U', 'Switch',
+                                                    'GB', 'GBC', 'GBA', 'DS', '3DS',
+                                                    'Genesis / Mega Drive','Dreamcast','Saturn',
+                                                    'PS1', 'PS2', 'PS3', 'PS4', 'PS5', 'PSP', 'PS Vita',
+                                                    'Xbox', 'Xbox 360','Xbox One', 'Xbox Series X/S',
+                                                    'Windows', 'MacOS','VR',
+                                                    'Android','iOS'];
+                            const break_rows = [6, 11, 14, 21, 25, 28] // Horizontally separate by genre
+                            for (let i = 0; i < checkbox_platforms.length; i++) {
+                                let opt = checkbox_platforms[i];
+                                const id_name = `console_${opt.toLowerCase().replace(' ','_')}`;
+
+                                let el_label = document.createElement('label');
+                                el_label.setAttribute('for',id_name);
+                                el_label.innerHTML = opt;
+                                select_platforms.appendChild(el_label);
+
+                                let el = document.createElement("input");
+                                el.setAttribute('type', 'checkbox');
+                                el.setAttribute('id', id_name);
+                            el.setAttribute('class', 'console_checkboxes');
+                                el.setAttribute('value', id_name);
+                                el.checked = true;
+                                el.textContent = opt;
+                                el.value = opt;
+                                el_label.appendChild(el);
+
+                                //Break up into rows based on the type of console
+                                if (break_rows.includes(i)) {select_platforms.appendChild(document.createElement('br'))}
+                            }
+                        </script>
+                        </div>
+                        <br>
+                        <div>
+                            <button onclick="deselect_all_consoles()"><i>Deselect All</i></button>
+                            <script type="text/javascript">
+                                function deselect_all_consoles() {
+                                    const checkboxes = document.querySelectorAll('.console_checkboxes');
+                                    checkboxes.forEach(checkbox => { checkbox.checked = false; });
+                                }
+                            </script>
+                        </div>
+                    </td>
+                    <td id="franchise" class="sort_by_option">
+                        Franchise goes here
+                    </td>
+                    <td id="publisher" class="sort_by_option">
+                        Publisher goes here
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+            <button id="start_button_vgm" onmouseover="vgm_mouse_toggle(mouse_off=false)"
+                                            onmouseout="vgm_mouse_toggle(mouse_off=true)"
+                                            onclick="start_vgm_game()">
+                Ready?
+            </button>
+            <script  type="text/javascript">
+                function vgm_mouse_toggle(mouse_off=false) {
+                    const button = document.getElementById("start_button_vgm");
+                    if (mouse_off) {
+                        button.innerText = "Ready?";
+                    } else {
+                        button.style.fontWeight = 'normal';
+                        button.style.fontSize = 'medium';
+                        button.style.color = "white";
+                        button.innerText = "Start!";
+                    }
+                }
+            </script>
+        </div>
+        <br>
+        <h3>Minor Volume Warning!</h3>
+        <p style="font-size: small">Different OSTs often have different volume levels, so don't crank things up to high.</p>
+        <br>
+        <p style="font-size: small">v0.1.0 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
+        <p style="font-size: small"><i>Database uses scraped info from KHInsider. Last updated October 2024.</i></p>
+        <p style="font-size: small"><i>Current database volume is 2000+ OSTs (some repeats in wider game queries).</i></p>
+
+    </div>
+    <div id="steam_music_game_menu" class="tabcontent">
         <h2>Personalized Gaming OST Identification via Steam</h2>
         <br>
         <label for="steam_id">What's Your 17-digit Steam ID?</label>
@@ -317,6 +451,26 @@
         <ul id="show_info"></ul>
         <p id="synopsis"></p>
         <video id="video" controls width="1024" height="576"></video>
+    </div>
+    <div id="the_vgm_game">
+        <img id="vgm_img" src="./images/question_block2.png" alt="" height="300px" width="300px">
+        <br>
+        <p id="album_info_box">Cheeky Quip Here</p>
+        <audio src="" id="vgm_audio_player"></audio>
+        <label for="volume_slider">Volume: </label>
+        <input type="range" id="volume_slider" min="0" max="1" step="0.01" value="1">
+        <script>
+            const audio = document.getElementById("vgm_audio_player");
+            const volumeSlider = document.getElementById("volume_slider");
+            audio.volume = volumeSlider.value;// Set initial volume
+            // Update the volume when the slider changes
+            volumeSlider.addEventListener("input", function() {audio.volume = volumeSlider.value;});
+        </script>
+        <br>
+        <button id="next_vgm_button" onclick="play_vgm_game()">Next</button>
+        <br>
+        <button id="exit_button_vgm" onclick="finish_vgm_game();">Exit</button>
+
     </div>
 
     <script type="text/javascript" src="index.js"></script>

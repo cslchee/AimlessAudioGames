@@ -1,4 +1,6 @@
 
+let real_vgm_data = {} // Global needed for asynchronous usage
+
 function titleCase(str) {
     str = str.toLowerCase().split(' ');
     for (var i = 0; i < str.length; i++) {
@@ -259,7 +261,7 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
         if (cannot_find_a_video > 10) {
             console.log("ERROR - Did too many loops while trying to find an appropriate video.");
             //Switch back visuals before returning...
-            document.getElementById("oped_game").style.display = "block";
+            document.getElementById("oped_game_menu").style.display = "block";
             tabcontent = document.getElementsByClassName("tab");
             for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "block"; }
             document.getElementById("the_game").style.display = "none";
@@ -304,7 +306,7 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
             //     console.log(this.currentTime);
             // }, false);
             video.currentTime = Math.random() * (video.duration - 30); //Don't get within 30sec of the end. Round to 2nd place
-            await sleep(500, 'Waiting a bonus second for random time update')
+            await sleep(500, 'Waiting a bonus second for random time update');
         }
 
 
@@ -398,7 +400,7 @@ async function the_game(op, ed, rounds, countdown, include_movies, premiered_aft
 
 
     //Reset and Go Back to Default
-    document.getElementById("oped_game").style.display = "block";
+    document.getElementById("oped_game_menu").style.display = "block";
     tabcontent = document.getElementsByClassName("tab");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "block";
@@ -450,4 +452,170 @@ async function start_steam_game() {
     console.log(temp);
 
     //TODO https://stackoverflow.com/questions/35861871/steam-api-access-control-allow-origin-issue
+}
+
+
+async function start_vgm_game() {
+    console.log("Starting VGM Game!")
+    const all_data = await getJsonFile('khi_data');
+    real_vgm_data = {} //Clear object
+
+    let player_choice = document.getElementById('sort_by').value
+    switch(player_choice) {
+        case "popularity":
+            console.log("Sorting by Popularity");
+            let category_data = await getJsonFile('khi_categories')
+            const category_type = document.querySelector('#popularity_options').value
+
+            if (category_type === 'literally_everything') {
+                real_vgm_data = JSON.parse(JSON.stringify(all_data)); //Deep copy
+                break; // Leave switch
+            }
+
+            category_data = category_data[category_type] //Get sub-list we need to sort out of
+            for (const album of category_data) {
+                let selection = all_data[album]
+                if (selection !== undefined) {  // Skip the missing ones
+                    real_vgm_data[album] = selection
+                }
+            }
+            break;
+        case "platforms":
+            console.log("Sorting by Platforms");
+            break;
+        case "franchises":
+            console.log("Sorting by Franchises");
+            break;
+        case "publishers":
+            console.log("Sorting by Publishers");
+            break;
+    }
+
+    console.log("Real VGM Data:")
+    console.log(real_vgm_data)
+
+    // Hide main DIVs and show game canvas
+    let temp = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < temp.length; i++) {
+            temp[i].style.display = "none";
+    }
+    temp = document.getElementsByClassName("tab");
+    for (i = 0; i < temp.length; i++) {
+        temp[i].style.display = "none";
+    }
+    document.getElementById("the_vgm_game").style.display = "block";
+
+    play_vgm_game()
+}
+
+async function play_vgm_game() {
+    //Reset the display to a mystery
+    const mystery_quotes = [
+        "OwO What's dis?",
+        "Is it just me or is it super annoying when people describe any music as a 'banger'?",
+        "The vibes of this one are making me feel feelings",
+        "Have ya heard this one before?",
+        "There's something familiar about this tune...",
+        "I swear I've heard this one before...",
+        "I know exactly what this song is and I'm not tell you :)",
+        "Is this to your taste?",
+        "My my, what a spectacular piece of music!",
+        "This one is dead obvious. If you can't guess it, our relationship will never be the same.",
+        "What could it be?",
+        "New tune, who dis?",
+        "I haven't a clue as to the origin of this particular tune.",
+        "Tell me you’ve heard this before, or I’ll be shocked!",
+        "Dang, this one is on the tip of my tongue/ear.",
+        "Yawn, when is this thing gonna play something more obvious?",
+        "Don't you hate it when you get an ambient noise track?",
+        "Is this one a masterpiece or a piece of garbage?",
+        "One thing I've learned after playing this game, you never known what's gonna ome through that door."
+    ]
+    let info_box = document.getElementById('album_info_box')
+    info_box.textContent = mystery_quotes[Math.floor(Math.random() * mystery_quotes.length)]
+    let vgm_image =  document.getElementById('vgm_img')
+    vgm_image.src = "/images/question_block2.png"
+
+    let vgm_button = document.getElementById("next_vgm_button");
+    vgm_button.disabled = true;
+    vgm_button.textContent = "Wait"
+
+    //Get a random song
+    const keys = Object.keys(real_vgm_data)
+    const random_album_title = keys[Math.floor(Math.random() * keys.length)]
+    const random_album = real_vgm_data[random_album_title]
+    const album_thumbnail = `https://vgmsite.com/soundtracks/${random_album['album_url']}/${random_album['thumbnail']}`
+    const alt_album_thumbnail = `https://kappa.vgmsite.com/soundtracks/${random_album['album_url']}/${random_album['thumbnail']}`
+
+    const album_songs = Object.keys(random_album['songs'])
+    const random_song_title = album_songs[Math.floor(Math.random() * album_songs.length)]
+    const random_song_url = `https://kappa.vgmsite.com/soundtracks/${random_album['album_url']}/${random_album['songs'][random_song_title]['url']}.mp3`
+    const random_song_time = random_album['songs'][random_song_title]['length']
+
+    //Add it to the src and play it at a random part
+    console.log(`Cheat sheet\nNow playing ${random_album_title} - ${random_song_title}\nFrom ${random_song_url}`) //Cheat sheet
+    const audio_player = document.getElementById('vgm_audio_player');
+    audio_player.pause()
+    audio_player.src = random_song_url
+    audio_player.currentTime = Math.random() * (random_song_time - 20);
+    audio_player.play();
+
+    //Show a 'x' second countdown
+    await sleep(8000, "Sleeping for VGM game...")
+    // TODO Do something with this visually
+
+
+    //Update the info box, shows the album cover, and re-enable the next button
+    let msg = `<li><b>Album:</b> ${titleCase(random_album_title)}</li><li><b>Song:</b> ${titleCase(random_song_title)}</li>`
+    let year = random_album['year']
+    let platforms = random_album['platforms']
+    let developer = random_album['developer']
+    let publisher = random_album['publisher']
+    if (year !== "") {msg += `<li><b>Year:</b> ${year}</li>`}
+    if (platforms.length !== 0) {msg +=  `<li><b>Platforms(s):</b> ${platforms}</li>`}
+    if (developer.length !== 0) {msg +=  `<li><b>Developer(s):</b> ${developer}</li>`}
+    if (publisher.length !== 0) {msg +=  `<li><b>Publisher(s):</b> ${publisher}</li>`}
+    msg += `</li>`
+    info_box.innerHTML = msg
+
+    vgm_image.src = album_thumbnail
+    vgm_image.onerror = function() {
+      console.log("Thumbnail failed to load. Loading alt thumbnail");
+      vgm_image.src = alt_album_thumbnail;
+    };
+
+    vgm_button.textContent = "Next";
+    vgm_button.disabled = false;
+}
+
+
+function finish_vgm_game() {
+    // Stop the music, quiet it down quickly
+    const audio_player = document.getElementById('vgm_audio_player');
+    audio_player.pause()
+
+    const decrease_volume = () => {
+        if (current_volume > 0.4) {
+          current_volume -= 0.05;
+          audio_player.volume = current_volume;
+        console.log("PING")
+        } else {
+          clearInterval(volume_interval);
+        }
+    };
+    const volume_interval = setInterval(decrease_volume, 1200);
+
+
+
+    // Re-hide game and show tabs again
+    document.getElementById("vgm_game_menu").style.display = "block";
+    let temp = document.getElementsByClassName("tab");
+    for (i = 0; i < temp.length; i++) {
+        temp[i].style.display = "block";
+    }
+    document.getElementById("the_vgm_game").style.display = "none";
+    document.getElementById('vgm_img').src = "";
+
+
+
 }
