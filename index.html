@@ -386,8 +386,8 @@
             </script>
         </div>
         <br>
-        <h3>Minor Volume Warning! 🔊</h3>
-        <p style="font-size: small; color: cornflowerblue">Different OSTs often have different volume levels, so don't crank things up to high.</p>
+        <h3>🔊 Minor Volume Warning! 🔊</h3>
+        <p style="font-size: small; color: cornflowerblue">Different OSTs often have different volume levels, so don't crank things up too high.</p>
         <br>
         <div id="vgm_menu_notes">
             <h3 style=>Notes:</h3>
@@ -413,7 +413,7 @@
                 <li>Current database volume is 2100+ OSTs. Some repeats exist in wider game queries.</li>
             </ul>
         </div>
-        <p style="font-size: small">v0.1.1 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
+        <p style="font-size: small">v0.1.2 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
         <p style="font-size: small"><i>Database uses scraped info from KHInsider.</i></p>
     </div>
     <div id="steam_music_game_menu" class="tabcontent">
@@ -476,12 +476,22 @@
         <video id="video" controls width="1024" height="576"></video>
     </div>
     <div id="the_vgm_game">
-        <img id="vgm_img" src="./images/question_block2.png" alt="Question Mark Block" height="300px" width="300px">
-        <br>
-        <p id="album_info_box">Cheeky Quip Here</p>
+        <table>
+            <tr>
+                <td style="width: 500px">
+                    <img id="question_block_img" src="./images/question_block2.png" alt="Question Mark Block" height="300px" width="300px">
+                    <img id="vgm_img" src="" alt="The cover for the album that's playing right now" height="300px" width="300px">
+                </td>
+                <td>
+                    <p id="album_info_box">Cheeky Quip Here</p>
+                </td>
+            </tr>
+        </table>
         <audio src="" id="vgm_audio_player"></audio>
-        <label for="volume_slider">Volume: </label>
-        <input type="range" id="volume_slider" min="0" max="1" step="0.01" value="1">
+        <div id="volume_slider_div">
+            <label for="volume_slider">Volume: </label>
+            <input type="range" id="volume_slider" min="0" max="1" step="0.05" value="1">
+        </div>
         <script>
             const audio = document.getElementById("vgm_audio_player");
             const volumeSlider = document.getElementById("volume_slider");
@@ -489,8 +499,7 @@
             // Update the volume when the slider changes
             volumeSlider.addEventListener("input", function() {audio.volume = volumeSlider.value;});
         </script>
-        <br>
-        <canvas id="vgm_canvas" width="400" height="20"></canvas>
+        <canvas id="vgm_canvas" height="15%"></canvas>
         <br>
         <button id="next_vgm_button" onclick="play_vgm_game()">Next</button>
         <br>

@@ -64,8 +64,14 @@ body {
     transition-duration: 0.4s;
 }
 
-#vgm_img {
-    border-radius: 15px;
+#vgm_img, #question_block_img {
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+#album_info_box {
+    margin: 0 auto;
+    padding: 50px;
 }
 
 .menu {
@@ -239,10 +245,6 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
   cursor: pointer;
 }
 
-#album_info_box {
-    text-align: left;
-}
-
 #vgm_menu_notes {
     text-align: left;
     width: 60%;
@@ -251,4 +253,8 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
 
 #copyright_toggle_button {
     color: darkcyan;
+}
+
+#volume_slider_div {
+    padding: 5px;
 }

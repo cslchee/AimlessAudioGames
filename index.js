@@ -512,12 +512,12 @@ async function play_vgm_game() {
     //Reset the display to a mystery
     const mystery_quotes = [
         "OwO What's dis?",
-        "Is it just me or is it super annoying when people describe any music as a 'banger'?",
-        "The vibes of this one are making me feel feelings",
+        "Is it just me or is it super annoying when people describe any music as \"a banger\"?",
+        "The vibes of this one are making me feel feelings.",
         "Have ya heard this one before?",
         "There's something familiar about this tune...",
         "I swear I've heard this one before...",
-        "I know exactly what this song is and I'm not tell you :)",
+        "I know exactly what this song is and I'm not tell you. :)",
         "Is this to your taste?",
         "My my, what a spectacular piece of music!",
         "This one is dead obvious. If you can't guess it, our relationship will never be the same.",
@@ -533,8 +533,13 @@ async function play_vgm_game() {
     ]
     let info_box = document.getElementById('album_info_box')
     info_box.textContent = mystery_quotes[Math.floor(Math.random() * mystery_quotes.length)]
+    info_box.style.textAlign = 'center';
     let vgm_image =  document.getElementById('vgm_img')
-    vgm_image.src = "./images/question_block2.png"
+    let question_block_image = document.getElementById("question_block_img")
+
+    //Hide album cover to start, show a question block before reveal
+    question_block_image.style.display = "block"
+    vgm_image.style.display = "none"
 
     let vgm_button = document.getElementById("next_vgm_button");
     vgm_button.disabled = true;
@@ -552,6 +557,13 @@ async function play_vgm_game() {
     const random_song_url = `https://kappa.vgmsite.com/soundtracks/${random_album['album_url']}/${random_album['songs'][random_song_title]['url']}.mp3`
     const random_song_time = random_album['songs'][random_song_title]['length']
 
+    //Preemptively load in the album cover
+    vgm_image.src = album_thumbnail
+    vgm_image.onerror = function() {
+      console.log("Thumbnail failed to load. Loading alt thumbnail");
+      vgm_image.src = alt_album_thumbnail;
+    };
+
     //Add it to the src and play it at a random part
     console.log(`Cheat sheet\nNow playing ${random_album_title} - ${random_song_title}\nFrom ${random_song_url}`) //Cheat sheet
     const audio_player = document.getElementById('vgm_audio_player');
@@ -561,35 +573,44 @@ async function play_vgm_game() {
     audio_player.src = random_song_url
     audio_player.load();
 
+    //Some constants
+    const vgm_w = vgm_canvas.width
+    const vgm_h = vgm_canvas.height
+
+
+    //Buffer Audio
     ctx.fillStyle = 'dimgrey'
-    ctx.clearRect(0,0, vgm_canvas.width, vgm_canvas.height); //Clear screen
+    ctx.clearRect(0,0, vgm_w, vgm_canvas.height); //Clear screen
     ctx.textAlign = 'center';
     ctx.fillStyle = 'skyblue';
-    ctx.font = '10px Arial bold';
-    ctx.fillText("Buffering...", 200, 14)
+    ctx.font = '60px sans-serif bold';
+    ctx.fillText("Buffering...", vgm_w/2, vgm_h/2)
+    while (audio_player.buffered.length === 0) {
+        await sleep(100, 'Buffering');
+    }
+    const duration = audio_player.duration;
+    console.log(`Duration: ${duration} seconds`);
+    audio_player.currentTime = Math.random() * (duration - 20); // Choose a random starting point for the song
 
-    audio_player.addEventListener('waiting', () => {
-        console.log('Audio is buffering...');
-    });
+    //Play Audio
+    console.log(`Playing VGM at time ${audio_player.currentTime}`)
+    await audio_player.play();
 
-    audio_player.addEventListener('canplay', () => {
-        console.log('Audio can play now (not buffering)');
-    });
+    //Countdown to reveals
+    console.log("Starting Countdown");
+    //Prep countdown bar
+    let grd = ctx.createLinearGradient(vgm_w, vgm_h, 0, 0);
+    grd.addColorStop(0, "skyblue");
+    grd.addColorStop(1, "dimgrey");
+    ctx.fillStyle = grd;
 
-    audio_player.addEventListener('stalled', () => {
-        console.log('Audio has stalled and may be buffering.');
-    });
-
-    audio_player.currentTime = Math.random() * (random_song_time - 20);
-    audio_player.play();
-    // TODO Detect and pause for buffering. Then get the duration from the loaded file
-
-
-
-    //Show a 'x' second countdown
-    await sleep(8000, "Sleeping for VGM game...")
-    // TODO Do something with this visually
-
+    const countdown = 8;
+    for (let sec = 0; sec < countdown*1000; sec += 25) { //Use a 'time.now()' difference while-loop instead?
+        ctx.clearRect(0, 0, vgm_w, vgm_h);
+        ctx.fillRect(0, 0, vgm_w - Math.floor(vgm_w * (sec/(countdown*1000))), vgm_h); //Countdown bar
+        await sleep(25, 'Drawing countdown');
+        //Could put small Startup volume increase here
+    }
 
     //Update the info box, shows the album cover, and re-enable the next button
     let msg = `<li><b>Album:</b> ${titleCase(random_album_title)}</li><li><b>Song:</b> ${titleCase(random_song_title)}</li>`
@@ -598,16 +619,14 @@ async function play_vgm_game() {
     let developer = random_album['developer']
     let publisher = random_album['publisher']
     if (year !== "") {msg += `<li><b>Year:</b> ${year}</li>`}
-    if (platforms.length !== 0) {msg +=  `<li><b>Platforms(s):</b> ${platforms}</li>`}
-    if (developer.length !== 0) {msg +=  `<li><b>Developer(s):</b> ${developer}</li>`}
-    if (publisher.length !== 0) {msg +=  `<li><b>Publisher(s):</b> ${publisher}</li>`}
+    if (platforms.length !== 0) {msg +=  `<li><b>Platforms(s):</b> ${platforms.join(', ')}</li>`}
+    if (developer.length !== 0) {msg +=  `<li><b>Developer(s):</b> ${developer.join(', ')}</li>`}
+    if (publisher.length !== 0) {msg +=  `<li><b>Publisher(s):</b> ${publisher.join(', ')}</li>`}
+    info_box.style.textAlign = 'left';
     info_box.innerHTML = msg
 
-    vgm_image.src = album_thumbnail
-    vgm_image.onerror = function() {
-      console.log("Thumbnail failed to load. Loading alt thumbnail");
-      vgm_image.src = alt_album_thumbnail;
-    };
+    question_block_image.style.display = "none"
+    vgm_image.style.display = "block"
 
     vgm_button.textContent = "Next";
     vgm_button.disabled = false;
@@ -631,7 +650,6 @@ function finish_vgm_game() {
     // const volume_interval = setInterval(decrease_volume, 1200);
 
 
-
     // Re-hide game and show tabs again
     document.getElementById("vgm_game_menu").style.display = "block";
     let temp = document.getElementsByClassName("tab");
@@ -640,7 +658,4 @@ function finish_vgm_game() {
     }
     document.getElementById("the_vgm_game").style.display = "none";
     document.getElementById('vgm_img').src = "";
-
-
-
 }
