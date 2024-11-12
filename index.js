@@ -454,6 +454,7 @@ async function start_steam_game() {
     //TODO https://stackoverflow.com/questions/35861871/steam-api-access-control-allow-origin-issue
 }
 
+// --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --  --
 
 async function start_vgm_game() {
     console.log("Starting VGM Game!")
@@ -529,10 +530,21 @@ async function play_vgm_game() {
         "Yawn, when is this thing gonna play something more obvious?",
         "Don't you hate it when you get an ambient noise track?",
         "Is this one a masterpiece or a piece of garbage?",
-        "One thing I've learned after playing this game, you never known what's gonna ome through that door."
+        "One thing I've learned after twenty-one years, you never known what's gonna walk through that door.",
+        "I peeves me that 90% of this stuff isn't available for purchase or on streaming platforms."
+    ]
+    const buffering_quotes = [
+        "Gimme a sec...",
+        "Buffering...",
+        "Digging through the archives...",
+        "Finding your next song...",
+        "Trying to find the AUX cable...",
+        "Locating the next track...",
+        "Loading new tune...",
+        "Finding something tasty..."
     ]
     let info_box = document.getElementById('album_info_box')
-    info_box.textContent = mystery_quotes[Math.floor(Math.random() * mystery_quotes.length)]
+    info_box.textContent = buffering_quotes[Math.floor(Math.random() * buffering_quotes.length)]
     info_box.style.textAlign = 'center';
     let vgm_image =  document.getElementById('vgm_img')
     let question_block_image = document.getElementById("question_block_img")
@@ -543,7 +555,7 @@ async function play_vgm_game() {
 
     let vgm_button = document.getElementById("next_vgm_button");
     vgm_button.disabled = true;
-    vgm_button.textContent = "Wait"
+    vgm_button.textContent = "Please Wait"
 
     //Get a random song
     const keys = Object.keys(real_vgm_data)
@@ -554,8 +566,7 @@ async function play_vgm_game() {
 
     const album_songs = Object.keys(random_album['songs'])
     const random_song_title = album_songs[Math.floor(Math.random() * album_songs.length)]
-    const random_song_url = `https://kappa.vgmsite.com/soundtracks/${random_album['album_url']}/${random_album['songs'][random_song_title]['url']}.mp3`
-    const random_song_time = random_album['songs'][random_song_title]['length']
+    const random_song_url = `https://kappa.vgmsite.com/soundtracks/${random_album['album_url']}/${random_album['songs'][random_song_title]}.mp3`
 
     //Preemptively load in the album cover
     vgm_image.src = album_thumbnail
@@ -577,16 +588,21 @@ async function play_vgm_game() {
     const vgm_w = vgm_canvas.width
     const vgm_h = vgm_canvas.height
 
-
-    //Buffer Audio
+    //Buffer Audio and display notice
     ctx.fillStyle = 'dimgrey'
     ctx.clearRect(0,0, vgm_w, vgm_canvas.height); //Clear screen
     ctx.textAlign = 'center';
     ctx.fillStyle = 'skyblue';
     ctx.font = '60px sans-serif bold';
     ctx.fillText("Buffering...", vgm_w/2, vgm_h/2)
+
+    let buffer_counter = 0
     while (audio_player.buffered.length === 0) {
         await sleep(100, 'Buffering');
+        buffer_counter += 1
+        if (buffer_counter > 250) {
+            info_box.textContent = "Oops!\nMe might be stuck. Try refreshing the page..."
+        }
     }
     const duration = audio_player.duration;
     console.log(`Duration: ${duration} seconds`);
@@ -595,6 +611,7 @@ async function play_vgm_game() {
     //Play Audio
     console.log(`Playing VGM at time ${audio_player.currentTime}`)
     await audio_player.play();
+    info_box.textContent = mystery_quotes[Math.floor(Math.random() * mystery_quotes.length)]
 
     //Countdown to reveals
     console.log("Starting Countdown");
@@ -605,26 +622,38 @@ async function play_vgm_game() {
     ctx.fillStyle = grd;
 
     const countdown = 8;
-    for (let sec = 0; sec < countdown*1000; sec += 25) { //Use a 'time.now()' difference while-loop instead?
+    const speed = 25; //Lower a smoother countdown bar. Very smooth, but a little glitchy = 25
+    let canceled_during_countdown = false;
+    for (let sec = 0; sec < countdown*1000; sec += speed) { //Use a 'time.now()' difference while-loop instead?
         ctx.clearRect(0, 0, vgm_w, vgm_h);
         ctx.fillRect(0, 0, vgm_w - Math.floor(vgm_w * (sec/(countdown*1000))), vgm_h); //Countdown bar
-        await sleep(25, 'Drawing countdown');
-        //Could put small Startup volume increase here
+        await sleep(speed, 'Drawing countdown');
+        //Could put small Startup volume increase here too
+        if (audio_player.paused) {
+            console.log("BEEP! Exiting during a countdown!")
+            canceled_during_countdown = true;
+            break;
+        }
+
     }
+    ctx.clearRect(0, 0, vgm_w, vgm_h);
+    //Stop playing if we exited during a countdown
+    if (canceled_during_countdown) {return}
 
     //Update the info box, shows the album cover, and re-enable the next button
-    let msg = `<li><b>Album:</b> ${titleCase(random_album_title)}</li><li><b>Song:</b> ${titleCase(random_song_title)}</li>`
+    let msg = `<p><b>Album:</b> ${titleCase(random_album_title)}<br><b>Song:</b> ${titleCase(random_song_title)}</p>`
     let year = random_album['year']
     let platforms = random_album['platforms']
     let developer = random_album['developer']
     let publisher = random_album['publisher']
     if (year !== "") {msg += `<li><b>Year:</b> ${year}</li>`}
-    if (platforms.length !== 0) {msg +=  `<li><b>Platforms(s):</b> ${platforms.join(', ')}</li>`}
+    if (platforms.length !== 0) {msg +=  `<li><b>Platform(s):</b> ${platforms.join(', ')}</li>`}
     if (developer.length !== 0) {msg +=  `<li><b>Developer(s):</b> ${developer.join(', ')}</li>`}
     if (publisher.length !== 0) {msg +=  `<li><b>Publisher(s):</b> ${publisher.join(', ')}</li>`}
     info_box.style.textAlign = 'left';
     info_box.innerHTML = msg
 
+    //Swap in the album cover and enable the button
     question_block_image.style.display = "none"
     vgm_image.style.display = "block"
 
@@ -637,6 +666,7 @@ function finish_vgm_game() {
     // Stop the music, quiet it down quickly
     const audio_player = document.getElementById('vgm_audio_player');
     audio_player.pause()
+
 
     // const decrease_volume = () => {
     //     if (current_volume > 0.4) {

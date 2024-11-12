@@ -112,10 +112,8 @@ def page_album_data(album_url: str):
         song_source = song_source[song_source.index('/soundtracks/')+13:] #Might have different hosting sites...
         song_source = song_source.replace('.mp3','') #Assuming none of the first links will be .FLACs
         song_source = song_source.replace(f"{data_temp['album_url']}/",'') #URLs always start with the album URL too
-        songs[song_name] = {
-            'url': song_source,
-            'length': song_length
-        }
+        #We are no longer recording the song length since we can get it during javascript
+        songs[song_name] = song_source
     #print(json.dumps(songs, indent=2))
 
     #If the whole album was just bits of sounds, don't grab it (every instance of song_length ended up in a 'continue')
