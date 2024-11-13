@@ -459,6 +459,7 @@ async function start_steam_game() {
 async function start_vgm_game() {
     console.log("Starting VGM Game!")
     const all_data = await getJsonFile('khi_data');
+    let invalid_request = false
     real_vgm_data = {} //Clear object
 
     let player_choice = document.getElementById('sort_by').value
@@ -481,8 +482,32 @@ async function start_vgm_game() {
                 }
             }
             break;
-        case "platforms":
-            console.log("Sorting by Platforms");
+        case "consoles":
+            console.log("Sorting by Consoles");
+            let selected_consoles = []
+            const console_collection = document.getElementsByClassName('console_checkboxes');
+            for (const con of console_collection) {
+                if (con.checked) {selected_consoles.push(con.value) }
+            }
+            // Given an empty list, display warning text and leave the function
+            if (selected_consoles.length === 0) {
+                invalid_request = true;
+                console.log("Empty consoles list, cannot start")
+                break;
+            }
+
+            console.log(`Searching for games on the: ${selected_consoles.join(', ')}`)
+
+            let album_consoles
+            let console_counter = 0
+            for (const album of Object.keys(all_data) ) {
+                album_consoles = all_data[album]['platforms']
+                if (selected_consoles.some(element => album_consoles.includes(element))) {
+                    real_vgm_data[album] = all_data[album]
+                    console_counter += 1
+                }
+            }
+            console.log(`Found ${console_counter} viable albums the console(s)`)
             break;
         case "franchises":
             console.log("Sorting by Franchises");
@@ -490,6 +515,10 @@ async function start_vgm_game() {
         case "publishers":
             console.log("Sorting by Publishers");
             break;
+    }
+    if (invalid_request){
+        document.getElementById("vgm_invalid_request").style.display = "block"
+        return;
     }
 
     console.log("Real VGM Data:")
@@ -505,6 +534,7 @@ async function start_vgm_game() {
         temp[i].style.display = "none";
     }
     document.getElementById("the_vgm_game").style.display = "block";
+    document.getElementById("vgm_invalid_request").style.display = "none"
 
     play_vgm_game()
 }

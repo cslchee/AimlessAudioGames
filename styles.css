@@ -35,6 +35,10 @@ body {
     background-color: #4CAF50;
 }
 
+#exit_button_vgm, #console_deselect_button {
+    margin: 10px auto;
+}
+
 #exit_button_vgm:hover {
     background-color: firebrick;
 }
@@ -48,9 +52,10 @@ body {
     display: inline-block;
     font-size: medium;
     height: 50px;
-    width: 100px;
+    width: 110px;
     border-radius: 5px;
     transition-duration: 0.4s;
+    margin: 10px auto;
 }
 
 #next_vgm_button:hover:enabled {
@@ -61,6 +66,25 @@ body {
 #next_vgm_button:disabled {
     background-color: black;
     border: 1px solid darkcyan;
+    transition-duration: 0.4s;
+}
+
+#console_deselect_button {
+    background-color: dimgray;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: small;
+    height: 25px;
+    width: 100px;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+
+#console_deselect_button:hover {
+    background-color: lightslategrey;
     transition-duration: 0.4s;
 }
 
@@ -257,4 +281,18 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
 
 #volume_slider_div {
     padding: 5px;
+}
+
+#vgm_game_menu td {
+    height: 400px
+}
+
+.sort_by_option {
+    margin: auto;
+}
+
+#vgm_invalid_request {
+    display: none;
+    color: palevioletred;
+    font-size: small;
 }
