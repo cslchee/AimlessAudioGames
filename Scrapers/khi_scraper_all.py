@@ -179,7 +179,7 @@ def get_all_album_urls(albums_pages: list) -> list:
 
         #cycle through the rest of pages - filter into either general letter scraper or the differently-formatted top lists
         for p in range(page_count):
-            if 'top' in page or 'most-favorites' in page:
+            if any([x for x in ['top','most-favorites'] if x in page]):
                 all_albums_urls += get_all_page_albums_categories(page, page=p+1)
             else:
                 all_albums_urls += get_all_page_albums_detailed_columns(page, page=p + 1)
@@ -227,6 +227,8 @@ def collect_category(category_str: str, scrape_or_category_titles: str) -> None:
         all-time-top-100 (It's actually top 1000)
         most-favorites
         search?search=pokemon (or mario, kirby, zelda, etc.)
+        game-soundtracks/developer/____
+        game-soundtracks/publisher/____
     """
     if scrape_or_category_titles not in ('scrape', 'titles','top1000special'):
         raise Exception("Unusable argument given to 'scrape_or_category_titles'. Please use 'scrape' or 'titles' as inputs.")
@@ -284,7 +286,7 @@ def clean_khi_data():
     title_defects = (
         'hack','preview','bootleg','homebrew','e3 demo','prototype','promotional','unreleased',
         'pre-alpha','pre-beta','(mod)','kiosk','karaoke'
-        # 'beta', 'alpha' #Could be the name of games...
+        # 'beta', 'alpha', 'demo' #Could be the name of games...
     )
     multi_part_title_defects = (
         'fan game', 'fan remake', 'fan remaster', 'friday night funkin', 'rom hack' ,'hack rom', 'bonus dvd',
@@ -337,10 +339,10 @@ def main():
         'cyberpunk+2077','stardew+valley','going+under','inscryption','super+smash+bros','banjo-kazooie','in+stars+and+time'
         )
 
-
-
     # for franchise in franchises:
     #     collect_category(f"search?search={franchise.replace(' ','+')}", scrape_or_category_titles='scrape')
+
+    #collect_category("game-soundtracks/publisher/annapurna-interactive", scrape_or_category_titles="scrape")
 
     clean_khi_data()
 

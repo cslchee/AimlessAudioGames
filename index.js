@@ -498,10 +498,9 @@ async function start_vgm_game() {
 
             console.log(`Searching for games on the: ${selected_consoles.join(', ')}`);
 
-            let album_consoles;
             let console_counter = 0;
             for (const album of Object.keys(all_data) ) {
-                album_consoles = all_data[album]['platforms']
+                const album_consoles = all_data[album]['platforms']
                 if (selected_consoles.some(element => album_consoles.includes(element))) {
                     real_vgm_data[album] = all_data[album];
                     console_counter += 1;
@@ -512,13 +511,30 @@ async function start_vgm_game() {
         case "franchises":
             console.log("Sorting by Franchises");
             break;
+        case "developers":
+            console.log("Sorting by Developers")
+            break;
         case "publishers":
             console.log("Sorting by Publishers");
 
             const publisher_selected = document.querySelector('#publisher_options').value
             let pub_counter = 0;
             for (const album of Object.keys(all_data) ) {
-                if (all_data[album]['publisher'].includes(publisher_selected)) {
+                let include_this_pub = false;
+                const pub_list = all_data[album]['publisher']
+                if (pub_list.includes(publisher_selected)) {  // Easy detect, direct name included in pub list
+                    include_this_pub = true;
+                } else {    //Harder check, see if the value is a part of each of the publishers (i.e. 'Sony' vs 'Sony Records')
+                    for (const individual_pub of pub_list){
+                        if (individual_pub.toLowerCase().includes(publisher_selected.toLowerCase())) { // Is our selected publisher a substring?
+                            include_this_pub = true;
+                            break;
+                        }
+                    }
+                }
+
+                // Add if successful in either easy/hard search
+                if (include_this_pub) {
                     real_vgm_data[album] = all_data[album];
                     pub_counter += 1;
                 }
@@ -571,7 +587,16 @@ async function play_vgm_game() {
         "Don't you hate it when you get an ambient noise track?",
         "Is this one a masterpiece or a piece of garbage?",
         "One thing I've learned after twenty-one years, you never known what's gonna walk through that door.",
-        "I peeves me that 90% of this stuff isn't available for purchase or on streaming platforms."
+        "I peeves me that 90% of this stuff isn't available for purchase or on streaming platforms.",
+        "Man, who curates this database? Probably some nerd or something.",
+        "Oh dude! I totally hate and or love the game this is from!",
+        "Twenty bucks says the next song is City Escape.",
+        "Tip: Don't do drugs.",
+        "Hint: Press Ctrl+W",
+        "Your free trial is about to expire in (2) songs. JK, imagine paying for access to internet content.",
+        "Don't forget to drink water!",
+        "Hmmm, I wonder what's for dinner...",
+        "Deez notes! Heard 'em!"
     ]
     const buffering_quotes = [
         "Gimme a sec...",
@@ -581,7 +606,8 @@ async function play_vgm_game() {
         "Trying to find the AUX cable...",
         "Locating the next track...",
         "Loading new tune...",
-        "Finding something tasty..."
+        "Finding something tasty...",
+        "Pausing to think..."
     ]
     let info_box = document.getElementById('album_info_box')
     info_box.textContent = buffering_quotes[Math.floor(Math.random() * buffering_quotes.length)]
