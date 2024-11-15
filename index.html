@@ -362,7 +362,20 @@
                         Franchise goes here
                     </td>
                     <td id="publishers" class="sort_by_option">
-                        Publisher goes here
+                        <label for="publisher_options">Publishers</label>
+                        <br>
+                        <select id="publisher_options"></select>
+                        <script>
+                            const publisher_names = ["Nintendo","Sega","Capcom","Sony","Devolver"];
+                            const publisher_selection_element = document.getElementById("publisher_options");
+                            for (const pub of publisher_names) {
+                                let temp_pub_el = document.createElement('option');
+                                temp_pub_el.text = pub
+                                temp_pub_el.value = pub
+                                publisher_selection_element.appendChild(temp_pub_el);
+                            }
+                        </script>
+
                     </td>
                 </tr>
 
@@ -401,7 +414,7 @@
                 <ul id="copyright_list" style="display: none">
                     <li>Sonic</li>
                     <li>Undertale/Deltarune</li>
-                    <li>Square Enix (Final Fantasy/Chrono Trigger)</li>\
+                    <li>Square Enix (Final Fantasy/Chrono Trigger)</li>
                 </ul>
                 <script>
                     function toggle_list() {

@@ -492,28 +492,38 @@ async function start_vgm_game() {
             // Given an empty list, display warning text and leave the function
             if (selected_consoles.length === 0) {
                 invalid_request = true;
-                console.log("Empty consoles list, cannot start")
+                console.log("Empty consoles list, cannot start");
                 break;
             }
 
-            console.log(`Searching for games on the: ${selected_consoles.join(', ')}`)
+            console.log(`Searching for games on the: ${selected_consoles.join(', ')}`);
 
-            let album_consoles
-            let console_counter = 0
+            let album_consoles;
+            let console_counter = 0;
             for (const album of Object.keys(all_data) ) {
                 album_consoles = all_data[album]['platforms']
                 if (selected_consoles.some(element => album_consoles.includes(element))) {
-                    real_vgm_data[album] = all_data[album]
-                    console_counter += 1
+                    real_vgm_data[album] = all_data[album];
+                    console_counter += 1;
                 }
             }
-            console.log(`Found ${console_counter} viable albums the console(s)`)
+            console.log(`Found ${console_counter} viable albums for the console(s)`)
             break;
         case "franchises":
             console.log("Sorting by Franchises");
             break;
         case "publishers":
             console.log("Sorting by Publishers");
+
+            const publisher_selected = document.querySelector('#publisher_options').value
+            let pub_counter = 0;
+            for (const album of Object.keys(all_data) ) {
+                if (all_data[album]['publisher'].includes(publisher_selected)) {
+                    real_vgm_data[album] = all_data[album];
+                    pub_counter += 1;
+                }
+            }
+            console.log(`Found ${pub_counter} viable albums for the publisher "${publisher_selected}"`)
             break;
     }
     if (invalid_request){
