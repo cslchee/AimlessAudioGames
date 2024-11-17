@@ -258,7 +258,7 @@
         </p>
         <br>
         <p style="font-size: small">v1.1.2 - Created by <a href="https://youtu.be/iik25wqIuFo">CasualCheetah</a></p>
-        <p style="font-size: small"><i>Full database last updated July 2024. Top popular/rating rankings last updated 2022.</i></p>
+        <p class="footnote_text">Full database last updated July 2024. Top popular/rating rankings last updated 2022.</p>
     </div>
     <div id="vgm_game_menu" class="tabcontent">
         <h2>Video Game Music!</h2>
@@ -274,9 +274,9 @@
                             <option value="consoles">Consoles</option>
                             <option value="franchises">Franchises</option>
                             <option value="publishers">Publishers</option>
+                            <option value="developers">Developers</option>
                         </select>
-                    </td>
-                    <script type="text/javascript">
+                        <script type="text/javascript">
                         // Run at start to always have default, even on refreshing the page
                         document.addEventListener('DOMContentLoaded', function() {
                             document.getElementById('sort_by').value = 'popularity'; // Set default value
@@ -287,17 +287,20 @@
                             // Hide all other rows
                             const allContent = document.querySelectorAll(".sort_by_option");
                             allContent.forEach(element => {
+                                console.log(window.getComputedStyle(element).display)
                                 element.style.display = 'none';
                             })
 
                             // Show the newly selected item
                             const selectedValue  = document.getElementById('sort_by').value;
                             if (selectedValue) {
-                                document.getElementById(selectedValue).style.display = "block";
+                                // Don't use "display: block", it de-centers the <td>
+                                document.getElementById(selectedValue).style.display = "table-cell";
                             }
                         }
                     </script>
-                    <td id="popularity" class="sort_by_option">
+                    </td>
+                    <td id="popularity" class="sort_by_option" >
                         <label for="popularity_options">Popularity</label>
                         <br>
                         <select id="popularity_options">
@@ -356,10 +359,36 @@
                             </script>
                         </div>
                         <hr>
-                        <p style="font-size: small"><i>Selecting multiple consoles means an album will be viable if it appeared on ANY of the selected consoles.</i></p>
+                        <p class="footnote_text">Selecting multiple consoles means an album will be viable if it appeared on ANY of the selected consoles.</p>
                     </td>
                     <td id="franchises" class="sort_by_option">
-                        Franchise goes here
+                        <label for="franchises_options">Sort By</label>
+                        <br>
+                        <select id="franchises_options"></select>
+                        <script>
+                            //Has to be placed above the other instances where it's used, not in index.js
+                            function create_long_dropdown(name_list, selection_element){
+                                for (const name of name_list) {
+                                    let temp_el = document.createElement('option')
+                                    temp_el.text = name;
+
+                                    // Separate out the name from explanatory parentheses is necessary
+                                    if (temp_el.value.includes(" (")) {
+                                        temp_el.value = name.split(" (")[0];
+                                    } else { temp_el.value = name; }
+                                    selection_element.appendChild(temp_el);
+                                }
+                            }
+
+                            const franchise_names = ["Pokemon","Mario","Zelda","Kirby","Metroid","Donkey Kong",
+                                                    "Street Fighter","Crash Bandicoot","Monster Hunter",
+                                                    "Halo","Metal Gear","Persona","Kingdom Hearts","Fire Emblem",
+                                                    "Castlevania"];
+                            const franchise_selection_element = document.getElementById('franchises_options');
+                            create_long_dropdown(franchise_names, franchise_selection_element)
+                        </script>
+                        <hr>
+                        <p class="footnote_text">A handful of popular franchise based on the most popular searches in KHInsider as well as personal bias.</p>
                     </td>
                     <td id="publishers" class="sort_by_option">
                         <label for="publisher_options">Publishers</label>
@@ -369,15 +398,20 @@
                             const publisher_names = ["Nintendo","Sega","Capcom","Sony","SCE (More Classic Sony)",
                                                     "Devolver","Atlus","Annapurna Interactive"];
                             const publisher_selection_element = document.getElementById("publisher_options");
-                            for (const pub of publisher_names) {
-                                let temp_pub_el = document.createElement('option');
-                                temp_pub_el.text = pub
-                                temp_pub_el.value = pub.split(" (")[0]; // Use (___) for descriptors
-                                publisher_selection_element.appendChild(temp_pub_el);
-                            }
+                            create_long_dropdown(publisher_names, publisher_selection_element)
                         </script>
                         <hr>
-                        <p style="font-size: small"><i>No guarantees that you'll only get the big popular stuff. Some of these people publish a lot of games.</i></p>
+                        <p class="footnote_text">No guarantees that you'll only get the big popular stuff. Some of these people publish a lot of games.</p>
+                    </td>
+                    <td id="developers" class="sort_by_option">
+                        <label for="dev_options">Developers</label>
+                        <br>
+                        <select id="dev_options"></select>
+                        <script>
+                            const dev_names = ["FromSoftware","Supergiant Games","Insomniac Games"]
+                            const dev_selection_element = document.getElementById('dev_options');
+                            create_long_dropdown(dev_names, dev_selection_element);
+                        </script>
                     </td>
                 </tr>
 
@@ -416,7 +450,7 @@
                 <ul id="copyright_list" style="display: none">
                     <li>Sonic</li>
                     <li>Undertale/Deltarune</li>
-                    <li>Square Enix (Final Fantasy/Chrono Trigger)</li>
+                    <li>Some Square Enix (Final Fantasy/Chrono Trigger)</li>
                 </ul>
                 <script>
                     function toggle_list() {
@@ -429,14 +463,14 @@
                 </script>
                 <li>Music titles/themes may contain references to a game's story content, so don't blame me for spoilers :)</li>
                 <li>Local database last update in October 2024.</li>
-                <li>Current database volume is 2100+ OSTs. Some repeats exist in wider game queries.</li>
+                <li>Current database volume is 2200+ OSTs. Some repeats exist in wider game queries.</li>
                 <li>Webscraping for local music database was done slowly over an extended period of time to avoid harassing KHIndsider's services.</li>
             </ul>
         </div>
         <br>
         <hr>
-        <p style="font-size: small">v0.2.1 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
-        <p style="font-size: small"><i>Database uses scraped info from KHInsider.</i></p>
+        <p style="font-size: small">v0.2.2 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
+        <p class="footnote_text">Database uses scraped info from KHInsider.</p>
     </div>
     <div id="steam_music_game_menu" class="tabcontent">
         <h2>Personalized Gaming OST Identification via Steam</h2>

@@ -1,4 +1,3 @@
-
 let real_vgm_data = {} // Global needed for asynchronous usage
 
 function titleCase(str) {
@@ -510,18 +509,23 @@ async function start_vgm_game() {
             break;
         case "franchises":
             console.log("Sorting by Franchises");
-            break;
-        case "developers":
-            console.log("Sorting by Developers")
+
+            const current_franchise = document.getElementById('franchises_options').value
+
+            for (const album of Object.keys(all_data)) {
+                if (album.toLowerCase().includes(current_franchise.toLowerCase())) {
+                    real_vgm_data[album] = all_data[album];
+                }
+            }
+            console.log(`Found ${real_vgm_data.length} games for '${current_franchise}'`);
             break;
         case "publishers":
             console.log("Sorting by Publishers");
 
-            const publisher_selected = document.querySelector('#publisher_options').value
-            let pub_counter = 0;
-            for (const album of Object.keys(all_data) ) {
+            const publisher_selected = document.getElementById('publisher_options').value
+            for (const album of Object.keys(all_data)) {
                 let include_this_pub = false;
-                const pub_list = all_data[album]['publisher']
+                const pub_list = all_data[album]['publisher'];
                 if (pub_list.includes(publisher_selected)) {  // Easy detect, direct name included in pub list
                     include_this_pub = true;
                 } else {    //Harder check, see if the value is a part of each of the publishers (i.e. 'Sony' vs 'Sony Records')
@@ -536,10 +540,21 @@ async function start_vgm_game() {
                 // Add if successful in either easy/hard search
                 if (include_this_pub) {
                     real_vgm_data[album] = all_data[album];
-                    pub_counter += 1;
                 }
             }
-            console.log(`Found ${pub_counter} viable albums for the publisher "${publisher_selected}"`)
+            console.log(`Found ${real_vgm_data.length} viable albums for the publisher "${publisher_selected}"`);
+            break;
+        case "developers":
+            console.log("Sorting by Developers");
+
+            const dev_selected = document.getElementById('dev_options').value
+            for (const album of Object.keys(all_data)) {
+                const dev_list = all_data[album]['developer'];
+                if (dev_list.includes(dev_selected)) {
+                    real_vgm_data[album] = all_data[album];
+                }
+            }
+
             break;
     }
     if (invalid_request){
@@ -666,8 +681,8 @@ async function play_vgm_game() {
     while (audio_player.buffered.length === 0) {
         await sleep(100, 'Buffering');
         buffer_counter += 1
-        if (buffer_counter > 250) {
-            info_box.textContent = "Oops!\nMe might be stuck. Try refreshing the page..."
+        if (buffer_counter > 200) {
+            info_box.textContent = "Oops!\nWe might be stuck. Try refreshing the page..."
         }
     }
     const duration = audio_player.duration;

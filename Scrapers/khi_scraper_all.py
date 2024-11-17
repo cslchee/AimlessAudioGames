@@ -53,6 +53,7 @@ def page_album_data(album_url: str):
         return
 
     title = soup.find('div', {'id': 'pageContent'}).find('h2').text
+    title = title.replace('\u00e9','e') # Fix for pokemon games
 
 
     # Get the first album cover

@@ -284,15 +284,16 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
 }
 
 #vgm_game_menu td {
-    height: 400px
-}
-
-.sort_by_option {
-    margin: auto;
+    height: 400px;
 }
 
 #vgm_invalid_request {
     display: none;
     color: palevioletred;
     font-size: small;
+}
+
+.footnote_text {
+    font-size: small;
+    font-style: italic;
 }
