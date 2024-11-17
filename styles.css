@@ -297,3 +297,7 @@ video, #the_game, #custom_rounds_div, #custom_rounds_error_msg, #literally_every
     font-size: small;
     font-style: italic;
 }
+
+.sort_by_option {
+    display: none;
+}

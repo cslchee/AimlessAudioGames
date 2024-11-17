@@ -542,7 +542,7 @@ async function start_vgm_game() {
                     real_vgm_data[album] = all_data[album];
                 }
             }
-            console.log(`Found ${real_vgm_data.length} viable albums for the publisher "${publisher_selected}"`);
+
             break;
         case "developers":
             console.log("Sorting by Developers");
@@ -556,13 +556,30 @@ async function start_vgm_game() {
             }
 
             break;
+        case "decades":
+            console.log("Sorting by Decades");
+
+            const decade = Number(document.getElementById('decade_options').value.replace('s',''))
+            console.log(`Checking of the decade: ${decade}`)
+
+            for (const album of Object.keys(all_data)) {
+                let year = all_data[album]['year'];
+                if (year !== "") {
+                    year = Number(year);
+                    if (year >= decade && year <= (decade+9)) {
+                        real_vgm_data[album] = all_data[album];
+                    }
+                }
+            }
+
+            break;
     }
     if (invalid_request){
         document.getElementById("vgm_invalid_request").style.display = "block"
         return;
     }
 
-    console.log("Real VGM Data:")
+    console.log(`Real VGM Data (Length ${real_vgm_data.length}):`)
     console.log(real_vgm_data)
 
     // Hide main DIVs and show game canvas
@@ -741,7 +758,6 @@ async function play_vgm_game() {
     vgm_button.textContent = "Next";
     vgm_button.disabled = false;
 }
-
 
 function finish_vgm_game() {
     // Stop the music, quiet it down quickly

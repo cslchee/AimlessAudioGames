@@ -275,6 +275,7 @@
                             <option value="franchises">Franchises</option>
                             <option value="publishers">Publishers</option>
                             <option value="developers">Developers</option>
+                            <option value="decades">Decades</option>
                         </select>
                         <script type="text/javascript">
                         // Run at start to always have default, even on refreshing the page
@@ -287,7 +288,6 @@
                             // Hide all other rows
                             const allContent = document.querySelectorAll(".sort_by_option");
                             allContent.forEach(element => {
-                                console.log(window.getComputedStyle(element).display)
                                 element.style.display = 'none';
                             })
 
@@ -381,11 +381,11 @@
                             }
 
                             const franchise_names = ["Pokemon","Mario","Zelda","Kirby","Metroid","Donkey Kong",
-                                                    "Street Fighter","Crash Bandicoot","Monster Hunter",
+                                                    "Animal Crossing","Splatoon",
+                                                    "Street Fighter","Mega Man","Monster Hunter", "Crash Bandicoot",
                                                     "Halo","Metal Gear","Persona","Kingdom Hearts","Fire Emblem",
                                                     "Castlevania"];
-                            const franchise_selection_element = document.getElementById('franchises_options');
-                            create_long_dropdown(franchise_names, franchise_selection_element)
+                            create_long_dropdown(franchise_names, document.getElementById('franchises_options'))
                         </script>
                         <hr>
                         <p class="footnote_text">A handful of popular franchise based on the most popular searches in KHInsider as well as personal bias.</p>
@@ -397,8 +397,7 @@
                         <script>
                             const publisher_names = ["Nintendo","Sega","Capcom","Sony","SCE (More Classic Sony)",
                                                     "Devolver","Atlus","Annapurna Interactive"];
-                            const publisher_selection_element = document.getElementById("publisher_options");
-                            create_long_dropdown(publisher_names, publisher_selection_element)
+                            create_long_dropdown(publisher_names, document.getElementById("publisher_options"))
                         </script>
                         <hr>
                         <p class="footnote_text">No guarantees that you'll only get the big popular stuff. Some of these people publish a lot of games.</p>
@@ -408,9 +407,15 @@
                         <br>
                         <select id="dev_options"></select>
                         <script>
-                            const dev_names = ["FromSoftware","Supergiant Games","Insomniac Games"]
-                            const dev_selection_element = document.getElementById('dev_options');
-                            create_long_dropdown(dev_names, dev_selection_element);
+                            const dev_names = ["FromSoftware","Supergiant Games","Insomniac Games","Rare"]
+                            create_long_dropdown(dev_names, document.getElementById('dev_options'));
+                        </script>
+                    </td>
+                    <td id="decades" class="sort_by_option">
+                        <label for="decade_options">Decades</label>
+                        <select id="decade_options"></select>
+                        <script>
+                            create_long_dropdown(["1980s","1990s","2000s","2010s","2020s"], document.getElementById('decade_options'));
                         </script>
                     </td>
                 </tr>
@@ -469,7 +474,7 @@
         </div>
         <br>
         <hr>
-        <p style="font-size: small">v0.2.2 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
+        <p style="font-size: small">v0.2.3 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
         <p class="footnote_text">Database uses scraped info from KHInsider.</p>
     </div>
     <div id="steam_music_game_menu" class="tabcontent">
@@ -559,7 +564,7 @@
         <canvas id="vgm_canvas" height="15%"></canvas>
         <br>
         <button id="next_vgm_button" onclick="play_vgm_game()">Next</button>
-        <br>
+        <hr>
         <button id="exit_button_vgm" onclick="finish_vgm_game();">Exit</button>
 
     </div>
