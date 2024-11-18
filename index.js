@@ -1,4 +1,5 @@
 let real_vgm_data = {} // Global needed for asynchronous usage
+let reveal_msg = ""
 
 function titleCase(str) {
     str = str.toLowerCase().split(' ');
@@ -628,7 +629,22 @@ async function play_vgm_game() {
         "Your free trial is about to expire in (2) songs. JK, imagine paying for access to internet content.",
         "Don't forget to drink water!",
         "Hmmm, I wonder what's for dinner...",
-        "Deez notes! Heard 'em!"
+        "Deez notes! Heard 'em!",
+        "I know the song, but I've never played the game it's from :/",
+        "Psst, what's the name of the game this one is from?",
+        "They should put this song in Beat Saber lmao",
+        "What an iconic song.",
+        "Such a signature sound, of course I know which game this is from.",
+        "Don't know this tune? Well I must know your address because you must be living under a rock.",
+        "I like this one :)",
+        "Only real gamers know this jam.",
+        "Whoop whoop, that's the sound of the police outside your door ready to interrogate you about whether or not you recognize this song.",
+        "Ooof, I might not know this one.",
+        "This soundtrack literally changed my life fr fr no cap.",
+        "I was today years only when I heard this song for the first time.",
+        "Could you imagine loosing your virginity to this song.",
+        "Help! My ears are bleeding!",
+        "Oops, almost for got to listen to this today."
     ]
     const buffering_quotes = [
         "Gimme a sec...",
@@ -651,9 +667,13 @@ async function play_vgm_game() {
     question_block_image.style.display = "block"
     vgm_image.style.display = "none"
 
-    let vgm_button = document.getElementById("next_vgm_button");
+    const vgm_button = document.getElementById("next_vgm_button");
     vgm_button.disabled = true;
-    vgm_button.textContent = "Please Wait"
+    vgm_button.textContent = "Wait"
+
+    const reveal_button = document.getElementById('vgm_reveal_button');
+    reveal_button.disabled = true;
+    reveal_button.textContent = "Please"
 
     //Get a random song
     const keys = Object.keys(real_vgm_data)
@@ -682,17 +702,17 @@ async function play_vgm_game() {
     audio_player.src = random_song_url
     audio_player.load();
 
-    //Some constants
+    //Some constants for convenience
     const vgm_w = vgm_canvas.width
     const vgm_h = vgm_canvas.height
 
     //Buffer Audio and display notice
     ctx.fillStyle = 'dimgrey'
-    ctx.clearRect(0,0, vgm_w, vgm_canvas.height); //Clear screen
+    ctx.clearRect(0,0, vgm_w, vgm_h); //Clear screen
     ctx.textAlign = 'center';
     ctx.fillStyle = 'skyblue';
     ctx.font = '60px sans-serif bold';
-    ctx.fillText("Buffering...", vgm_w/2, vgm_h/2)
+    ctx.fillText("Buffering...", vgm_w/2, vgm_h/2+3)
 
     let buffer_counter = 0
     while (audio_player.buffered.length === 0) {
@@ -713,18 +733,22 @@ async function play_vgm_game() {
 
     //Countdown to reveals
     console.log("Starting Countdown");
+    vgm_button.textContent = "Listen..."
     //Prep countdown bar
     let grd = ctx.createLinearGradient(vgm_w, vgm_h, 0, 0);
     grd.addColorStop(0, "skyblue");
     grd.addColorStop(1, "dimgrey");
     ctx.fillStyle = grd;
 
-    const countdown = 8;
-    const speed = 25; //Lower a smoother countdown bar. Very smooth, but a little glitchy = 25
+    const countdown = 10; // Must be an integer
+    const speed = 25; //Lower a smoother countdown bar. Very smooth, but a little glitchy = 25, must fit cleanly into 1000
     let canceled_during_countdown = false;
     for (let sec = 0; sec < countdown*1000; sec += speed) { //Use a 'time.now()' difference while-loop instead?
         ctx.clearRect(0, 0, vgm_w, vgm_h);
         ctx.fillRect(0, 0, vgm_w - Math.floor(vgm_w * (sec/(countdown*1000))), vgm_h); //Countdown bar
+        if (sec % 1000 === 0) {
+            reveal_button.textContent = Math.round(countdown-(sec/1000)).toString() // Show numeric countdown in reveal button
+        }
         await sleep(speed, 'Drawing countdown');
         //Could put small Startup volume increase here too
         if (audio_player.paused) {
@@ -732,50 +756,67 @@ async function play_vgm_game() {
             canceled_during_countdown = true;
             break;
         }
-
     }
     ctx.clearRect(0, 0, vgm_w, vgm_h);
+    ctx.fillText("Ready to Reveal!", vgm_w/2, vgm_h/2+3);
     //Stop playing if we exited during a countdown
     if (canceled_during_countdown) {return}
 
-    //Update the info box, shows the album cover, and re-enable the next button
-    let msg = `<p><b>Album:</b> ${titleCase(random_album_title)}<br><b>Song:</b> ${titleCase(random_song_title)}</p>`
+    //Prep the info box for the reveal
+    reveal_msg = `<p><b>Album:</b> ${titleCase(random_album_title)}<br><b>Song:</b> ${titleCase(random_song_title)}</p>`
     let year = random_album['year']
     let platforms = random_album['platforms']
     let developer = random_album['developer']
     let publisher = random_album['publisher']
-    if (year !== "") {msg += `<li><b>Year:</b> ${year}</li>`}
-    if (platforms.length !== 0) {msg +=  `<li><b>Platform(s):</b> ${platforms.join(', ')}</li>`}
-    if (developer.length !== 0) {msg +=  `<li><b>Developer(s):</b> ${developer.join(', ')}</li>`}
-    if (publisher.length !== 0) {msg +=  `<li><b>Publisher(s):</b> ${publisher.join(', ')}</li>`}
+    if (year !== "") {reveal_msg += `<li><b>Year:</b> ${year}</li>`}
+    if (platforms.length !== 0) {reveal_msg +=  `<li><b>Platform(s):</b> ${platforms.join(', ')}</li>`}
+    if (developer.length !== 0) {reveal_msg +=  `<li><b>Developer(s):</b> ${developer.join(', ')}</li>`}
+    if (publisher.length !== 0) {reveal_msg +=  `<li><b>Publisher(s):</b> ${publisher.join(', ')}</li>`}
+
+    vgm_button.innerText = "...";
+    reveal_button.innerText = "Reveal!";
+    reveal_button.disabled = false;
+}
+
+function reveal() {
+    //Disable the revealed button
+    const reveal_button = document.getElementById('vgm_reveal_button');
+    reveal_button.disabled = true;
+    reveal_button.innerText = "Revealed";
+
+    //Display album info
+    const info_box = document.getElementById('album_info_box');
     info_box.style.textAlign = 'left';
-    info_box.innerHTML = msg
+    info_box.innerHTML = reveal_msg;
 
-    //Swap in the album cover and enable the button
-    question_block_image.style.display = "none"
-    vgm_image.style.display = "block"
+    //Swap images
+    document.getElementById('question_block_img').style.display = "none";
+    document.getElementById('vgm_img').style.display = "block";
 
-    vgm_button.textContent = "Next";
-    vgm_button.disabled = false;
+    //Write loading-bar message
+    let vgm_canvas = document.getElementById('vgm_canvas');
+    let ctx = vgm_canvas.getContext('2d')
+    ctx.clearRect(0, 0, vgm_canvas.width, vgm_canvas.height);
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'skyblue';
+    ctx.font = '60px sans-serif bold';
+    const confirmation_quotes = ["Did ya guess it?",
+                                        "What did you think of this one?",
+                                        "Ready for the next song!",
+                                        "Sound familiar?",
+                                        "Are you ready for another?"]
+    ctx.fillText(confirmation_quotes[Math.floor(Math.random() * confirmation_quotes.length)], vgm_canvas.width/2, vgm_canvas.height/2+3)
+
+    //Enable next button
+    const next_button = document.getElementById('next_vgm_button');
+    next_button.textContent = "Next";
+    next_button.disabled = false;
 }
 
 function finish_vgm_game() {
-    // Stop the music, quiet it down quickly
+    // Stop the music
     const audio_player = document.getElementById('vgm_audio_player');
     audio_player.pause()
-
-
-    // const decrease_volume = () => {
-    //     if (current_volume > 0.4) {
-    //       current_volume -= 0.05;
-    //       audio_player.volume = current_volume;
-    //     console.log("PING")
-    //     } else {
-    //       clearInterval(volume_interval);
-    //     }
-    // };
-    // const volume_interval = setInterval(decrease_volume, 1200);
-
 
     // Re-hide game and show tabs again
     document.getElementById("vgm_game_menu").style.display = "block";

@@ -348,7 +348,6 @@
                             }
                         </script>
                         </div>
-                        <br>
                         <div>
                             <button onclick="deselect_all_consoles()" id="console_deselect_button"><i>Deselect All</i></button>
                             <script type="text/javascript">
@@ -359,7 +358,10 @@
                             </script>
                         </div>
                         <hr>
-                        <p class="footnote_text">Selecting multiple consoles means an album will be viable if it appeared on ANY of the selected consoles.</p>
+                        <p class="footnote_text">
+                            Selecting multiple consoles means an album will be viable if it appeared on ANY of the selected consoles.
+                            Also keep in mind that retro games still like to appear as Virtual Console games on more recent Nintendo systems.
+                        </p>
                     </td>
                     <td id="franchises" class="sort_by_option">
                         <label for="franchises_options">Sort By</label>
@@ -474,7 +476,7 @@
         </div>
         <br>
         <hr>
-        <p style="font-size: small">v0.2.3 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
+        <p style="font-size: small">v1.0.0 - Created by <a href="https://youtu.be/rsDTJpsjxgs?si=vMIizvfUr2XRy7ZU">CasualCheetah</a></p>
         <p class="footnote_text">Database uses scraped info from KHInsider.</p>
     </div>
     <div id="steam_music_game_menu" class="tabcontent">
@@ -563,10 +565,10 @@
         </script>
         <canvas id="vgm_canvas" height="15%"></canvas>
         <br>
+        <button id="vgm_reveal_button" onclick="reveal()">Reveal</button>
         <button id="next_vgm_button" onclick="play_vgm_game()">Next</button>
         <hr>
-        <button id="exit_button_vgm" onclick="finish_vgm_game();">Exit</button>
-
+        <button id="exit_button_vgm" onclick="finish_vgm_game()">Exit</button>
     </div>
 
     <script type="text/javascript" src="index.js"></script>

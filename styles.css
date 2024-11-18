@@ -43,8 +43,7 @@ body {
     background-color: firebrick;
 }
 
-#next_vgm_button {
-    background-color: darkcyan;
+#next_vgm_button, #vgm_reveal_button {
     border: none;
     color: white;
     text-align: center;
@@ -58,6 +57,11 @@ body {
     margin: 10px auto;
 }
 
+
+#next_vgm_button {
+    background-color: darkcyan;
+}
+
 #next_vgm_button:hover:enabled {
     background-color: aqua;
     width: 120px;
@@ -68,6 +72,23 @@ body {
     border: 1px solid darkcyan;
     transition-duration: 0.4s;
 }
+
+
+#vgm_reveal_button {
+    background-color: darkgreen;
+}
+
+#vgm_reveal_button:hover:enabled {
+    background-color: forestgreen;
+    width: 120px;
+}
+
+#vgm_reveal_button:disabled {
+    background-color: black;
+    border: 1px solid green;
+    transition-duration: 0.4s;
+}
+
 
 #console_deselect_button {
     background-color: dimgray;
